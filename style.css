@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;600&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #030712;
+    color: #f3f4f6;
+    overflow-x: hidden;
+    background-image: 
+        radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 85% 60%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+        radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 28px 28px;
+}
+
+/* Glassmorphism styling */
+.glass-panel {
+    background: rgba(11, 17, 32, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.glass-panel-interactive {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-interactive:hover {
+    border-color: rgba(6, 182, 212, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.2);
+}
+
+/* Cyber Glowing Borders */
+.neon-border-cyan {
+    box-shadow: 0 0 15px -3px rgba(6, 182, 212, 0.3);
+    border-color: rgba(6, 182, 212, 0.4);
+}
+
+.neon-border-amber {
+    box-shadow: 0 0 15px -3px rgba(245, 158, 11, 0.3);
+    border-color: rgba(245, 158, 11, 0.4);
+}
+
+.neon-border-emerald {
+    box-shadow: 0 0 15px -3px rgba(16, 185, 129, 0.3);
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+/* Life grid square styles */
+.week-square {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    border-radius: 1.5px;
+    transition: all 0.15s ease;
+}
+
+.weeks-grid {
+    display: grid;
+    grid-template-columns: repeat(52, minmax(0, 1fr));
+    gap: 0.75px;
+    flex-grow: 1;
+}
+
+@media (min-width: 640px) {
+    .weeks-grid {
+        gap: 1.5px;
+    }
+    .week-square {
+        border-radius: 2px;
+    }
+}
+
+.week-square:hover {
+    transform: scale(1.4);
+    z-index: 10;
+    outline: 1.5px solid #ffffff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 3px currentColor;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+::-webkit-scrollbar-track {
+    background: #030712;
+}
+::-webkit-scrollbar-thumb {
+    background: #1f2937;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #374151;
+}
+
+/* Pulsing animation for current week */
+@keyframes pulse-amber-glow {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.8); }
+    50% { transform: scale(1.4); box-shadow: 0 0 12px 4px rgba(245, 158, 11, 0.9); }
+}
+
+.current-week-pulse {
+    animation: pulse-amber-glow 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    background-color: #f59e0b !important;
+    z-index: 20;
+}
+
+/* Tab transition */
+.tab-content {
+    display: none;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.tab-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Radial Timer Ring SVG styles */
+.timer-svg-circle {
+    transition: stroke-dashoffset 1s linear;
+}
+
+/* Cyber grid lines background effect */
+.grid-lines {
+    background-size: 40px 40px;
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* iOS Safe Areas helper */
+.pb-safe {
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+}
+
+/* Standardize Forms, Inputs and Select Dropdowns */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="month"],
+select,
+textarea {
+    width: 100%;
+    background-color: #0b0f19 !important; /* dark slate background matching panels */
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 0.75rem !important; /* rounded-xl */
+    padding: 0.625rem 0.875rem !important; /* uniform padding py-2.5 px-3.5 */
+    font-size: 0.75rem !important; /* text-xs */
+    color: #f3f4f6 !important;
+    font-family: inherit;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Focused States */
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+select:focus,
+textarea:focus {
+    border-color: rgba(6, 182, 212, 0.6) !important;
+    box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.25) !important;
+    background-color: #0d1527 !important; /* slightly brighter dark on focus */
+}
+
+/* Beautiful Custom Dropdown Selects */
+select {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 0.875rem center !important;
+    background-size: 1rem !important;
+    padding-right: 2.75rem !important; /* Prevents text overlapping with arrow */
+}
+
+/* Label Spacing Standard */
+label {
+    display: block;
+    margin-bottom: 0.375rem; /* clean spacing below label */
+}
+
+/* Uniform spacing for glass panels */
+.glass-panel {
+    padding: 1.5rem !important;
+    border-radius: 1.5rem !important; /* rounded-3xl */
+}
+
+@media (min-width: 640px) {
+    .glass-panel {
+        padding: 2rem !important;
+    }
+}
+
+/* Custom Header Styling (Flat, sticky, no round border) */
+.top-header {
+    background: rgba(3, 7, 18, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+    padding: 0.5rem 0; /* Spacious padding for flat top bar */
+}

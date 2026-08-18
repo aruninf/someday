@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOMEDAY — Turn Unfinished Dreams Into Action</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#040711',
+                            card: 'rgba(12, 18, 34, 0.65)',
+                            border: 'rgba(255, 255, 255, 0.08)',
+                            glow: 'rgba(6, 182, 212, 0.15)',
+                        },
+                        brand: {
+                            cyan: '#06b6d4',
+                            amber: '#f59e0b',
+                            emerald: '#10b981',
+                            rose: '#f43f5e'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Tone.js for Audio Feedback & Ambient Sound Generator -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Refactored Custom CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-white antialiased pb-20 md:pb-0">
+
+    <!-- Top Futuristic Header Dock -->
+    <header class="top-header sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Brand Logo -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('reality')">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 via-teal-500 to-amber-500 flex items-center justify-center shadow-lg shadow-cyan-500/25 border border-white/10">
+                        <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h1 class="font-black text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-amber-400">SOMEDAY</h1>
+                            <span class="text-[9px] uppercase tracking-widest font-black px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">Life Blueprint</span>
+                        </div>
+                        <p class="text-[11px] text-gray-400 hidden sm:block">"Kal Karenge" se "Aaj Hi Karenge" tak ka futuristic safar</p>
+                    </div>
+                </div>
+
+                <!-- Main Desktop Navigation & Action Button Group -->
+                <div class="hidden md:flex items-center gap-4">
+                    <nav class="flex items-center space-x-1 bg-gray-950/80 p-1.5 rounded-2xl border border-gray-800/80 shadow-inner">
+                        <button onclick="switchTab('reality')" id="tab-btn-reality" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-white bg-cyan-600 shadow-md shadow-cyan-600/30 transition-all">
+                            <i data-lucide="clock" class="w-4 h-4"></i>
+                            Mera Time
+                        </button>
+                        <button onclick="switchTab('vault')" id="tab-btn-vault" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-900 transition-all">
+                            <i data-lucide="compass" class="w-4 h-4"></i>
+                            Someday Vault
+                        </button>
+                        <button onclick="switchTab('blueprint')" id="tab-btn-blueprint" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-900 transition-all relative">
+                            <i data-lucide="target" class="w-4 h-4"></i>
+                            Action Plans
+                            <span id="active-badge" class="ml-1 w-4 h-4 rounded-full bg-amber-500 text-black font-extrabold text-[9px] flex items-center justify-center hidden">0</span>
+                        </button>
+                        <button onclick="switchTab('sprint')" id="tab-btn-sprint" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-900 transition-all">
+                            <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
+                            15-Min Sprint
+                        </button>
+                        <button onclick="switchTab('weekly')" id="tab-btn-weekly" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-900 transition-all">
+                            <i data-lucide="trophy" class="w-4 h-4 text-emerald-400"></i>
+                            Goals & Wins
+                        </button>
+                        <button onclick="switchTab('contract')" id="tab-btn-contract" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-900 transition-all">
+                            <i data-lucide="file-signature" class="w-4 h-4"></i>
+                            Future Promise
+                        </button>
+                    </nav>
+
+                    <button onclick="openCustomModal()" class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black text-xs font-extrabold transition-all shadow-lg shadow-amber-500/20 active:scale-95 border border-amber-400/30">
+                        <i data-lucide="plus" class="w-4 h-4"></i>
+                        <span>Naya Dream Add Karo</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Bottom Floating Bar (Design Improvement: Modern Fixed Bottom Layout) -->
+        <div class="md:hidden flex border-t border-gray-800/80 bg-gray-950/95 backdrop-blur-xl justify-around py-3 px-1 fixed bottom-0 left-0 right-0 z-40 pb-safe shadow-[0_-8px_30px_rgba(0,0,0,0.6)]">
+            <button onclick="switchTab('reality')" id="mob-btn-reality" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-cyan-400">
+                <i data-lucide="clock" class="w-4 h-4"></i>
+                Time
+            </button>
+            <button onclick="switchTab('vault')" id="mob-btn-vault" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-gray-400">
+                <i data-lucide="compass" class="w-4 h-4"></i>
+                Vault
+            </button>
+            <button onclick="switchTab('blueprint')" id="mob-btn-blueprint" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-gray-400">
+                <i data-lucide="target" class="w-4 h-4"></i>
+                Plans
+            </button>
+            <button onclick="switchTab('sprint')" id="mob-btn-sprint" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-gray-400">
+                <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
+                Sprint
+            </button>
+            <button onclick="switchTab('weekly')" id="mob-btn-weekly" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-gray-400">
+                <i data-lucide="trophy" class="w-4 h-4 text-emerald-400"></i>
+                Wins
+            </button>
+            <button onclick="switchTab('contract')" id="mob-btn-contract" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-gray-400">
+                <i data-lucide="file-signature" class="w-4 h-4"></i>
+                Promise
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-28 md:pb-12 flex-grow w-full">
+
+        <!-- ================= TAB 1: LIFE CALENDAR & REALITY CHECK ================= -->
+        <section id="tab-reality" class="tab-content active space-y-8">
+            <!-- Reality Check Hero Banner -->
+            <div class="glass-panel p-6 sm:p-8 rounded-3xl relative overflow-hidden border border-cyan-500/30 neon-border-cyan">
+                <div class="absolute -right-12 -bottom-12 w-72 h-72 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                    <div class="lg:col-span-2 space-y-3">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 text-xs font-semibold">
+                            <i data-lucide="hourglass" class="w-3.5 h-3.5 text-cyan-400"></i> Life Time Visualizer & Precision Calculator
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                            Aapka Kitna Time Baaki Hai? <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-teal-400 to-cyan-400">Life In Weeks</span>
+                        </h2>
+                        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed max-w-2xl">
+                            Hum sab sochte hain ki hamare paas bohot time hai, isliye hum apne sweet dreams "Ek Din Karenge" par chor dete hain. Jab aap apni full life ko weeks me dekhte hain, tab samajh aata hai ki har ek week kitna important hai!
+                        </p>
+                    </div>
+
+                    <!-- Precise Interactive User Life Controls -->
+                    <div class="glass-panel p-5 rounded-2xl border border-gray-700/80 bg-gray-950/80 space-y-4">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-cyan-300 flex items-center gap-1.5">
+                            <i data-lucide="sliders" class="w-4 h-4 text-cyan-400"></i> Apni Exact Timeline Set Karo
+                        </h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-semibold text-gray-400 mb-1">Birth Year & Month</label>
+                                <input type="month" id="input-birthdate" value="1998-05" onchange="updateLifeGrid()" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-1.5 text-xs font-bold text-white focus:outline-none focus:border-cyan-500 transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-gray-400 mb-1">Target Lifespan (Years)</label>
+                                <input type="number" id="input-lifespan" value="80" min="40" max="110" onchange="updateLifeGrid()" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-1.5 text-xs font-bold text-white focus:outline-none focus:border-cyan-500 transition-all">
+                            </div>
+                        </div>
+
+                        <!-- Parent Visits Interactive Calculator -->
+                        <div class="pt-3 border-t border-gray-800/80 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <label class="text-[11px] font-medium text-amber-300 flex items-center gap-1">
+                                    <i data-lucide="heart" class="w-3.5 h-3.5 text-rose-400"></i> Parents Ki Age
+                                </label>
+                                <input type="number" id="input-parent-age" value="62" min="1" max="100" onchange="updateLifeGrid()" class="w-16 bg-gray-900 border border-gray-700 rounded-lg px-2 py-1 text-xs text-center font-extrabold text-white focus:outline-none focus:border-cyan-500">
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <label class="text-[11px] font-medium text-gray-400">Year Me Kitni Baar Milte Ho?</label>
+                                <input type="number" id="input-visits-year" value="4" min="1" max="365" onchange="updateLifeGrid()" class="w-16 bg-gray-900 border border-gray-700 rounded-lg px-2 py-1 text-xs text-center font-extrabold text-white focus:outline-none focus:border-cyan-500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Life Stats Quick Indicators -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 pt-6 border-t border-gray-800/80">
+                    <div class="p-4 rounded-2xl bg-gray-950/60 border border-gray-800/80">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Weeks Lived</span>
+                        <p id="stat-weeks-lived" class="text-xl sm:text-2xl font-black text-cyan-400 font-mono">1,456</p>
+                        <p id="stat-pct-lived" class="text-[11px] text-gray-400">35% life complete</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-gray-950/60 border border-gray-800/80">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Weeks Left</span>
+                        <p id="stat-weeks-left" class="text-xl sm:text-2xl font-black text-amber-400 font-mono">2,704</p>
+                        <p class="text-[11px] text-amber-400/80">Aapki golden opportunity</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-gray-950/60 border border-gray-800/80">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Summer Weekends Left</span>
+                        <p id="stat-summers-left" class="text-xl sm:text-2xl font-black text-emerald-400 font-mono">52</p>
+                        <p class="text-[11px] text-emerald-400/80">Remaining summer weekends</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-gray-950/60 border border-rose-900/30 bg-rose-950/10">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-rose-300">Parents Se Milne Ke Remaining Days</span>
+                        <p id="stat-parent-visits" class="text-xl sm:text-2xl font-black text-rose-400 font-mono">72</p>
+                        <p class="text-[11px] text-rose-300/80">Estimate milne ke moments</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Life Grid Matrix Container -->
+            <div class="glass-panel p-6 rounded-3xl space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-gray-800/80">
+                    <div>
+                        <h3 class="text-lg font-extrabold text-white flex items-center gap-2">
+                            <i data-lucide="grid" class="w-5 h-5 text-cyan-400"></i>
+                            Aapki Life Ka Visual Grid Matrix
+                        </h3>
+                        <p class="text-xs text-gray-400">Har row = 1 Year (52 Weeks). Har small square = 1 Week.</p>
+                    </div>
+
+                    <!-- Legend Indicators -->
+                    <div class="flex items-center gap-4 text-xs">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded-sm bg-cyan-600 inline-block shadow-sm shadow-cyan-500"></span>
+                            <span class="text-gray-400">Lived</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded-sm bg-amber-500 inline-block shadow-sm shadow-amber-500"></span>
+                            <span class="text-gray-400">This Week</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded-sm bg-gray-900 border border-gray-800 inline-block"></span>
+                            <span class="text-gray-400">Baaki Time</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Life Weeks Render Canvas -->
+                <div id="life-grid-container" class="w-full overflow-x-auto sm:overflow-x-visible pb-2">
+                    <div id="life-grid" class="flex flex-col gap-1 w-full font-mono">
+                        <!-- Dynamic life grid inserted via JS -->
+                    </div>
+                </div>
+
+                <!-- Hover Tooltip Context Bar -->
+                <div id="grid-tooltip" class="p-3.5 rounded-2xl bg-gray-950 border border-gray-800 text-xs text-gray-300 flex flex-col sm:flex-row sm:items-center justify-between gap-2 min-h-[44px]">
+                    <span class="flex items-center gap-2 text-gray-400">
+                        <i data-lucide="info" class="w-4 h-4 text-cyan-400"></i>
+                        Kisi bhi square par hover ya tap karke exact age aur week status dekhein.
+                    </span>
+                    <span id="tooltip-detail" class="font-extrabold text-amber-400 font-mono"></span>
+                </div>
+            </div>
+
+            <!-- Motivational Callout -->
+            <div class="glass-panel p-6 rounded-3xl border-l-4 border-l-amber-500 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div class="space-y-1">
+                    <h4 class="font-extrabold text-white text-base">Kis baat ka wait kar rahe ho, dost?</h4>
+                    <p class="text-xs text-gray-300 max-w-2xl leading-relaxed">
+                        "Sabse badi galatfehmi yeh hai ki humein lagta hai hamare paas bohot time hai." — Logon ka sabse bada regret hota hai ki unhone apne creative dreams par risk nahi liya.
+                    </p>
+                </div>
+                <button onclick="switchTab('vault')" class="whitespace-nowrap px-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs transition-all shadow-lg shadow-cyan-600/30 flex items-center gap-2">
+                    Someday Vault Dekho <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= TAB 2: THE SOMEDAY VAULT ================= -->
+        <section id="tab-vault" class="tab-content space-y-6">
+            <!-- Vault Header & Filters -->
+            <div class="glass-panel p-6 rounded-3xl space-y-4">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-semibold mb-2">
+                            <i data-lucide="lightbulb" class="w-3.5 h-3.5"></i> Dil Ki Wishlist
+                        </div>
+                        <h2 class="text-2xl font-extrabold text-white">Wo Dreams Jo Hum "Bas Sochte Hain, Par Karte Nahi"</h2>
+                        <p class="text-gray-300 text-xs mt-1">
+                            Curated dreams jo log hamesha postpone karte hain. Koi ek select karo aur ABHI START KARO!
+                        </p>
+                    </div>
+
+                    <button onclick="openCustomModal()" class="px-4 py-2.5 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white rounded-xl font-bold text-xs flex items-center gap-2 shadow-lg shadow-cyan-600/30 transition-all">
+                        <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                        Apna Personal Dream Add Karo
+                    </button>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap items-center gap-2 pt-3 border-t border-gray-800">
+                    <button onclick="filterVault('all')" class="vault-filter active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-cyan-600 text-white transition-all shadow-md">All Dreams</button>
+                    <button onclick="filterVault('relationships')" class="vault-filter px-3.5 py-1.5 rounded-xl text-xs font-bold bg-gray-900 text-gray-300 hover:bg-gray-800 transition-all flex items-center gap-1.5">
+                        <i data-lucide="heart" class="w-3.5 h-3.5 text-rose-400"></i> Relationships & Family
+                    </button>
+                    <button onclick="filterVault('creativity')" class="vault-filter px-3.5 py-1.5 rounded-xl text-xs font-bold bg-gray-900 text-gray-300 hover:bg-gray-800 transition-all flex items-center gap-1.5">
+                        <i data-lucide="palette" class="w-3.5 h-3.5 text-amber-400"></i> Creativity & Skills
+                    </button>
+                    <button onclick="filterVault('adventure')" class="vault-filter px-3.5 py-1.5 rounded-xl text-xs font-bold bg-gray-900 text-gray-300 hover:bg-gray-800 transition-all flex items-center gap-1.5">
+                        <i data-lucide="compass" class="w-3.5 h-3.5 text-emerald-400"></i> Travel & Adventure
+                    </button>
+                    <button onclick="filterVault('legacy')" class="vault-filter px-3.5 py-1.5 rounded-xl text-xs font-bold bg-gray-900 text-gray-300 hover:bg-gray-800 transition-all flex items-center gap-1.5">
+                        <i data-lucide="trophy" class="w-3.5 h-3.5 text-sky-400"></i> Projects & Legacy
+                    </button>
+                </div>
+            </div>
+
+            <!-- Vault Cards Grid -->
+            <div id="vault-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically generated vault items -->
+            </div>
+        </section>
+
+        <!-- ================= TAB 3: ACTION BLUEPRINT ENGINE ================= -->
+        <section id="tab-blueprint" class="tab-content space-y-6">
+            <!-- Active Blueprints Header -->
+            <div class="glass-panel p-6 rounded-3xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold mb-2">
+                        <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Action Blueprint Breakdown
+                    </div>
+                    <h2 class="text-2xl font-extrabold text-white">Aapke Active Action Plans</h2>
+                    <p class="text-gray-300 text-xs mt-1">
+                        Big dreams humein darate hain. Hum har dream ko ek <span class="text-amber-400 font-bold">15-minute ke small first step</span> me break karte hain!
+                    </p>
+                </div>
+
+                <div id="overall-progress-box" class="glass-panel p-3.5 rounded-2xl border border-gray-700/80 flex items-center gap-3">
+                    <div class="text-right">
+                        <span class="text-[10px] uppercase tracking-wider text-gray-400 font-extrabold">Total Progress</span>
+                        <p id="blueprint-stats" class="text-sm font-black text-emerald-400 font-mono">0 of 0 Steps Done</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full border-4 border-emerald-500/30 flex items-center justify-center font-black text-xs text-white font-mono bg-emerald-950/30" id="progress-circle">
+                        0%
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State Notice -->
+            <div id="blueprint-empty" class="glass-panel p-12 text-center rounded-3xl space-y-4">
+                <div class="w-16 h-16 rounded-2xl bg-cyan-600/10 border border-cyan-500/30 flex items-center justify-center mx-auto text-cyan-400">
+                    <i data-lucide="target" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white">Abhi Koi Active Plan Plan Nahi Hai</h3>
+                <p class="text-xs text-gray-400 max-w-md mx-auto leading-relaxed">
+                    Aapne abhi tak 'Someday Vault' se koi dream choose nahi kiya hai. Vault me jaakar koi ek dream select karo ya apna khud ka add karo!
+                </p>
+                <button onclick="switchTab('vault')" class="px-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs transition-all shadow-lg shadow-cyan-600/30">
+                    Someday Vault Me Jaao
+                </button>
+            </div>
+
+            <!-- Active Blueprint Cards List -->
+            <div id="blueprint-list" class="space-y-6">
+                <!-- Dynamically populated blueprint cards -->
+            </div>
+        </section>
+
+        <!-- ================= TAB 4: 15-MINUTE ACTION SPRINT ================= -->
+        <section id="tab-sprint" class="tab-content space-y-6">
+            <div class="glass-panel p-8 sm:p-10 rounded-3xl max-w-3xl mx-auto space-y-8 text-center relative overflow-hidden border border-amber-500/20 neon-border-amber">
+                <div class="absolute -top-24 -left-24 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <!-- Sprint Header -->
+                <div class="space-y-2">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-semibold">
+                        <i data-lucide="zap" class="w-3.5 h-3.5"></i> Micro-Action Sprint Engine
+                    </span>
+                    <h2 class="text-3xl font-black text-white">15-Minute Quick Action Sprint</h2>
+                    <p class="text-xs text-gray-300 max-w-lg mx-auto">
+                        Laziness aur overthinking ko khatam karo. Poore project ka dimaag mat chalao — bas 15 minutes ke liye Step #1 par focus karo!
+                    </p>
+                </div>
+
+                <!-- Select Target Focus -->
+                <div class="text-left max-w-md mx-auto space-y-1.5">
+                    <label class="text-xs font-bold text-gray-300 flex items-center gap-1.5">
+                        <i data-lucide="bookmark" class="w-3.5 h-3.5 text-amber-400"></i> Abhi kis task par focus kar rahe ho?
+                    </label>
+                    <select id="sprint-target-select" class="w-full bg-gray-950 border border-gray-700/80 rounded-xl px-3.5 py-2.5 text-xs font-bold text-white focus:outline-none focus:border-amber-500 transition-all">
+                        <option value="General Focus Sprint">General 15-Minute Friction Buster</option>
+                    </select>
+                </div>
+
+                <!-- Futuristic SVG Radial Timer Ring -->
+                <div class="py-2 flex justify-center">
+                    <div class="relative w-64 h-64 sm:w-72 sm:h-72 flex items-center justify-center">
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                            <!-- Background Track Circle -->
+                            <circle cx="50" cy="50" r="42" stroke="rgba(255, 255, 255, 0.05)" stroke-width="6" fill="transparent" />
+                            <!-- Animated Progress Ring Circle -->
+                            <circle id="timer-progress-ring" class="timer-svg-circle" cx="50" cy="50" r="42" stroke="#f59e0b" stroke-width="6" stroke-dasharray="263.89" stroke-dashoffset="0" stroke-linecap="round" fill="transparent" />
+                        </svg>
+
+                        <!-- Timer Text Overlay -->
+                        <div class="absolute flex flex-col items-center justify-center">
+                            <span id="sprint-timer-display" class="text-5xl sm:text-6xl font-black text-amber-400 font-mono tracking-tight drop-shadow-lg">15:00</span>
+                            <span id="sprint-status-label" class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mt-2">Ready Ho? Play Dabao!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Ambient Sound Toggles -->
+                <div class="flex flex-wrap items-center justify-center gap-3">
+                    <button id="sprint-start-btn" onclick="toggleSprintTimer()" class="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-extrabold text-sm flex items-center gap-2 shadow-xl shadow-amber-500/20 active:scale-95 transition-all">
+                        <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+                        <span>15-Min Sprint Start Karo</span>
+                    </button>
+                    <button onclick="resetSprintTimer()" class="px-4 py-3.5 rounded-2xl bg-gray-900 border border-gray-800 hover:bg-gray-800 text-gray-300 font-bold text-xs flex items-center gap-1.5 transition-all">
+                        <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                        Reset
+                    </button>
+                    <button id="sound-ambient-btn" onclick="toggleAmbientSound()" class="px-4 py-3.5 rounded-2xl bg-cyan-950/60 border border-cyan-800/60 hover:bg-cyan-900/60 text-cyan-300 font-bold text-xs flex items-center gap-1.5 transition-all">
+                        <i data-lucide="volume-2" class="w-4 h-4"></i>
+                        <span id="ambient-sound-text">Focus Ambient Sound (Off)</span>
+                    </button>
+                </div>
+
+                <p class="text-[11px] text-gray-400 italic max-w-md mx-auto pt-2 border-t border-gray-800/80">
+                    "Motivation ka wait mat karo, ACTION se motivation aata hai. 15 minutes ka real work mahino ki overthinking ko khatam kar deta hai."
+                </p>
+            </div>
+        </section>
+
+        <!-- ================= TAB 5: WEEKLY GOALS & WALL OF WINS ================= -->
+        <section id="tab-weekly" class="tab-content space-y-8">
+            <!-- Banner Header -->
+            <div class="glass-panel p-6 sm:p-8 rounded-3xl relative overflow-hidden border border-emerald-500/20 neon-border-emerald">
+                <div class="absolute -right-12 -bottom-12 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="space-y-2">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold">
+                            <i data-lucide="trophy" class="w-3.5 h-3.5"></i> Is Week Ka Goal & Wall of Wins
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+                            Is Week Ka Target & My Past Wins
+                        </h2>
+                        <p class="text-gray-300 text-xs max-w-2xl leading-relaxed">
+                            Big dreams week-on-week poore hote hain. Apne <span class="text-emerald-400 font-bold">This Week Events/Goals</span> set karo, aur achieve hone par unhe apni permanent <span class="text-amber-400 font-bold">Wall of Wins</span> me add karke celebrate karo!
+                        </p>
+                    </div>
+
+                    <div class="glass-panel p-4 rounded-2xl border border-gray-700/80 bg-gray-950/80 text-center min-w-[150px]">
+                        <span class="text-[10px] uppercase font-bold text-gray-400">Total Wins Earned</span>
+                        <p id="total-achievements-count" class="text-2xl font-black text-amber-400 font-mono">0</p>
+                        <p class="text-[10px] text-emerald-400 font-bold">Milestones Logged</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- COLUMN 1: THIS WEEK'S TARGETS & EVENTS -->
+                <div class="glass-panel p-6 rounded-3xl space-y-5 border border-gray-800">
+                    <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                        <h3 class="text-base font-bold text-white flex items-center gap-2">
+                            <i data-lucide="calendar" class="w-5 h-5 text-emerald-400"></i>
+                            Is Week Me Kya Kar Dikhana Hai?
+                        </h3>
+                        <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active Target</span>
+                    </div>
+
+                    <!-- Add Weekly Target Form -->
+                    <form onsubmit="handleWeeklyTargetSubmit(event)" class="space-y-3 p-4 rounded-2xl bg-gray-950/80 border border-gray-800/80">
+                        <div class="space-y-1">
+                            <label class="block text-[11px] font-bold text-gray-300">Naya Weekly Event / Target Title</label>
+                            <input type="text" id="weekly-target-title" required placeholder="e.g., Wednesday ko 5km walk, Saturday ko mentor ko message..." class="w-full bg-gray-900 border border-gray-700/80 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="block text-[11px] font-bold text-gray-300">Target Day / Date</label>
+                                <select id="weekly-target-day" class="w-full bg-gray-900 border border-gray-700/80 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500">
+                                    <option value="Aaj Hi (Today)">Aaj Hi (Today)</option>
+                                    <option value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                    <option value="Saturday">Saturday</option>
+                                    <option value="Sunday">Sunday</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-gray-300">Emoji / Category</label>
+                                <select id="weekly-target-emoji" class="w-full bg-gray-900 border border-gray-700/80 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500">
+                                    <option value="target">🎯 Focus Target</option>
+                                    <option value="activity">🏃 Health & Fitness</option>
+                                    <option value="heart">❤️ Family & Relationship</option>
+                                    <option value="book-open">📚 Learning & Skill</option>
+                                    <option value="code">🚀 Creative & Work</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md transition-all">
+                            <i data-lucide="plus" class="w-4 h-4"></i> Is Week Ka Target Set Karo
+                        </button>
+                    </form>
+
+                    <!-- Weekly Active List -->
+                    <div id="weekly-targets-list" class="space-y-2.5">
+                        <!-- Dynamic active weekly targets -->
+                    </div>
+                </div>
+
+                <!-- COLUMN 2: PAST ACHIEVEMENTS & WALL OF WINS -->
+                <div class="glass-panel p-6 rounded-3xl space-y-5 border border-amber-500/20">
+                    <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                        <h3 class="text-base font-bold text-white flex items-center gap-2">
+                            <i data-lucide="award" class="w-5 h-5 text-amber-400"></i>
+                            Wall of Fame (My Wins & Past Events)
+                        </h3>
+                        <button onclick="toggleAddPastModal()" class="text-[11px] font-bold px-3 py-1 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 transition-all flex items-center gap-1">
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Past Win Add Karo
+                        </button>
+                    </div>
+
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Aapne life me jo bhi small-big wins hasil ki hain, unhe yahan dekhein. Jab bhi demotivated feel karein, apni gallery dekhein!
+                    </p>
+
+                    <!-- Form for Manual Past Achievement Input -->
+                    <form id="past-win-form" onsubmit="handlePastAchievementSubmit(event)" class="hidden space-y-3 p-4 rounded-2xl bg-gray-950/90 border border-amber-500/30">
+                        <div class="space-y-1">
+                            <label class="block text-[11px] font-bold text-amber-300">Past Achievement / Event Title</label>
+                            <input type="text" id="past-win-title" required placeholder="e.g., Completed first marathon, Bought dad a gift..." class="w-full bg-gray-900 border border-gray-700/80 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="block text-[11px] font-bold text-gray-300">Kab Hua Tha? (Year / Date)</label>
+                                <input type="text" id="past-win-date" placeholder="e.g., 2023 ya 2 Years pehle" class="w-full bg-gray-900 border border-gray-700/80 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-gray-300">Badge / Category</label>
+                                <select id="past-win-badge" class="w-full bg-gray-900 border border-gray-700/80 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+                                    <option value="🏆 Major Milestone">🏆 Major Milestone</option>
+                                    <option value="🌟 Personal Pride">🌟 Personal Pride</option>
+                                    <option value="❤️ Heartwarming">❤️ Heartwarming</option>
+                                    <option value="🔥 Overcame Fear">🔥 Overcame Fear</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="block text-[11px] font-bold text-gray-300">Kuch Sweet Memory / Note (Optional)</label>
+                            <input type="text" id="past-win-note" placeholder="Is day kaisa feel hua tha?" class="w-full bg-gray-900 border border-gray-700/80 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+                        </div>
+                        <div class="flex justify-end gap-2 pt-1">
+                            <button type="button" onclick="toggleAddPastModal()" class="px-3 py-1.5 rounded-xl bg-gray-800 text-gray-300 text-xs font-bold">Cancel</button>
+                            <button type="submit" class="px-4 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs">Win Save Karo</button>
+                        </div>
+                    </form>
+
+                    <!-- Past Achievements Grid Log -->
+                    <div id="past-achievements-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[480px] overflow-y-auto pr-1">
+                        <!-- Dynamic past achievements -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 6: FUTURE SELF CONTRACT ================= -->
+        <section id="tab-contract" class="tab-content space-y-6">
+            <div class="glass-panel p-6 sm:p-8 rounded-3xl max-w-3xl mx-auto space-y-6">
+                <div class="border-b border-gray-800 pb-4 space-y-1">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-xs font-semibold">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Saccha Commitment
+                    </div>
+                    <h2 class="text-2xl font-extrabold text-white">Apne Future Self Se Ek Contract (Promise)</h2>
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Apne future self ko aaj ek written letter send karo. Jo baatein hum paper par likhte hain, unhe complete karne ke chances 80% increase ho jaate hain!
+                    </p>
+                </div>
+
+                <!-- Form Contract -->
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-1">Target Date:</label>
+                        <input type="date" id="contract-date" class="w-full sm:w-auto bg-gray-950 border border-gray-700/80 rounded-xl px-3.5 py-2 text-xs font-bold text-white focus:outline-none focus:border-cyan-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-1">Wo kaunsa 1 dream hai jo main har haal me complete karke rahunga/rahungi?</label>
+                        <input type="text" id="contract-promise" placeholder="e.g., Parents ki life story record karna, Solo travel, book write karna..." class="w-full bg-gray-950 border border-gray-700/80 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-1">Apne Future Self ke liye ek Message / Note:</label>
+                        <textarea id="contract-message" rows="4" placeholder="Dear Future Me, Main aaj yeh promise kar raha/rahi hu kyunki life short hai aur mujhe kisi regret ke saath nahi jeena..." class="w-full bg-gray-950 border border-gray-700/80 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-cyan-500 leading-relaxed"></textarea>
+                    </div>
+
+                    <!-- Digital Canvas Signature Pad -->
+                    <div class="space-y-1.5">
+                        <label class="block text-xs font-bold text-gray-300">Neeche Apna Digital Signature Karo:</label>
+                        <div class="border border-gray-700/80 rounded-2xl bg-gray-950 overflow-hidden relative shadow-inner">
+                            <canvas id="signature-pad" class="w-full h-28 cursor-crosshair"></canvas>
+                            <button onclick="clearSignature()" class="absolute top-2.5 right-2.5 text-[10px] bg-gray-800 hover:bg-gray-700 text-gray-300 px-2.5 py-1 rounded-lg border border-gray-700 font-bold transition-all">Clear Signature</button>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button onclick="saveContract()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white font-extrabold text-xs shadow-xl shadow-cyan-600/30 flex items-center justify-center gap-2 transition-all">
+                            <i data-lucide="lock" class="w-4 h-4"></i> Is Promise Ko Seal Karo (Save)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Existing Saved Contracts -->
+                <div id="saved-contracts-container" class="pt-6 border-t border-gray-800/80 space-y-3">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
+                        <i data-lucide="archive" class="w-3.5 h-3.5 text-cyan-400"></i> Aapke Sealed Contracts
+                    </h3>
+                    <div id="contracts-list" class="space-y-3">
+                        <!-- Dynamically populated sealed contracts -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal: Add Life Event/Achievement to Grid Square -->
+    <div id="modal-life-event" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-panel max-w-md w-full p-6 rounded-3xl border border-gray-700 space-y-4 relative shadow-2xl">
+            <button onclick="closeLifeEventModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white transition-all">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            
+            <div class="space-y-1">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i data-lucide="calendar-heart" class="w-5 h-5 text-amber-400"></i> Log a Life Event
+                </h3>
+                <p id="life-event-date-label" class="text-xs text-gray-400 font-mono">Week range here</p>
+            </div>
+
+            <form id="life-event-form" onsubmit="handleLifeEventSubmit(event)" class="space-y-4">
+                <input type="hidden" id="life-event-week-index">
+                
+                <div>
+                    <label class="block text-xs font-bold text-gray-300 mb-1">Event / Achievement Title</label>
+                    <input type="text" id="life-event-title" required placeholder="e.g., Bought first car, Got married, Visited Japan..." class="w-full bg-gray-950 border border-gray-700/80 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-1">Category</label>
+                        <select id="life-event-category" class="w-full bg-gray-950 border border-gray-700/80 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                            <option value="relationships">Relationships & Memory</option>
+                            <option value="creativity">Creative Win</option>
+                            <option value="adventure">Travel & Adventure</option>
+                            <option value="legacy">Career & Legacy</option>
+                            <option value="other">Other Milestone</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-1">Display Icon / Emoji</label>
+                        <select id="life-event-emoji" class="w-full bg-gray-950 border border-gray-700/80 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                            <option value="graduation-cap">🎓 Graduation/Study</option>
+                            <option value="briefcase">💼 Job/Career</option>
+                            <option value="rocket">🚀 Business/Project</option>
+                            <option value="heart">❤️ Love/Family</option>
+                            <option value="plane">✈️ Travel/Trip</option>
+                            <option value="activity">🏃 Fitness/Health</option>
+                            <option value="star">🌟 Major Memory</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-300 mb-1">Memory Note (Optional)</label>
+                    <textarea id="life-event-note" rows="2" placeholder="Write a short memory note..." class="w-full bg-gray-950 border border-gray-700/80 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-cyan-500 leading-relaxed"></textarea>
+                </div>
+
+                <div class="pt-2 flex justify-between gap-2">
+                    <button type="button" id="life-event-delete-btn" onclick="deleteLifeEvent()" class="px-4 py-2 rounded-xl bg-rose-950/40 text-rose-400 border border-rose-900/50 font-bold text-xs hover:bg-rose-900/40 transition-all hidden">Delete Event</button>
+                    <div class="flex gap-2 ml-auto">
+                        <button type="button" onclick="closeLifeEventModal()" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 font-bold text-xs hover:bg-gray-700">Cancel</button>
+                        <button type="submit" class="px-5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs shadow-lg shadow-cyan-600/30">Save Event</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Add Custom Dream -->
+    <div id="modal-custom" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-panel max-w-lg w-full p-6 sm:p-8 rounded-3xl border border-gray-700 space-y-5 relative shadow-2xl">
+            <button onclick="closeCustomModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white transition-all">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="space-y-1">
+                <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-amber-400"></i> Apna Personal Dream Add Karo
+                </h3>
+                <p class="text-xs text-gray-400">Aisi kaunsi cheez hai jo aap months se soch rahe hain, par start nahi ki?</p>
+            </div>
+
+            <form id="custom-dream-form" onsubmit="handleCustomDreamSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-300 mb-1">Dream Ya Aspiration Ka Naam</label>
+                    <input type="text" id="custom-title" required placeholder="e.g., Photo book banana, Guitar seekhna, Solo trip..." class="w-full bg-gray-950 border border-gray-700/80 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-1">Category</label>
+                        <select id="custom-category" class="w-full bg-gray-950 border border-gray-700/80 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                            <option value="relationships">Rishte & Parivaar</option>
+                            <option value="creativity">Creativity & Skills</option>
+                            <option value="adventure">Travel & Adventure</option>
+                            <option value="legacy">Projects & Legacy</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-1">Timeframe</label>
+                        <select id="custom-timeframe" class="w-full bg-gray-950 border border-gray-700/80 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                            <option value="1 Week">1 Week</option>
+                            <option value="1 Month">1 Month</option>
+                            <option value="3 Months">3 Months</option>
+                            <option value="6 Months">6 Months</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-amber-400 mb-1 flex items-center gap-1">
+                        <i data-lucide="zap" class="w-3.5 h-3.5"></i> 15-Minute Ka First Step (Sabse Important!)
+                    </label>
+                    <input type="text" id="custom-step1" required placeholder="e.g., Blank document banana, 1 call karna, notebook khareedna..." class="w-full bg-gray-950 border border-amber-500/50 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-300 mb-1">7-Day Next Step</label>
+                    <input type="text" id="custom-step2" required placeholder="e.g., Daily 15 minutes practice karna..." class="w-full bg-gray-950 border border-gray-700/80 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+                </div>
+
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeCustomModal()" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 font-bold text-xs hover:bg-gray-700">Cancel</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs shadow-lg shadow-cyan-600/30">Plan Banayein</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast Element -->
+    <div id="toast" class="fixed bottom-6 right-6 glass-panel px-5 py-3.5 rounded-2xl border border-emerald-500/40 shadow-2xl flex items-center gap-3 translate-y-20 opacity-0 transition-all duration-300 z-50 pointer-events-none">
+        <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+            <i data-lucide="check" class="w-4 h-4"></i>
+        </div>
+        <div>
+            <p id="toast-title" class="text-xs font-bold text-white">Shabaash!</p>
+            <p id="toast-msg" class="text-[11px] text-gray-300">Action completed.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800/80 py-6 text-center text-xs text-gray-500 mb-16 md:mb-0">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p>© SOMEDAY Life Blueprint Engine — Unfinished dreams ko real action me badlo.</p>
+            <p class="text-gray-400 flex items-center gap-1">
+                Hamesha Yaad Rakho: <span class="text-amber-400 italic font-semibold">"Someday" (Kisi Din) week ka koi day nahi hota.</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Refactored Custom Javascript Logic -->
+    <script src="app.js" defer></script>
+</body>
+</html>
