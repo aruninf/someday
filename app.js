@@ -1,118 +1,448 @@
-// Curated Vault Items in Hinglish
+// Curated Vault Items with Dual-Language support (en = English, hi = Hinglish)
 const CURATED_VAULT = [
     {
         id: 'vault-1',
         category: 'relationships',
-        title: 'Parents aur Elders Ki Stories Record Karo',
-        description: 'Unke saath baithkar voice recorder chalao aur unke childhood, love story, aur life lessons ke baare me 10 sweet questions pucho.',
-        impact: 'Life-long family memories',
-        timeframe: '1 Weekend',
-        steps: [
-            'Paper par 5 best questions likho (15 mins)',
-            'Chai/Coffee ke saath baithne ka time fix karo',
-            'Phone me 30-minute voice recording start karo',
-            'Audio file ko Google Drive par securely backup karo'
-        ]
+        title: {
+            en: 'Record the Stories of Your Parents & Elders',
+            hi: 'Parents aur Elders Ki Stories Record Karo'
+        },
+        description: {
+            en: 'Sit down with them, open a voice recorder, and ask 10 sweet questions about their childhood, love story, and life lessons.',
+            hi: 'Unke saath baithkar voice recorder chalao aur unke childhood, love story, aur life lessons ke baare me 10 sweet questions pucho.'
+        },
+        impact: {
+            en: 'Life-long family memories',
+            hi: 'Life-long family memories'
+        },
+        timeframe: {
+            en: '1 Weekend',
+            hi: '1 Weekend'
+        },
+        steps: {
+            en: [
+                'Write down 5 best questions on paper (15 mins)',
+                'Fix a time to sit together over tea/coffee',
+                'Start a 30-minute voice recording on your phone',
+                'Securely backup the audio file to Google Drive'
+            ],
+            hi: [
+                'Paper par 5 best questions likho (15 mins)',
+                'Chai/Coffee ke saath baithne ka time fix karo',
+                'Phone me 30-minute voice recording start karo',
+                'Audio file ko Google Drive par securely backup karo'
+            ]
+        }
     },
     {
         id: 'vault-2',
         category: 'relationships',
-        title: 'Purane Mentor/Teacher Ko Dil Se Thank You Letter Likho',
-        description: 'Kuch saal pehle jisne aapki life badli thi, unhe ek sweet letter likhkar send karo aur batao ki unka aapki life par kya impact raha.',
-        impact: 'Ek deep relationship aur true gratitude',
-        timeframe: '1 Hour',
-        steps: [
-            'Ek blank page open karo aur pehla paragraph likho (15 mins)',
-            'Unki 3 specific baatein likho jisse aapki life badli',
-            'Unka email ya address search karo',
-            'Letter send karo aur unke face par smile laao'
-        ]
+        title: {
+            en: 'Write a Sincere Thank You Letter to an Old Mentor',
+            hi: 'Purane Mentor/Teacher Ko Dil Se Thank You Letter Likho'
+        },
+        description: {
+            en: 'Write a letter to someone who changed your life years ago, telling them the positive impact they had on you.',
+            hi: 'Kuch saal pehle jisne aapki life badli thi, unhe ek sweet letter likhkar send karo aur batao ki unka aapki life par kya impact raha.'
+        },
+        impact: {
+            en: 'A deep relationship and true gratitude',
+            hi: 'Ek deep relationship aur true gratitude'
+        },
+        timeframe: {
+            en: '1 Hour',
+            hi: '1 Hour'
+        },
+        steps: {
+            en: [
+                'Open a blank page and write the first paragraph (15 mins)',
+                'List 3 specific things they did that changed your path',
+                'Search for their email or mailing address',
+                'Send the letter and put a smile on their face'
+            ],
+            hi: [
+                'Ek blank page open karo aur pehla paragraph likho (15 mins)',
+                'Unki 3 specific baatein likho jisse aapki life badli',
+                'Unka email ya address search karo',
+                'Letter send karo aur unke face par smile laao'
+            ]
+        }
     },
     {
         id: 'vault-3',
         category: 'creativity',
-        title: 'Apna Pehla Original Song / Poem Record Karo',
-        description: 'Guitar, piano ya mobile app par ek simple tune banao, uspar lines write karo aur apne 3 friends ko sunao.',
-        impact: 'Internal creativity ko hamesha ke liye free karo',
-        timeframe: '2 Weeks',
-        steps: [
-            'Ek simple tune gungunao ya phone me record karo (15 mins)',
-            '2 small verses aur 1 chorus line likho',
-            'Voice memo app me record karo',
-            'Apne close friend ko sunao'
-        ]
+        title: {
+            en: 'Record Your First Original Song or Poem',
+            hi: 'Apna Pehla Original Song / Poem Record Karo'
+        },
+        description: {
+            en: 'Compose a simple tune on a guitar, piano, or phone app, write a few verses, and share it with 3 friends.',
+            hi: 'Guitar, piano ya mobile app par ek simple tune banao, uspar lines write karo aur apne 3 friends ko sunao.'
+        },
+        impact: {
+            en: 'Unleash your inner creativity forever',
+            hi: 'Internal creativity ko hamesha ke liye free karo'
+        },
+        timeframe: {
+            en: '2 Weeks',
+            hi: '2 Weeks'
+        },
+        steps: {
+            en: [
+                'Hum a simple tune and record it on your phone (15 mins)',
+                'Write 2 verses and 1 chorus line',
+                'Record it using a voice memo app',
+                'Share it with a close friend'
+            ],
+            hi: [
+                'Ek simple tune gungunao ya phone me record karo (15 mins)',
+                '2 small verses aur 1 chorus line likho',
+                'Voice memo app me record karo',
+                'Apne close friend ko sunao'
+            ]
+        }
     },
     {
         id: 'vault-4',
         category: 'adventure',
-        title: 'Akele Camping / Nature Trip Par Jaao',
-        description: 'Nature ke beech 24 hours phone se door rehkar bitao, subah ka sunrise dekho aur mind ko relax karo.',
-        impact: 'Mind ki clarity aur fresh feeling',
-        timeframe: '1 Weekend',
-        steps: [
-            'Aaspas koi peaceful camping site search karo (15 mins)',
-            'Zaroori packing aur water bottle ready karo',
-            'Bina mobile notifications ke 1 night bitao',
-            'Subah diary me apne thoughts write karo'
-        ]
+        title: {
+            en: 'Go on a Solo Camping or Nature Trip',
+            hi: 'Akele Camping / Nature Trip Par Jaao'
+        },
+        description: {
+            en: 'Spend 24 hours in nature away from your phone, watch the sunrise, and let your mind completely unplug.',
+            hi: 'Nature ke beech 24 hours phone se door rehkar bitao, subah ka sunrise dekho aur mind ko relax karo.'
+        },
+        impact: {
+            en: 'Mental clarity and a fresh perspective',
+            hi: 'Mind ki clarity aur fresh feeling'
+        },
+        timeframe: {
+            en: '1 Weekend',
+            hi: '1 Weekend'
+        },
+        steps: {
+            en: [
+                'Search for a peaceful camping site nearby (15 mins)',
+                'Pack essential gear and a water bottle',
+                'Spend one night without any mobile notifications',
+                'Write down your thoughts in a diary the next morning'
+            ],
+            hi: [
+                'Aaspas koi peaceful camping site search karo (15 mins)',
+                'Zaroori packing aur water bottle ready karo',
+                'Bina mobile notifications ke 1 night bitao',
+                'Subah diary me apne thoughts write karo'
+            ]
+        }
     },
     {
         id: 'vault-5',
         category: 'creativity',
-        title: '3 Restaurant-style Dishes Cook Karna Seekho',
-        description: '3 aisi amazing dishes master karo jinhe aap kisi bhi guest ya family member ke liye khushi se cook kar sako.',
-        impact: 'Amazing cooking confidence',
-        timeframe: '3 Weeks',
-        steps: [
-            '3 recipes select karke grocery list banao (15 mins)',
-            'Pehli recipe ke taaza ingredients buy karo',
-            'Pehli dish step by step cook karo',
-            'Family members ko pyaar se serve karo'
-        ]
+        title: {
+            en: 'Master Cooking 3 Restaurant-Style Dishes',
+            hi: '3 Restaurant-style Dishes Cook Karna Seekho'
+        },
+        description: {
+            en: 'Learn and perfect 3 signature dishes that you can cook with confidence for guests or family members.',
+            hi: '3 aisi amazing dishes master karo jinhe aap kisi bhi guest ya family member ke liye khushi se cook kar sako.'
+        },
+        impact: {
+            en: 'Self-reliance and hospitality confidence',
+            hi: 'Amazing cooking confidence'
+        },
+        timeframe: {
+            en: '3 Weeks',
+            hi: '3 Weeks'
+        },
+        steps: {
+            en: [
+                'Select 3 recipes and make a grocery list (15 mins)',
+                'Buy fresh ingredients for the first recipe',
+                'Cook the first dish step-by-step',
+                'Serve it lovingly to your family members'
+            ],
+            hi: [
+                '3 recipes select karke grocery list banao (15 mins)',
+                'Pehli recipe ke taaza ingredients buy karo',
+                'Pehli dish step by step cook karo',
+                'Family members ko pyaar se serve karo'
+            ]
+        }
     },
     {
         id: 'vault-6',
         category: 'legacy',
-        title: 'Apni Khud Ki Pocket Book / PDF Guide Banayein',
-        description: 'Apni life learnings, experiences ya knowledge ko 20 pages ki ek beautiful PDF ya mini-book me compile karo.',
-        impact: 'Aapki knowledge ka ek permanent document',
-        timeframe: '1 Month',
-        steps: [
-            'Paper par 5 main topics ke name likho (15 mins)',
-            'Har morning 300 words write karo (7 days tak)',
-            'Canva ya Google Docs me beautiful PDF design karo',
-            '10 friends ke saath share karo'
-        ]
+        title: {
+            en: 'Publish Your Own Digital Mini-Guide or Book',
+            hi: 'Apni Khud Ki Pocket Book / PDF Guide Banayein'
+        },
+        description: {
+            en: 'Compile your life lessons, specialized skills, or experiences into a beautiful 20-page PDF handbook.',
+            hi: 'Apni life learnings, experiences ya knowledge ko 20 pages ki ek beautiful PDF ya mini-book me compile karo.'
+        },
+        impact: {
+            en: 'A permanent document of your unique knowledge',
+            hi: 'Aapki knowledge ka ek permanent document'
+        },
+        timeframe: {
+            en: '1 Month',
+            hi: '1 Month'
+        },
+        steps: {
+            en: [
+                'Write down 5 main outline topics on paper (15 mins)',
+                'Write 300 words every morning for 7 days',
+                'Design a clean PDF in Canva or Google Docs',
+                'Share it with 10 friends and colleagues'
+            ],
+            hi: [
+                'Paper par 5 main topics ke name likho (15 mins)',
+                'Har morning 300 words write karo (7 days tak)',
+                'Canva ya Google Docs me beautiful PDF design karo',
+                '10 friends ke saath share karo'
+            ]
+        }
     },
     {
         id: 'vault-7',
         category: 'adventure',
-        title: '48-Hours Ka Digital Detox',
-        description: 'Smartphone, laptop aur social media ko 2 days ke liye off kardo aur true peace feel karo.',
-        impact: 'Dopamine reset aur screen addiction se relief',
-        timeframe: '1 Weekend',
-        steps: [
-            'Family ko inform karo ki emergency me kaise contact karein (15 mins)',
-            'Phone ko drawer me lock kardo',
-            'Books read karo aur walk par jaao',
-            'Aapko kaisa feel hua diary me write karo'
-        ]
+        title: {
+            en: 'Complete a 48-Hour Digital Detox',
+            hi: '48-Hours Ka Digital Detox'
+        },
+        description: {
+            en: 'Shut down your smartphone, laptop, and social media for 2 full days and experience absolute presence.',
+            hi: 'Smartphone, laptop aur social media ko 2 days ke liye off kardo aur true peace feel karo.'
+        },
+        impact: {
+            en: 'Dopamine reset and screen addiction relief',
+            hi: 'Dopamine reset aur screen addiction se relief'
+        },
+        timeframe: {
+            en: '1 Weekend',
+            hi: '1 Weekend'
+        },
+        steps: {
+            en: [
+                'Inform family how to reach you in emergencies (15 mins)',
+                'Lock your phone in a drawer',
+                'Read physical books, write, and walk in nature',
+                'Write about your experience in a paper journal'
+            ],
+            hi: [
+                'Family ko inform karo ki emergency me kaise contact karein (15 mins)',
+                'Phone ko drawer me lock kardo',
+                'Books read karo aur walk par jaao',
+                'Aapko kaisa feel hua diary me write karo'
+            ]
+        }
     },
     {
         id: 'vault-8',
         category: 'creativity',
-        title: 'Apne Room Ke Liye Canvas Painting Banao',
-        description: 'Ek bada blank canvas aur acrylic colors buy karo, aur apne haath se ek beautiful painting banakar wall par decorate karo.',
-        impact: 'Hand-made art ko daily dekhne ki khushi',
-        timeframe: '1 Weekend',
-        steps: [
-            'Online canvas aur paints order karo (15 mins)',
-            'Apne room colors ke match ka shade select karo',
-            'Bina kisi fear/hesitation ke paint karo',
-            'Deewar par frame karke hang karo'
-        ]
+        title: {
+            en: 'Create a Canvas Painting for Your Room',
+            hi: 'Apne Room Ke Liye Canvas Painting Banao'
+        },
+        description: {
+            en: 'Buy a blank canvas and acrylic paints, and create a custom piece of art to hang on your wall.',
+            hi: 'Ek bada canvas aur acrylic colors buy karo, aur apne haath se ek beautiful painting banakar wall par decorate karo.'
+        },
+        impact: {
+            en: 'Daily joy of seeing your handmade art',
+            hi: 'Hand-made art ko daily dekhne ki khushi'
+        },
+        timeframe: {
+            en: '1 Weekend',
+            hi: '1 Weekend'
+        },
+        steps: {
+            en: [
+                'Order a canvas and acrylic paints online (15 mins)',
+                'Select color shades matching your room interior',
+                'Paint freely without judgment or fear of mistakes',
+                'Frame and hang it proudly on your wall'
+            ],
+            hi: [
+                'Online canvas aur paints order karo (15 mins)',
+                'Apne room colors ke match ka shade select karo',
+                'Bina kisi fear/hesitation ke paint karo',
+                'Deewar par frame karke hang karo'
+            ]
+        }
     }
 ];
+
+// Localization Dictionary
+const TRANSLATIONS = {
+    // Nav Tabs
+    tab_reality: { en: "My Time", hi: "Mera Time" },
+    tab_vault: { en: "Someday Vault", hi: "Someday Vault" },
+    tab_blueprint: { en: "Action Plans", hi: "Action Plans" },
+    tab_sprint: { en: "15-Min Sprint", hi: "15-Min Sprint" },
+    tab_weekly: { en: "Goals & Wins", hi: "Goals & Wins" },
+    tab_contract: { en: "Future Promise", hi: "Future Promise" },
+    tab_reality_mob: { en: "Time", hi: "Time" },
+    tab_vault_mob: { en: "Vault", hi: "Vault" },
+    tab_blueprint_mob: { en: "Plans", hi: "Plans" },
+    tab_sprint_mob: { en: "Sprint", hi: "Sprint" },
+    tab_weekly_mob: { en: "Wins", hi: "Wins" },
+    tab_contract_mob: { en: "Promise", hi: "Promise" },
+    
+    // Tab 1: Reality
+    hero_tag: { en: "Life Time Visualizer & Precision Calculator", hi: "Life Time Visualizer & Precision Calculator" },
+    hero_title: { en: "How Much Time Do You Have Left?", hi: "Aapka Kitna Time Baaki Hai?" },
+    hero_desc: { en: "We all think we have plenty of time, which is why we put off our dearest dreams for 'one day'. When you see your whole life in weeks, you realize how precious every single week is!", hi: "Hum sab sochte hain ki hamare paas bohot time hai, isliye hum apne sweet dreams \"Ek Din Karenge\" par chor dete hain. Jab aap apni full life ko weeks me dekhte hain, tab samajh aata hai ki har ek week kitna important hai!" },
+    control_title: { en: "Set Your Exact Timeline", hi: "Apni Exact Timeline Set Karo" },
+    control_birth: { en: "Birth Year & Month", hi: "Birth Year & Month" },
+    control_lifespan: { en: "Target Lifespan (Years)", hi: "Target Lifespan (Years)" },
+    control_parent_age: { en: "Parents Ki Age", hi: "Parents Ki Age" },
+    control_visits: { en: "Year Me Kitni Baar Milte Ho?", hi: "Year Me Kitni Baar Milte Ho?" },
+    stat_weeks_lived_lbl: { en: "Weeks Lived", hi: "Weeks Lived" },
+    stat_weeks_lived_desc: { en: "of your life complete", hi: "life complete" },
+    stat_weeks_left_lbl: { en: "Weeks Left", hi: "Weeks Left" },
+    stat_weeks_left_desc: { en: "Your golden opportunity", hi: "Aapki golden opportunity" },
+    stat_summers_left_lbl: { en: "Summer Weekends Left", hi: "Summer Weekends Left" },
+    stat_summers_left_desc: { en: "Remaining summer weekends", hi: "Remaining summer weekends" },
+    stat_parents_left_lbl: { en: "Parents Se Milne Ke Remaining Days", hi: "Parents Se Milne Ke Remaining Days" },
+    stat_parents_left_desc: { en: "Estimate milne ke moments", hi: "Estimate milne ke moments" },
+    grid_title: { en: "Aapki Life Ka Visual Grid Matrix", hi: "Aapki Life Ka Visual Grid Matrix" },
+    grid_subtitle: { en: "Har row = 1 Year (52 Weeks). Har small square = 1 Week.", hi: "Har row = 1 Year (52 Weeks). Har small square = 1 Week." },
+    legend_lived: { en: "Lived", hi: "Lived" },
+    legend_this_week: { en: "This Week", hi: "This Week" },
+    legend_remaining: { en: "Baaki Time", hi: "Baaki Time" },
+    grid_tooltip_instruction: { en: "Hover or tap any square to view exact age and week status.", hi: "Kisi bhi square par hover ya tap karke exact age aur week status dekhein." },
+    motivational_title: { en: "What are you waiting for?", hi: "Kis baat ka wait kar rahe ho, dost?" },
+    motivational_desc: { en: "\"The trouble is, you think you have time.\" — The biggest regret of the elderly is that they did not take risks on their creative dreams.", hi: "\"Sabse badi galatfehmi yeh hai ki humein lagta hai hamare paas bohot time hai.\" — Logon ka sabse bada regret hota hai ki unhone apne creative dreams par risk nahi liya." },
+    motivational_btn: { en: "Browse Someday Vault", hi: "Someday Vault Dekho" },
+    
+    // Tab 2: Vault
+    vault_tag: { en: "Dil Ki Wishlist", hi: "Dil Ki Wishlist" },
+    vault_title: { en: "Wo Dreams Jo Hum \"Bas Sochte Hain, Par Karte Nahi\"", hi: "Wo Dreams Jo Hum \"Bas Sochte Hain, Par Karte Nahi\"" },
+    vault_desc: { en: "Curated dreams that people hamesha postpone. Choose one and START NOW!", hi: "Curated dreams jo log hamesha postpone karte hain. Koi ek select karo aur ABHI START KARO!" },
+    vault_btn_custom: { en: "Apna Personal Dream Add Karo", hi: "Apna Personal Dream Add Karo" },
+    vault_filter_all: { en: "All Dreams", hi: "All Dreams" },
+    vault_filter_relationships: { en: "Relationships & Family", hi: "Relationships & Family" },
+    vault_filter_creativity: { en: "Creativity & Skills", hi: "Creativity & Skills" },
+    vault_filter_adventure: { en: "Travel & Adventure", hi: "Travel & Adventure" },
+    vault_filter_legacy: { en: "Projects & Legacy", hi: "Projects & Legacy" },
+    
+    // Tab 3: Action Plans
+    blueprint_tag: { en: "Action Blueprint Breakdown", hi: "Action Blueprint Breakdown" },
+    blueprint_title: { en: "Aapke Active Action Plans", hi: "Aapke Active Action Plans" },
+    blueprint_desc: { en: "Big dreams intimidate us. We break down every dream into a 15-minute small first step!", hi: "Big dreams humein darate hain. Hum har dream ko ek 15-minute ke small first step me break karte hain!" },
+    blueprint_progress_lbl: { en: "Total Progress", hi: "Total Progress" },
+    blueprint_empty_title: { en: "Abhi Koi Active Plan Plan Nahi Hai", hi: "Abhi Koi Active Plan Plan Nahi Hai" },
+    blueprint_empty_desc: { en: "You haven't chosen any dream from the 'Someday Vault' yet. Visit the Vault to select one or add your own!", hi: "Aapne abhi tak 'Someday Vault' se koi dream choose nahi kiya hai. Vault me jaakar koi ek dream select karo ya apna khud ka add karo!" },
+    blueprint_empty_btn: { en: "Go to Someday Vault", hi: "Someday Vault Me Jaao" },
+    
+    // Tab 4: 15-Min Sprint
+    sprint_tag: { en: "Micro-Action Sprint Engine", hi: "Micro-Action Sprint Engine" },
+    sprint_title: { en: "15-Minute Quick Action Sprint", hi: "15-Minute Quick Action Sprint" },
+    sprint_desc: { en: "Destroy laziness and overthinking. Don't worry about the whole project — just focus on Step #1 for 15 minutes!", hi: "Laziness aur overthinking ko khatam karo. Poore project ka dimaag mat chalao — bas 15 minutes ke liye Step #1 par focus karo!" },
+    sprint_target_lbl: { en: "What task are you focusing on right now?", hi: "Abhi kis task par focus kar rahe ho?" },
+    sprint_start_btn: { en: "15-Min Sprint Start Karo", hi: "15-Min Sprint Start Karo" },
+    sprint_reset_btn: { en: "Reset", hi: "Reset" },
+    sprint_ambient_btn: { en: "Focus Ambient Sound (Off)", hi: "Focus Ambient Sound (Off)" },
+    sprint_motivation_quote: { en: "\"Don't wait for motivation; action breeds motivation. 15 minutes of real work beats months of overthinking.\"", hi: "\"Motivation ka wait mat karo, ACTION se motivation aata hai. 15 minutes ka real work mahino ki overthinking ko khatam kar deta hai.\"" },
+    
+    // Tab 5: Goals & Wins
+    weekly_tag: { en: "Is Week Ka Goal & Wall of Wins", hi: "Is Week Ka Goal & Wall of Wins" },
+    weekly_title: { en: "Is Week Ka Target & My Past Wins", hi: "Is Week Ka Target & My Past Wins" },
+    weekly_desc: { en: "Big dreams are achieved week-on-week. Set your This Week goals, and when achieved, add them to your permanent Wall of Wins!", hi: "Big dreams week-on-week poore hote hain. Apne This Week Events/Goals set karo, aur achieve hone par unhe apni permanent Wall of Wins me add karke celebrate karo!" },
+    weekly_total_wins_lbl: { en: "Total Wins Earned", hi: "Total Wins Earned" },
+    weekly_total_wins_sub: { en: "Milestones Logged", hi: "Milestones Logged" },
+    weekly_left_title: { en: "Is Week Me Kya Kar Dikhana Hai?", hi: "Is Week Me Kya Kar Dikhana Hai?" },
+    weekly_left_badge: { en: "Active Target", hi: "Active Target" },
+    weekly_left_form_lbl: { en: "Naya Weekly Event / Target Title", hi: "Naya Weekly Event / Target Title" },
+    weekly_left_form_day: { en: "Target Day / Date", hi: "Target Day / Date" },
+    weekly_left_form_cat: { en: "Emoji / Category", hi: "Emoji / Category" },
+    weekly_left_form_btn: { en: "Is Week Ka Target Set Karo", hi: "Is Week Ka Target Set Karo" },
+    weekly_right_title: { en: "Wall of Fame (My Wins & Past Events)", hi: "Wall of Fame (My Wins & Past Events)" },
+    weekly_right_btn: { en: "Past Win Add Karo", hi: "Past Win Add Karo" },
+    weekly_right_desc: { en: "See all the big and small wins you have earned in life. Whenever you feel demotivated, browse this gallery!", hi: "Aapne life me jo bhi small-big wins hasil ki hain, unhe yahan dekhein. Jab bhi demotivated feel karein, apni gallery dekhein!" },
+    
+    // Tab 6: Promise
+    contract_tag: { en: "Saccha Commitment", hi: "Saccha Commitment" },
+    contract_title: { en: "Apne Future Self Se Ek Contract (Promise)", hi: "Apne Future Self Se Ek Contract (Promise)" },
+    contract_desc: { en: "Write a letter to your future self today. When we write down our commitments, our chances of achieving them increase by 80%!", hi: "Apne future self ko aaj ek written letter send karo. Jo baatein hum paper par likhte hain, unhe complete karne ke chances 80% increase ho jaate hain!" },
+    contract_date_lbl: { en: "Target Date:", hi: "Target Date:" },
+    contract_promise_lbl: { en: "Wo kaunsa 1 dream hai jo main har haal me complete karke rahunga/rahungi?", hi: "Wo kaunsa 1 dream hai jo main har haal me complete karke rahunga/rahungi?" },
+    contract_promise_placeholder: { en: "e.g., Record parents' life stories, solo travel, write a book...", hi: "e.g., Parents ki life story record karna, Solo travel, book write karna..." },
+    contract_message_lbl: { en: "Apne Future Self ke liye ek Message / Note:", hi: "Apne Future Self ke liye ek Message / Note:" },
+    contract_message_placeholder: { en: "Dear Future Me, I am making this promise today because life is short and I want to live with no regrets...", hi: "Dear Future Me, Main aaj yeh promise kar raha/rahi hu kyunki life short hai aur mujhe kisi regret ke saath nahi jeena..." },
+    contract_sig_lbl: { en: "Neeche Apna Digital Signature Karo:", hi: "Neeche Apna Digital Signature Karo:" },
+    contract_clear_btn: { en: "Clear Signature", hi: "Clear Signature" },
+    contract_save_btn: { en: "Is Promise Ko Seal Karo (Save)", hi: "Is Promise Ko Seal Karo (Save)" },
+    contract_list_lbl: { en: "Aapke Sealed Contracts", hi: "Aapke Sealed Contracts" },
+    
+    // Header Custom modal
+    custom_btn_add: { en: "Naya Dream Add Karo", hi: "Naya Dream Add Karo" }
+};
+
+let currentLanguage = localStorage.getItem('someday_lang') || 'hi';
+
+function setLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('someday_lang', lang);
+    
+    // Update data-i18n items
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (TRANSLATIONS[key]) {
+            el.innerText = TRANSLATIONS[key][lang] || TRANSLATIONS[key]['en'];
+        }
+    });
+
+    // Update data-i18n-placeholder items
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (TRANSLATIONS[key]) {
+            el.placeholder = TRANSLATIONS[key][lang] || TRANSLATIONS[key]['en'];
+        }
+    });
+
+    // Update active tab text in page header selector
+    document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
+        const btnLang = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
+        if (btnLang === lang) {
+            btn.classList.add('bg-cyan-600', 'text-white');
+            btn.classList.remove('bg-gray-900', 'text-gray-400');
+        } else {
+            btn.classList.remove('bg-cyan-600', 'text-white');
+            btn.classList.add('bg-gray-900', 'text-gray-400');
+        }
+    });
+
+    document.querySelectorAll('.mob-lang-toggle-btn').forEach(btn => {
+        const btnLang = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
+        if (btnLang === lang) {
+            btn.classList.add('bg-cyan-600', 'text-white');
+            btn.classList.remove('bg-gray-900', 'text-gray-400');
+        } else {
+            btn.classList.remove('bg-cyan-600', 'text-white');
+            btn.classList.add('bg-gray-900', 'text-gray-400');
+        }
+    });
+
+    // Refresh dynamic widgets
+    updateLifeGrid();
+    renderVaultItems();
+    renderBlueprints();
+    renderWeeklyTargets();
+    renderPastAchievements();
+    updateSprintSelect();
+}
+
+function getI18nText(key) {
+    if (TRANSLATIONS[key]) {
+        return TRANSLATIONS[key][currentLanguage] || TRANSLATIONS[key]['en'];
+    }
+    return key;
+}
+
+window.setLanguage = setLanguage;
 
 // Global Application State
 let activeBlueprints = JSON.parse(localStorage.getItem('someday_blueprints')) || [];
@@ -166,13 +496,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (window.lucide) lucide.createIcons();
 
-    updateLifeGrid();
-    renderVaultItems();
-    renderBlueprints();
+    setLanguage(currentLanguage);
     renderContractsList();
-    renderWeeklyTargets();
-    renderPastAchievements();
-    updateSprintSelect();
     initSignaturePad();
 });
 
@@ -241,7 +566,7 @@ function updateLifeGrid() {
     const remainingSummers = Math.max(0, Math.floor((lifespan - (livedWeeks / 52))));
 
     document.getElementById('stat-weeks-lived').innerText = livedWeeks.toLocaleString();
-    document.getElementById('stat-pct-lived').innerText = `${pctLived}% life complete`;
+    document.getElementById('stat-pct-lived').innerText = `${pctLived}% ${getI18nText('stat_weeks_lived_desc')}`;
     document.getElementById('stat-weeks-left').innerText = remainingWeeks.toLocaleString();
     document.getElementById('stat-summers-left').innerText = remainingSummers.toLocaleString();
     document.getElementById('stat-parent-visits').innerText = remainingParentVisits.toLocaleString();
@@ -298,10 +623,22 @@ function updateLifeGrid() {
 
             // Calculate exact calendar date range
             const dateRange = getWeekDateRange(birthDateVal, currentWeekIndex);
-            const status = currentWeekIndex < livedWeeks ? 'Past Week' : (currentWeekIndex === livedWeeks ? 'CURRENT WEEK' : 'Future Week');
+            
+            let statusText = '';
+            if (currentWeekIndex < livedWeeks) {
+                statusText = currentLanguage === 'en' ? 'Past Week' : 'Past Week';
+            } else if (currentWeekIndex === livedWeeks) {
+                statusText = currentLanguage === 'en' ? 'CURRENT WEEK' : 'CURRENT WEEK';
+            } else {
+                statusText = currentLanguage === 'en' ? 'Future Week' : 'Future Week';
+            }
+
+            const ageLabelText = currentLanguage === 'en' ? 'Age' : 'Age';
+            const yearsLabelText = currentLanguage === 'en' ? 'Years' : 'Years';
+            const weekLabelText = currentLanguage === 'en' ? 'Week' : 'Week';
 
             // Native Browser Hover Tooltip (shows up right at cursor)
-            let nativeTooltip = `Age: ${yr} Years (Week ${wk + 1}/52) [${dateRange}] — ${status}`;
+            let nativeTooltip = `${ageLabelText}: ${yr} ${yearsLabelText} (${weekLabelText} ${wk + 1}/52) [${dateRange}] — ${statusText}`;
             if (lifeEvent) {
                 const iconEmojiMap = {
                     'graduation-cap': '🎓',
@@ -313,14 +650,18 @@ function updateLifeGrid() {
                     'star': '🌟'
                 };
                 const emojiSymbol = iconEmojiMap[lifeEvent.emoji] || lifeEvent.emoji || '🌟';
-                nativeTooltip += `\nEvent: ${emojiSymbol} ${lifeEvent.title}`;
-                if (lifeEvent.note) nativeTooltip += `\nNote: ${lifeEvent.note}`;
+                const eventLabelPrefix = currentLanguage === 'en' ? 'Event' : 'Event';
+                nativeTooltip += `\n${eventLabelPrefix}: ${emojiSymbol} ${lifeEvent.title}`;
+                if (lifeEvent.note) {
+                    const noteLabelPrefix = currentLanguage === 'en' ? 'Note' : 'Note';
+                    nativeTooltip += `\n${noteLabelPrefix}: ${lifeEvent.note}`;
+                }
             }
             sq.title = nativeTooltip;
 
             // Also update the bottom panel tooltip detail on mouseenter
             sq.addEventListener('mouseenter', () => {
-                let tooltipText = `Age: ${yr} Years (Week ${wk + 1}/52) [${dateRange}] — ${status}`;
+                let tooltipText = `${ageLabelText}: ${yr} ${yearsLabelText} (${weekLabelText} ${wk + 1}/52) [${dateRange}] — ${statusText}`;
                 if (lifeEvent) {
                     const iconEmojiMap = {
                         'graduation-cap': '🎓',
@@ -332,7 +673,8 @@ function updateLifeGrid() {
                         'star': '🌟'
                     };
                     const emojiSymbol = iconEmojiMap[lifeEvent.emoji] || lifeEvent.emoji || '🌟';
-                    tooltipText += ` | Event: ${emojiSymbol} ${lifeEvent.title}`;
+                    const eventLabelPrefix = currentLanguage === 'en' ? 'Event' : 'Event';
+                    tooltipText += ` | ${eventLabelPrefix}: ${emojiSymbol} ${lifeEvent.title}`;
                 }
                 document.getElementById('tooltip-detail').innerText = tooltipText;
             });
@@ -359,10 +701,20 @@ function renderVaultItems() {
         : CURATED_VAULT.filter(item => item.category === currentFilter);
 
     filtered.forEach(item => {
-        const isAlreadyAdopted = activeBlueprints.some(b => b.title === item.title);
+        const title = typeof item.title === 'object' ? item.title[currentLanguage] : item.title;
+        const description = typeof item.description === 'object' ? item.description[currentLanguage] : item.description;
+        const impact = typeof item.impact === 'object' ? item.impact[currentLanguage] : item.impact;
+        const timeframe = typeof item.timeframe === 'object' ? item.timeframe[currentLanguage] : item.timeframe;
+
+        const isAlreadyAdopted = activeBlueprints.some(b => b.title === title || b.vaultId === item.id);
 
         const card = document.createElement('div');
         card.className = 'glass-panel-interactive p-5 rounded-3xl flex flex-col justify-between space-y-4';
+
+        const benefitLabel = currentLanguage === 'en' ? 'Benefit' : 'Fayda';
+        const buttonText = isAlreadyAdopted 
+            ? (currentLanguage === 'en' ? 'Plan Already Added' : 'Plan Me Added Hai')
+            : (currentLanguage === 'en' ? 'Start This Plan' : 'Is Plan Ko Shuru Karo');
 
         card.innerHTML = `
             <div class="space-y-3">
@@ -371,21 +723,21 @@ function renderVaultItems() {
                         ${item.category}
                     </span>
                     <span class="text-[11px] text-gray-400 font-bold flex items-center gap-1">
-                        <i data-lucide="clock" class="w-3 h-3 text-amber-400"></i> ${item.timeframe}
+                        <i data-lucide="clock" class="w-3 h-3 text-amber-400"></i> ${timeframe}
                     </span>
                 </div>
-                <h3 class="text-base font-bold text-white leading-snug">${item.title}</h3>
-                <p class="text-xs text-gray-300 leading-relaxed">${item.description}</p>
+                <h3 class="text-base font-bold text-white leading-snug">${title}</h3>
+                <p class="text-xs text-gray-300 leading-relaxed">${description}</p>
             </div>
 
             <div class="space-y-3 pt-3 border-t border-gray-800/80">
                 <div class="text-[11px] text-emerald-400 flex items-center gap-1.5 font-semibold">
-                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Fayda: ${item.impact}
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> ${benefitLabel}: ${impact}
                 </div>
 
                 <button onclick="adoptVaultItem('${item.id}')" ${isAlreadyAdopted ? 'disabled' : ''} class="w-full py-2.5 rounded-xl text-xs font-black flex items-center justify-center gap-2 transition-all ${isAlreadyAdopted ? 'bg-gray-800/80 text-gray-500 cursor-not-allowed' : 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black shadow-lg shadow-amber-500/20'}">
                     <i data-lucide="${isAlreadyAdopted ? 'check' : 'plus'}" class="w-3.5 h-3.5"></i>
-                    ${isAlreadyAdopted ? 'Plan Me Added Hai' : 'Is Plan Ko Shuru Karo'}
+                    ${buttonText}
                 </button>
             </div>
         `;
@@ -425,10 +777,11 @@ function adoptVaultItem(id) {
 
     const newBlueprint = {
         id: 'bp-' + Date.now(),
-        title: item.title,
+        vaultId: item.id, // Reference to original vault item for translations!
+        title: item.title.hi,
         category: item.category,
-        timeframe: item.timeframe,
-        steps: item.steps.map((s, idx) => ({
+        timeframe: item.timeframe.hi,
+        steps: item.steps.hi.map((s, idx) => ({
             id: idx,
             title: s,
             completed: false,
@@ -443,7 +796,10 @@ function adoptVaultItem(id) {
     renderBlueprints();
     updateSprintSelect();
 
-    showToast('Plan Ban Gaya!', `"${item.title}" aapke Active Plans me add ho gaya.`);
+    const adoptedTitle = item.title[currentLanguage];
+    const toastTitle = currentLanguage === 'en' ? 'Plan Adopted!' : 'Plan Ban Gaya!';
+    const toastDesc = currentLanguage === 'en' ? `"${adoptedTitle}" has been added to your Active Plans.` : `"${adoptedTitle}" aapke Active Plans me add ho gaya.`;
+    showToast(toastTitle, toastDesc);
     playSuccessChime();
 
     switchTab('blueprint');
@@ -476,6 +832,9 @@ function renderBlueprints() {
     let totalDoneAll = 0;
 
     activeBlueprints.forEach(bp => {
+        const vaultItem = CURATED_VAULT.find(v => v.id === bp.vaultId);
+        const displayTitle = vaultItem ? vaultItem.title[currentLanguage] : bp.title;
+
         const totalSteps = bp.steps.length;
         const completedSteps = bp.steps.filter(s => s.completed).length;
         totalStepsAll += totalSteps;
@@ -486,26 +845,39 @@ function renderBlueprints() {
         const card = document.createElement('div');
         card.className = 'glass-panel p-6 rounded-3xl space-y-5 border border-gray-800';
 
-        let stepsHtml = bp.steps.map((step, idx) => `
-            <div onclick="toggleStep('${bp.id}', ${idx})" class="flex items-start gap-3 p-3.5 rounded-2xl ${step.completed ? 'bg-emerald-950/20 border border-emerald-900/40' : (step.isFirstStep ? 'bg-amber-500/10 border border-amber-500/30' : 'bg-gray-950/60 border border-gray-800')} cursor-pointer hover:border-cyan-500/50 transition-all">
-                <div class="pt-0.5">
-                    <div class="w-5 h-5 rounded-lg flex items-center justify-center transition-all ${step.completed ? 'bg-emerald-500 text-black' : 'border border-gray-600 text-transparent'}">
-                        <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>
+        const createdLabel = currentLanguage === 'en' ? 'Created' : 'Banaya Gaya';
+        const completedLabel = currentLanguage === 'en' ? 'completed' : 'poore hue';
+        const completeLabel = currentLanguage === 'en' ? 'Complete' : 'Poora Hua';
+        const actionLabel = currentLanguage === 'en' ? 'Action Steps' : 'Action Steps';
+        const phaseLabel = currentLanguage === 'en' ? 'Phase' : 'Phase';
+
+        let stepsHtml = bp.steps.map((step, idx) => {
+            const stepTitle = vaultItem ? (vaultItem.steps[currentLanguage] ? vaultItem.steps[currentLanguage][idx] : step.title) : step.title;
+            const stepBadge = step.isFirstStep 
+                ? (currentLanguage === 'en' ? 'Step #1 — 15 Min Jumpstart' : 'Step #1 — 15 Min Jumpstart')
+                : `${phaseLabel} ${idx + 1}`;
+
+            return `
+                <div onclick="toggleStep('${bp.id}', ${idx})" class="flex items-start gap-3 p-3.5 rounded-2xl ${step.completed ? 'bg-emerald-950/20 border border-emerald-900/40' : (step.isFirstStep ? 'bg-amber-500/10 border border-amber-500/30' : 'bg-gray-950/60 border border-gray-800')} cursor-pointer hover:border-cyan-500/50 transition-all">
+                    <div class="pt-0.5">
+                        <div class="w-5 h-5 rounded-lg flex items-center justify-center transition-all ${step.completed ? 'bg-emerald-500 text-black' : 'border border-gray-600 text-transparent'}">
+                            <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="flex-grow">
-                    <div class="flex items-center gap-2">
-                        ${step.isFirstStep ? '<span class="text-[9px] uppercase font-black px-2 py-0.5 rounded-full bg-amber-500 text-black">Step #1 — 15 Min Jumpstart</span>' : `<span class="text-[10px] text-gray-400 font-bold">Phase ${idx + 1}</span>`}
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-2">
+                            ${step.isFirstStep ? `<span class="text-[9px] uppercase font-black px-2 py-0.5 rounded-full bg-amber-500 text-black">${stepBadge}</span>` : `<span class="text-[10px] text-gray-400 font-bold">${stepBadge}</span>`}
+                        </div>
+                        <p class="text-xs ${step.completed ? 'line-through text-gray-500 font-normal' : 'text-gray-200 font-bold'} mt-1">${stepTitle}</p>
                     </div>
-                    <p class="text-xs ${step.completed ? 'line-through text-gray-500 font-normal' : 'text-gray-200 font-bold'} mt-1">${step.title}</p>
+                    ${step.isFirstStep && !step.completed ? `
+                        <button onclick="event.stopPropagation(); launchSprintForStep('${bp.title}', '${step.title}')" class="px-3 py-1 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-[11px] flex items-center gap-1 shadow">
+                            <i data-lucide="zap" class="w-3 h-3"></i> Sprint
+                        </button>
+                    ` : ''}
                 </div>
-                ${step.isFirstStep && !step.completed ? `
-                    <button onclick="event.stopPropagation(); launchSprintForStep('${bp.title}', '${step.title}')" class="px-3 py-1 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-[11px] flex items-center gap-1 shadow">
-                        <i data-lucide="zap" class="w-3 h-3"></i> Sprint
-                    </button>
-                ` : ''}
-            </div>
-        `).join('');
+            `;
+        }).join('');
 
         card.innerHTML = `
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-gray-800">
@@ -514,15 +886,15 @@ function renderBlueprints() {
                         <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full ${getCategoryBadge(bp.category)}">
                             ${bp.category}
                         </span>
-                        <span class="text-[11px] text-gray-400">Banaya Gaya: ${bp.createdAt}</span>
+                        <span class="text-[11px] text-gray-400">${createdLabel}: ${bp.createdAt}</span>
                     </div>
-                    <h3 class="text-lg font-extrabold text-white">${bp.title}</h3>
+                    <h3 class="text-lg font-extrabold text-white">${displayTitle}</h3>
                 </div>
 
                 <div class="flex items-center gap-3">
                     <div class="text-right">
-                        <span class="text-xs font-bold text-amber-400 font-mono">${pct}% Poora Hua</span>
-                        <p class="text-[10px] text-gray-400">${completedSteps} of ${totalSteps} steps completed</p>
+                        <span class="text-xs font-bold text-amber-400 font-mono">${pct}% ${completeLabel}</span>
+                        <p class="text-[10px] text-gray-400">${completedSteps} of ${totalSteps} ${completedLabel}</p>
                     </div>
                     <button onclick="deleteBlueprint('${bp.id}')" class="p-2 rounded-xl bg-gray-950 hover:bg-rose-950/50 text-gray-500 hover:text-rose-400 border border-gray-800 transition-all">
                         <i data-lucide="trash-2" class="w-4 h-4"></i>
@@ -531,7 +903,7 @@ function renderBlueprints() {
             </div>
 
             <div class="space-y-2">
-                <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Action Steps:</span>
+                <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">${actionLabel}:</span>
                 <div class="grid grid-cols-1 gap-2">
                     ${stepsHtml}
                 </div>
@@ -653,14 +1025,26 @@ function updateSprintTimerDisplay() {
 function updateSprintSelect() {
     const select = document.getElementById('sprint-target-select');
     if (!select) return;
-    select.innerHTML = '<option value="General Focus Sprint">General 15-Minute Friction Buster</option>';
+
+    const generalText = currentLanguage === 'en' ? 'General 15-Minute Friction Buster' : 'General 15-Minute Friction Buster';
+    select.innerHTML = `<option value="General Focus Sprint">${generalText}</option>`;
 
     activeBlueprints.forEach(bp => {
         const uncompleted = bp.steps.find(s => !s.completed);
         if (uncompleted) {
+            const vaultItem = CURATED_VAULT.find(v => v.id === bp.vaultId);
+            const bpTitle = vaultItem ? vaultItem.title[currentLanguage] : bp.title;
+            
+            let stepTitle = uncompleted.title;
+            if (vaultItem) {
+                const localizedStepsList = vaultItem.steps[currentLanguage] || vaultItem.steps['en'];
+                const stepIdx = bp.steps.indexOf(uncompleted);
+                stepTitle = localizedStepsList[stepIdx] || uncompleted.title;
+            }
+
             const opt = document.createElement('option');
             opt.value = `${bp.title}: ${uncompleted.title}`;
-            opt.innerText = `🎯 ${bp.title} — ${uncompleted.title}`;
+            opt.innerText = `🎯 ${bpTitle} — ${stepTitle}`;
             select.appendChild(opt);
         }
     });
