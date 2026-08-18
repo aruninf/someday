@@ -6,6 +6,12 @@
     <title>SOMEDAY — Life Blueprint & Precision Timeline Engine</title>
     <meta name="description" content="SOMEDAY is an interactive life-in-weeks calendar and visual goal breakdown blueprint designed to track milestones, optimize productivity, and eliminate procrastination.">
     <meta name="keywords" content="life calendar, life in weeks, productivity planner, visual timeline, goal setting, procrastination buster, 15-minute sprint, milestone tracker">
+    <meta name="theme-color" content="#030712">
+    <meta name="author" content="Arun Kumar">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon (Premium inline SVG hourglass sparkles) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2306b6d4' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M5 2h14M5 22h14M19 2v4a7 7 0 0 1-7 7 7 7 0 0 1-7-7V2M5 22v-4a7 7 0 0 1 7-7 7 7 0 0 1 7 7v4'/%3e%3ccircle cx='12' cy='12' r='1.5' fill='%23f59e0b'/%3e%3c/svg%3e">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -63,16 +69,25 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Brand Logo -->
-                <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('reality')">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 via-teal-500 to-amber-500 flex items-center justify-center shadow-lg shadow-cyan-500/25 border border-white/10">
-                        <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
+                <div class="flex items-center gap-3.5 cursor-pointer group" onclick="switchTab('reality')">
+                    <div class="relative w-11 h-11 flex items-center justify-center">
+                        <div class="absolute inset-0 rounded-xl bg-gradient-to-tr from-cyan-500 to-amber-500 opacity-75 blur-md group-hover:opacity-100 transition-all duration-300"></div>
+                        <div class="absolute inset-0 rounded-xl bg-gradient-to-tr from-cyan-600 via-teal-500 to-amber-500 border border-white/20 flex items-center justify-center shadow-inner z-10">
+                            <!-- Custom SVG Logo Mark (Hourglass with amber core) -->
+                            <svg class="w-5.5 h-5.5 text-white animate-pulse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 2h14M5 22h14M19 2v4a7 7 0 0 1-7 7 7 7 0 0 1-7-7V2M5 22v-4a7 7 0 0 1 7-7 7 7 0 0 1 7 7v4" />
+                                <circle cx="12" cy="12" r="1.5" fill="#f59e0b" />
+                            </svg>
+                        </div>
                     </div>
                     <div>
                         <div class="flex items-center gap-2">
-                            <h1 class="font-black text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-amber-400">SOMEDAY</h1>
-                            <span class="text-[9px] uppercase tracking-widest font-black px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">Life Blueprint</span>
+                            <h1 class="font-black text-2xl tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-cyan-400 group-hover:from-cyan-300 group-hover:to-white transition-all duration-500">
+                                SOME<span class="text-amber-400 font-extrabold">DAY</span>
+                            </h1>
+                            <span class="text-[8px] uppercase tracking-widest font-black px-2 py-0.5 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">v2.0</span>
                         </div>
-                        <p class="text-[11px] text-gray-400 hidden sm:block">"Kal Karenge" se "Aaj Hi Karenge" tak ka futuristic safar</p>
+                        <p class="text-[10px] text-gray-400 hidden sm:block font-medium">"Kal Karenge" se "Aaj Hi Karenge" tak ka futuristic safar</p>
                     </div>
                 </div>
 
