@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question / Discussion
+    url: https://github.com/aruninf/someday/issues/new?template=feature_request.md
+    about: Ask a question or propose an idea (use Feature request template)

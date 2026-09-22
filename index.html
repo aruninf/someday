@@ -105,29 +105,29 @@
                         <button onclick="setLanguage('hi')" id="lang-btn-hi" class="lang-toggle-btn px-2.5 py-0.5 rounded-lg text-[10px] font-bold transition-all bg-cyan-600 text-white">HI/EN</button>
                     </div>
 
-                    <nav class="flex items-center space-x-1 bg-gray-950/80 p-1.5 rounded-2xl border border-gray-800/80 shadow-inner">
-                        <button onclick="switchTab('reality')" id="tab-btn-reality" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-white bg-cyan-600 shadow-md shadow-cyan-600/30 transition-all">
+                    <nav class="flex items-center space-x-1 bg-gray-950/80 p-1.5 rounded-2xl border border-gray-800/80 shadow-inner" role="tablist" aria-label="Main sections">
+                        <button onclick="switchTab('reality')" id="tab-btn-reality" role="tab" aria-selected="true" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-white bg-cyan-600 shadow-md shadow-cyan-600/30 transition-all">
                             <i data-lucide="clock" class="w-4 h-4"></i>
                             <span data-i18n="tab_reality">Mera Time</span>
                         </button>
-                        <button onclick="switchTab('vault')" id="tab-btn-vault" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-900 transition-all">
+                        <button onclick="switchTab('vault')" id="tab-btn-vault" role="tab" aria-selected="false" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-900 transition-all">
                             <i data-lucide="compass" class="w-4 h-4"></i>
                             <span data-i18n="tab_vault">Someday Vault</span>
                         </button>
-                        <button onclick="switchTab('blueprint')" id="tab-btn-blueprint" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-900 transition-all relative">
+                        <button onclick="switchTab('blueprint')" id="tab-btn-blueprint" role="tab" aria-selected="false" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-900 transition-all relative">
                             <i data-lucide="target" class="w-4 h-4"></i>
                             <span data-i18n="tab_blueprint">Action Plans</span>
                             <span id="active-badge" class="ml-1 w-4 h-4 rounded-full bg-amber-500 text-black font-extrabold text-[9px] flex items-center justify-center hidden">0</span>
                         </button>
-                        <button onclick="switchTab('sprint')" id="tab-btn-sprint" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-900 transition-all">
+                        <button onclick="switchTab('sprint')" id="tab-btn-sprint" role="tab" aria-selected="false" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-900 transition-all">
                             <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
                             <span data-i18n="tab_sprint">15-Min Sprint</span>
                         </button>
-                        <button onclick="switchTab('weekly')" id="tab-btn-weekly" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-900 transition-all">
+                        <button onclick="switchTab('weekly')" id="tab-btn-weekly" role="tab" aria-selected="false" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-900 transition-all">
                             <i data-lucide="trophy" class="w-4 h-4 text-emerald-400"></i>
                             <span data-i18n="tab_weekly">Goals & Wins</span>
                         </button>
-                        <button onclick="switchTab('contract')" id="tab-btn-contract" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-900 transition-all">
+                        <button onclick="switchTab('contract')" id="tab-btn-contract" role="tab" aria-selected="false" class="nav-tab flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-900 transition-all">
                             <i data-lucide="file-signature" class="w-4 h-4"></i>
                             <span data-i18n="tab_contract">Future Promise</span>
                         </button>
@@ -142,28 +142,28 @@
         </div>
 
         <!-- Mobile Navigation Bottom Floating Bar (Design Improvement: Modern Fixed Bottom Layout) -->
-        <div class="md:hidden flex border-t border-gray-800/80 bg-gray-950/95 backdrop-blur-xl justify-around py-3 px-1 fixed bottom-0 left-0 right-0 z-40 pb-safe shadow-[0_-8px_30px_rgba(0,0,0,0.6)]">
-            <button onclick="switchTab('reality')" id="mob-btn-reality" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-cyan-400">
+        <div class="md:hidden flex border-t border-gray-800/80 bg-gray-950/95 backdrop-blur-xl justify-around py-3 px-1 fixed bottom-0 left-0 right-0 z-40 pb-safe shadow-[0_-8px_30px_rgba(0,0,0,0.6)]" role="tablist" aria-label="Main sections">
+            <button onclick="switchTab('reality')" id="mob-btn-reality" role="tab" aria-selected="true" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-cyan-400">
                 <i data-lucide="clock" class="w-4 h-4"></i>
                 <span data-i18n="tab_reality_mob">Time</span>
             </button>
-            <button onclick="switchTab('vault')" id="mob-btn-vault" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-gray-400">
+            <button onclick="switchTab('vault')" id="mob-btn-vault" role="tab" aria-selected="false" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-gray-400">
                 <i data-lucide="compass" class="w-4 h-4"></i>
                 <span data-i18n="tab_vault_mob">Vault</span>
             </button>
-            <button onclick="switchTab('blueprint')" id="mob-btn-blueprint" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-gray-400">
+            <button onclick="switchTab('blueprint')" id="mob-btn-blueprint" role="tab" aria-selected="false" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-gray-400">
                 <i data-lucide="target" class="w-4 h-4"></i>
                 <span data-i18n="tab_blueprint_mob">Plans</span>
             </button>
-            <button onclick="switchTab('sprint')" id="mob-btn-sprint" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-gray-400">
+            <button onclick="switchTab('sprint')" id="mob-btn-sprint" role="tab" aria-selected="false" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-gray-400">
                 <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
                 <span data-i18n="tab_sprint_mob">Sprint</span>
             </button>
-            <button onclick="switchTab('weekly')" id="mob-btn-weekly" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-gray-400">
+            <button onclick="switchTab('weekly')" id="mob-btn-weekly" role="tab" aria-selected="false" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-gray-400">
                 <i data-lucide="trophy" class="w-4 h-4 text-emerald-400"></i>
                 <span data-i18n="tab_weekly_mob">Wins</span>
             </button>
-            <button onclick="switchTab('contract')" id="mob-btn-contract" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-gray-400">
+            <button onclick="switchTab('contract')" id="mob-btn-contract" role="tab" aria-selected="false" class="mob-tab flex flex-col items-center gap-1 text-[10px] font-bold text-gray-400">
                 <i data-lucide="file-signature" class="w-4 h-4"></i>
                 <span data-i18n="tab_contract_mob">Promise</span>
             </button>
@@ -248,6 +248,35 @@
                         <p class="text-[11px] text-rose-300/80" data-i18n="stat_parents_left_desc">Estimate milne ke moments</p>
                     </div>
                 </div>
+            </div>
+
+            <!-- Cloud Sync (Google Sheet DB via Apps Script proxy) -->
+            <div class="glass-panel p-5 rounded-3xl border border-gray-700/80 space-y-3">
+                <div class="flex items-center justify-between gap-3 flex-wrap">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-cyan-300 flex items-center gap-1.5">
+                        <i data-lucide="cloud" class="w-4 h-4 text-cyan-400"></i>
+                        Cloud Sync — Google Sheet
+                    </h3>
+                    <div class="flex items-center gap-2 text-[11px] text-gray-400">
+                        <span id="sheet-status-dot" class="w-2 h-2 rounded-full bg-gray-500 inline-block"></span>
+                        <span id="sheet-status">Local only</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <input id="sheet-url" type="url" placeholder="Apps Script /exec URL" autocomplete="off" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-500">
+                    <input id="sheet-token" type="password" placeholder="Sync token" autocomplete="off" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-500">
+                </div>
+                <div class="flex items-center justify-between gap-3 flex-wrap">
+                    <label class="flex items-center gap-2 text-[11px] text-gray-400 cursor-pointer">
+                        <input id="sheet-enabled" type="checkbox" class="accent-cyan-500 w-3.5 h-3.5">
+                        Enable sync <span class="text-gray-600 font-mono">(<span id="sheet-device">…</span>)</span>
+                    </label>
+                    <div class="flex items-center gap-2">
+                        <button onclick="saveSheetConfigFromUI()" class="px-3 py-1.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-white text-[11px] font-bold border border-gray-700 transition-all">Save</button>
+                        <button onclick="syncSheetNow()" class="px-3 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-[11px] font-bold transition-all flex items-center gap-1.5"><i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>Sync now</button>
+                    </div>
+                </div>
+                <p class="text-[10px] text-gray-600">Offline-first: local pehle save hota hai, Sheet backup + cross-device copy hai. Setup: SHEET_DB_SETUP.md</p>
             </div>
 
             <!-- Life Grid Matrix Container -->
@@ -660,7 +689,7 @@
     <!-- Modal: Add Life Event/Achievement to Grid Square -->
     <div id="modal-life-event" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
         <div class="glass-panel max-w-md w-full p-6 rounded-3xl border border-gray-700 space-y-4 relative shadow-2xl">
-            <button onclick="closeLifeEventModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white transition-all">
+            <button onclick="closeLifeEventModal()" aria-label="Close dialog" class="absolute top-5 right-5 text-gray-400 hover:text-white transition-all">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
             
@@ -723,7 +752,7 @@
     <!-- Modal: Add Custom Dream -->
     <div id="modal-custom" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
         <div class="glass-panel max-w-lg w-full p-6 sm:p-8 rounded-3xl border border-gray-700 space-y-5 relative shadow-2xl">
-            <button onclick="closeCustomModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white transition-all">
+            <button onclick="closeCustomModal()" aria-label="Close dialog" class="absolute top-5 right-5 text-gray-400 hover:text-white transition-all">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
 

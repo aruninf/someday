@@ -385,7 +385,7 @@ let currentLanguage = localStorage.getItem('someday_lang') || 'hi';
 
 function setLanguage(lang) {
     currentLanguage = lang;
-    localStorage.setItem('someday_lang', lang);
+    localStorage.setItem(STORAGE_KEYS.lang, lang);
     
     // Update data-i18n items
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -444,19 +444,77 @@ function getI18nText(key) {
 
 window.setLanguage = setLanguage;
 
+// localStorage keys (single source of truth — must match AGENTS.md)
+const STORAGE_KEYS = {
+    blueprints: 'someday_blueprints',
+    contracts: 'someday_contracts',
+    weeklyTargets: 'someday_weekly_targets',
+    pastAchievements: 'someday_past_achievements',
+    lifeEvents: 'someday_life_events',
+    birthdate: 'someday_birthdate',
+    lifespan: 'someday_lifespan',
+    parentAge: 'someday_parent_age',
+    visitsYear: 'someday_visits_year',
+    lang: 'someday_lang'
+};
+
+// Safe JSON persistence: corrupt entries fall back to defaults instead of throwing
+function loadJSON(key, fallback) {
+    try {
+        const raw = localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : fallback;
+    } catch (e) {
+        console.warn(`Corrupt localStorage entry "${key}", using default.`, e);
+        return fallback;
+    }
+}
+
+function saveJSON(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+    // Sheet DB: offline-first — push in background (debounced, skipped while applying remote pull)
+    try { if (typeof scheduleSheetPush === 'function') scheduleSheetPush(); } catch (e) {}
+}
+
+// Lucide icons must be re-created after every DOM injection, or they render blank
+function refreshIcons() {
+    if (window.lucide) lucide.createIcons();
+}
+
+// Common success feedback: toast + chime, optionally with confetti
+function celebrate(title, msg, withConfetti = true) {
+    showToast(title, msg);
+    playSuccessChime();
+    if (withConfetti) triggerConfetti();
+}
+
+// Lucide icon name -> emoji fallback for native tooltips (no emoji font in canvas)
+const LIFE_EVENT_EMOJI = {
+    'graduation-cap': '🎓',
+    'briefcase': '💼',
+    'rocket': '🚀',
+    'heart': '❤️',
+    'plane': '✈️',
+    'activity': '🏃',
+    'star': '🌟'
+};
+
+function lifeEventEmoji(value) {
+    return LIFE_EVENT_EMOJI[value] || value || '🌟';
+}
+
 // Global Application State
-let activeBlueprints = JSON.parse(localStorage.getItem('someday_blueprints')) || [];
-let savedContracts = JSON.parse(localStorage.getItem('someday_contracts')) || [];
-let weeklyTargets = JSON.parse(localStorage.getItem('someday_weekly_targets')) || [
+let activeBlueprints = loadJSON(STORAGE_KEYS.blueprints, []);
+let savedContracts = loadJSON(STORAGE_KEYS.contracts, []);
+let weeklyTargets = loadJSON(STORAGE_KEYS.weeklyTargets, [
     { id: 'wt-1', title: 'Apne mentor ko 1 thank you WhatsApp message send karna', day: 'Wednesday', emoji: 'heart', completed: false },
     { id: 'wt-2', title: '30 Minutes park me bina phone ke walk karna', day: 'Saturday', emoji: 'activity', completed: false }
-];
-let pastAchievements = JSON.parse(localStorage.getItem('someday_past_achievements')) || [
+]);
+let pastAchievements = loadJSON(STORAGE_KEYS.pastAchievements, [
     { id: 'pa-1', title: 'First Salary se Papa ke liye glasses khareede', date: '2023', badge: 'Heartwarming', note: 'Papa ki smile sabse sweet thi.' },
     { id: 'pa-2', title: '10km Walk Challenge complete kiya', date: 'Last Month', badge: 'Overcame Fear', note: 'Pehle lagta tha nahi ho payega.' }
-];
+]);
 let currentFilter = 'all';
-let lifeGridEvents = JSON.parse(localStorage.getItem('someday_life_events')) || {};
+let lifeGridEvents = loadJSON(STORAGE_KEYS.lifeEvents, {});
 
 // Timer & Sound state
 let sprintInterval = null;
@@ -470,6 +528,12 @@ let synthOscillator = null;
 let sigCanvas = null;
 let sigCtx = null;
 let isSigning = false;
+
+// Toast hide timer (reset on every showToast so rapid toasts don't vanish early)
+let toastTimeout = null;
+
+// Valid tab ids for deep-linking
+const VALID_TABS = ['reality', 'vault', 'blueprint', 'sprint', 'weekly', 'contract'];
 
 window.addEventListener('DOMContentLoaded', () => {
     // Load timeline values from localStorage if they exist
@@ -494,22 +558,51 @@ window.addEventListener('DOMContentLoaded', () => {
         if (visitsInput) visitsInput.value = savedVisits;
     }
 
-    if (window.lucide) lucide.createIcons();
+    refreshIcons();
 
     setLanguage(currentLanguage);
     renderContractsList();
     initSignaturePad();
+    try { initSheetSyncUI(); } catch (e) {}
+
+    // UX: deep-link to tab via #hash (e.g. someday/#sprint)
+    const initialTab = (window.location.hash || '').replace('#', '');
+    if (VALID_TABS.includes(initialTab)) switchTab(initialTab);
+
+    // UX: ESC closes any open modal
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeLifeEventModal();
+            closeCustomModal();
+        }
+    });
+
+    // UX: click on modal backdrop closes it (clicks inside the panel are ignored)
+    ['modal-life-event', 'modal-custom'].forEach(modalId => {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.addEventListener('mousedown', (e) => {
+                if (e.target === modal) {
+                    if (modalId === 'modal-life-event') closeLifeEventModal();
+                    else closeCustomModal();
+                }
+            });
+        }
+    });
 });
 
 function switchTab(tabId) {
+    if (!VALID_TABS.includes(tabId)) return;
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.nav-tab').forEach(btn => {
         btn.classList.remove('bg-cyan-600', 'text-white', 'shadow-md');
         btn.classList.add('text-gray-400');
+        btn.setAttribute('aria-selected', 'false');
     });
     document.querySelectorAll('.mob-tab').forEach(btn => {
         btn.classList.remove('text-cyan-400');
         btn.classList.add('text-gray-400');
+        btn.setAttribute('aria-selected', 'false');
     });
 
     const target = document.getElementById(`tab-${tabId}`);
@@ -519,20 +612,30 @@ function switchTab(tabId) {
     if (desktopBtn) {
         desktopBtn.classList.add('bg-cyan-600', 'text-white', 'shadow-md');
         desktopBtn.classList.remove('text-gray-400');
+        desktopBtn.setAttribute('aria-selected', 'true');
     }
 
     const mobBtn = document.getElementById(`mob-btn-${tabId}`);
     if (mobBtn) {
         mobBtn.classList.add('text-cyan-400');
         mobBtn.classList.remove('text-gray-400');
+        mobBtn.setAttribute('aria-selected', 'true');
     }
+
+    // UX: keep URL hash in sync so tabs are shareable + back-button friendly
+    // (replaceState avoids the page jump that setting location.hash would cause)
+    try {
+        if ((window.location.hash || '') !== '#' + tabId) {
+            history.replaceState(null, '', '#' + tabId);
+        }
+    } catch (e) { /* file:// or sandboxed iframe — ignore */ }
 
     // Fix the minor/miner signature size issue when the contract tab is activated
     if (tabId === 'contract') {
         resizeSignatureCanvas(true);
     }
 
-    if (window.lucide) lucide.createIcons();
+    refreshIcons();
 }
 
 function updateLifeGrid() {
@@ -541,16 +644,18 @@ function updateLifeGrid() {
     const parentAge = parseInt(document.getElementById('input-parent-age').value) || 62;
     const visitsPerYear = parseInt(document.getElementById('input-visits-year').value) || 4;
 
-    // Save inputs to localStorage so they persist across page refreshes
-    localStorage.setItem('someday_birthdate', birthDateVal);
-    localStorage.setItem('someday_lifespan', lifespan);
-    localStorage.setItem('someday_parent_age', parentAge);
-    localStorage.setItem('someday_visits_year', visitsPerYear);
+    // Save inputs to localStorage so they persist across page refreshes.
+    // NOTE: raw setItem (not saveJSON) — these are read back as plain strings
+    // on load, and JSON-quoting would corrupt values like the birthdate.
+    localStorage.setItem(STORAGE_KEYS.birthdate, birthDateVal);
+    localStorage.setItem(STORAGE_KEYS.lifespan, lifespan);
+    localStorage.setItem(STORAGE_KEYS.parentAge, parentAge);
+    localStorage.setItem(STORAGE_KEYS.visitsYear, visitsPerYear);
+    // Sheet DB: profile changed — background push (debounced inside)
+    try { if (typeof scheduleSheetPush === 'function') scheduleSheetPush(); } catch (e) {}
 
     const [birthYear, birthMonth] = birthDateVal.split('-').map(Number);
     const now = new Date();
-    const currentYear = now.getFullYear();
-    const currentMonth = now.getMonth() + 1;
 
     // Precise calendar-based week calculations (accounting for exact days elapsed, leap years, etc.)
     const birthDate = new Date(birthYear, birthMonth - 1, 1);
@@ -640,18 +745,8 @@ function updateLifeGrid() {
             // Native Browser Hover Tooltip (shows up right at cursor)
             let nativeTooltip = `${ageLabelText}: ${yr} ${yearsLabelText} (${weekLabelText} ${wk + 1}/52) [${dateRange}] — ${statusText}`;
             if (lifeEvent) {
-                const iconEmojiMap = {
-                    'graduation-cap': '🎓',
-                    'briefcase': '💼',
-                    'rocket': '🚀',
-                    'heart': '❤️',
-                    'plane': '✈️',
-                    'activity': '🏃',
-                    'star': '🌟'
-                };
-                const emojiSymbol = iconEmojiMap[lifeEvent.emoji] || lifeEvent.emoji || '🌟';
                 const eventLabelPrefix = currentLanguage === 'en' ? 'Event' : 'Event';
-                nativeTooltip += `\n${eventLabelPrefix}: ${emojiSymbol} ${lifeEvent.title}`;
+                nativeTooltip += `\n${eventLabelPrefix}: ${lifeEventEmoji(lifeEvent.emoji)} ${lifeEvent.title}`;
                 if (lifeEvent.note) {
                     const noteLabelPrefix = currentLanguage === 'en' ? 'Note' : 'Note';
                     nativeTooltip += `\n${noteLabelPrefix}: ${lifeEvent.note}`;
@@ -663,18 +758,8 @@ function updateLifeGrid() {
             sq.addEventListener('mouseenter', () => {
                 let tooltipText = `${ageLabelText}: ${yr} ${yearsLabelText} (${weekLabelText} ${wk + 1}/52) [${dateRange}] — ${statusText}`;
                 if (lifeEvent) {
-                    const iconEmojiMap = {
-                        'graduation-cap': '🎓',
-                        'briefcase': '💼',
-                        'rocket': '🚀',
-                        'heart': '❤️',
-                        'plane': '✈️',
-                        'activity': '🏃',
-                        'star': '🌟'
-                    };
-                    const emojiSymbol = iconEmojiMap[lifeEvent.emoji] || lifeEvent.emoji || '🌟';
                     const eventLabelPrefix = currentLanguage === 'en' ? 'Event' : 'Event';
-                    tooltipText += ` | ${eventLabelPrefix}: ${emojiSymbol} ${lifeEvent.title}`;
+                    tooltipText += ` | ${eventLabelPrefix}: ${lifeEventEmoji(lifeEvent.emoji)} ${lifeEvent.title}`;
                 }
                 document.getElementById('tooltip-detail').innerText = tooltipText;
             });
@@ -745,7 +830,7 @@ function renderVaultItems() {
         container.appendChild(card);
     });
 
-    if (window.lucide) lucide.createIcons();
+    refreshIcons();
 }
 
 function getCategoryBadge(cat) {
@@ -799,8 +884,7 @@ function adoptVaultItem(id) {
     const adoptedTitle = item.title[currentLanguage];
     const toastTitle = currentLanguage === 'en' ? 'Plan Adopted!' : 'Plan Ban Gaya!';
     const toastDesc = currentLanguage === 'en' ? `"${adoptedTitle}" has been added to your Active Plans.` : `"${adoptedTitle}" aapke Active Plans me add ho gaya.`;
-    showToast(toastTitle, toastDesc);
-    playSuccessChime();
+    celebrate(toastTitle, toastDesc, false);
 
     switchTab('blueprint');
 }
@@ -913,12 +997,8 @@ function renderBlueprints() {
         listContainer.appendChild(card);
     });
 
-    document.querySelectorAll('.week-square').forEach(el => {
-        // Double check life grid highlights are in-sync
-    });
-
     updateOverallProgress(totalDoneAll, totalStepsAll);
-    if (window.lucide) lucide.createIcons();
+    refreshIcons();
 }
 
 function toggleStep(bpId, stepIdx) {
@@ -930,9 +1010,7 @@ function toggleStep(bpId, stepIdx) {
     renderBlueprints();
 
     if (bp.steps[stepIdx].completed) {
-        playSuccessChime();
-        triggerConfetti();
-        showToast('Kamaal Kar Diya!', 'Kya baat hai! Aapne alasy ko hara diya.');
+        celebrate('Kamaal Kar Diya!', 'Kya baat hai! Aapne alasy ko hara diya.');
     }
 }
 
@@ -946,7 +1024,7 @@ function deleteBlueprint(bpId) {
 }
 
 function saveBlueprintsToStorage() {
-    localStorage.setItem('someday_blueprints', JSON.stringify(activeBlueprints));
+    saveJSON(STORAGE_KEYS.blueprints, activeBlueprints);
 }
 
 function updateOverallProgress(done, total) {
@@ -984,7 +1062,7 @@ function startSprintTimer() {
         }
     }, 1000);
 
-    if (window.lucide) lucide.createIcons();
+    refreshIcons();
 }
 
 function pauseSprintTimer() {
@@ -993,7 +1071,7 @@ function pauseSprintTimer() {
     document.getElementById('sprint-start-btn').innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current"></i> Sprint Resume`;
     document.getElementById('sprint-status-label').innerText = 'Sprint Ruka Hua Hai';
     document.getElementById('sprint-status-label').classList.replace('text-amber-400', 'text-gray-400');
-    if (window.lucide) lucide.createIcons();
+    refreshIcons();
 }
 
 function resetSprintTimer() {
@@ -1002,7 +1080,7 @@ function resetSprintTimer() {
     updateSprintTimerDisplay();
     document.getElementById('sprint-start-btn').innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current"></i> 15-Min Sprint Shuru`;
     document.getElementById('sprint-status-label').innerText = 'Taiyaar Ho? Play Dabao!';
-    if (window.lucide) lucide.createIcons();
+    refreshIcons();
 }
 
 function updateSprintTimerDisplay() {
@@ -1111,7 +1189,7 @@ function renderWeeklyTargets() {
         container.appendChild(item);
     });
 
-    if (window.lucide) lucide.createIcons();
+    refreshIcons();
 }
 
 function handleWeeklyTargetSubmit(e) {
@@ -1131,12 +1209,14 @@ function handleWeeklyTargetSubmit(e) {
     };
 
     weeklyTargets.push(newTarget);
-    localStorage.setItem('someday_weekly_targets', JSON.stringify(weeklyTargets));
+    saveJSON(STORAGE_KEYS.weeklyTargets, weeklyTargets);
     titleInput.value = '';
 
+    // UX: keep focus in the input for rapid week-planning
+    titleInput.focus();
+
     renderWeeklyTargets();
-    showToast('Weekly Target Set!', `"${newTarget.title}" focus me add ho gaya.`);
-    playSuccessChime();
+    celebrate('Weekly Target Set!', `"${newTarget.title}" focus me add ho gaya.`, false);
 }
 
 function completeWeeklyTarget(id) {
@@ -1152,22 +1232,20 @@ function completeWeeklyTarget(id) {
     };
 
     pastAchievements.unshift(newAchievement);
-    localStorage.setItem('someday_past_achievements', JSON.stringify(pastAchievements));
+    saveJSON(STORAGE_KEYS.pastAchievements, pastAchievements);
 
     weeklyTargets = weeklyTargets.filter(t => t.id !== id);
-    localStorage.setItem('someday_weekly_targets', JSON.stringify(weeklyTargets));
+    saveJSON(STORAGE_KEYS.weeklyTargets, weeklyTargets);
 
     renderWeeklyTargets();
     renderPastAchievements();
 
-    triggerConfetti();
-    playSuccessChime();
-    showToast('Waah! Win Earned!', `"${wt.title}" Wall of Wins me add ho gaya!`);
+    celebrate('Waah! Win Earned!', `"${wt.title}" Wall of Wins me add ho gaya!`);
 }
 
 function deleteWeeklyTarget(id) {
     weeklyTargets = weeklyTargets.filter(t => t.id !== id);
-    localStorage.setItem('someday_weekly_targets', JSON.stringify(weeklyTargets));
+    saveJSON(STORAGE_KEYS.weeklyTargets, weeklyTargets);
     renderWeeklyTargets();
 }
 
@@ -1199,16 +1277,14 @@ function handlePastAchievementSubmit(e) {
     };
 
     pastAchievements.unshift(newAchievement);
-    localStorage.setItem('someday_past_achievements', JSON.stringify(pastAchievements));
+    saveJSON(STORAGE_KEYS.pastAchievements, pastAchievements);
 
     titleInput.value = '';
     if (noteInput) noteInput.value = '';
     toggleAddPastModal();
 
     renderPastAchievements();
-    triggerConfetti();
-    playSuccessChime();
-    showToast('Win Save Ho Gayi!', `"${title}" Wall of Wins me shaamil ho gaya.`);
+    celebrate('Win Save Ho Gayi!', `"${title}" Wall of Wins me shaamil ho gaya.`);
 }
 
 function renderPastAchievements() {
@@ -1256,12 +1332,12 @@ function renderPastAchievements() {
         container.appendChild(card);
     });
 
-    if (window.lucide) lucide.createIcons();
+    refreshIcons();
 }
 
 function deletePastAchievement(id) {
     pastAchievements = pastAchievements.filter(p => p.id !== id);
-    localStorage.setItem('someday_past_achievements', JSON.stringify(pastAchievements));
+    saveJSON(STORAGE_KEYS.pastAchievements, pastAchievements);
     renderPastAchievements();
 }
 
@@ -1274,6 +1350,9 @@ function initSignaturePad() {
     sigCanvas.addEventListener('mousedown', startSig);
     sigCanvas.addEventListener('mousemove', drawSig);
     sigCanvas.addEventListener('mouseup', endSig);
+    // UX: leaving the canvas mid-stroke must end the stroke, or the next
+    // mouseenter draws a stray line across the pad
+    sigCanvas.addEventListener('mouseleave', endSig);
 
     sigCanvas.addEventListener('touchstart', (e) => { e.preventDefault(); startSig(e.touches[0]); });
     sigCanvas.addEventListener('touchmove', (e) => { e.preventDefault(); drawSig(e.touches[0]); });
@@ -1345,16 +1424,14 @@ function saveContract() {
     };
 
     savedContracts.push(newContract);
-    localStorage.setItem('someday_contracts', JSON.stringify(savedContracts));
+    saveJSON(STORAGE_KEYS.contracts, savedContracts);
     renderContractsList();
     clearSignature();
 
     document.getElementById('contract-promise').value = '';
     document.getElementById('contract-message').value = '';
 
-    triggerConfetti();
-    playSuccessChime();
-    showToast('Waada Seal Ho Gaya!', 'Aapka promise local vault me save ho gaya.');
+    celebrate('Waada Seal Ho Gaya!', 'Aapka promise local vault me save ho gaya.');
 }
 
 function renderContractsList() {
@@ -1389,6 +1466,12 @@ function renderContractsList() {
 function openCustomModal() {
     const modal = document.getElementById('modal-custom');
     if (modal) modal.classList.remove('hidden');
+
+    // UX: move focus into the modal for keyboard users
+    setTimeout(() => {
+        const titleInput = document.getElementById('custom-title');
+        if (titleInput) titleInput.focus();
+    }, 50);
 }
 
 function closeCustomModal() {
@@ -1423,8 +1506,10 @@ function handleCustomDreamSubmit(e) {
     renderBlueprints();
     updateSprintSelect();
     closeCustomModal();
-    showToast('Naya Dream Add Kar Diya!', `"${title}" ka plan ready hai.`);
-    playSuccessChime();
+    // UX: reset the form so the next dream starts blank
+    const form = document.getElementById('custom-dream-form');
+    if (form) form.reset();
+    celebrate('Naya Dream Add Kar Diya!', `"${title}" ka plan ready hai.`, false);
 
     switchTab('blueprint');
 }
@@ -1445,8 +1530,10 @@ function toggleAmbientSound() {
             }
 
             isAmbientPlaying = true;
-            document.getElementById('ambient-sound-text').innerText = 'Focus Ambient Sound (Playing)';
-            document.getElementById('sound-ambient-btn').classList.add('border-amber-500/50', 'text-amber-300');
+            const legacyLabel = document.getElementById('ambient-sound-text');
+            if (legacyLabel) legacyLabel.innerText = 'Focus Ambient Sound (Playing)';
+            const legacyBtn = document.getElementById('sound-ambient-btn');
+            if (legacyBtn) legacyBtn.classList.add('border-amber-500/50', 'text-amber-300');
         } catch(e) {
             console.log("Audio synth error", e);
         }
@@ -1455,8 +1542,45 @@ function toggleAmbientSound() {
             synthOscillator.releaseAll();
         }
         isAmbientPlaying = false;
-        document.getElementById('ambient-sound-text').innerText = 'Focus Ambient Sound (Off)';
-        document.getElementById('sound-ambient-btn').classList.remove('border-amber-500/50', 'text-amber-300');
+        const legacyLabelOff = document.getElementById('ambient-sound-text');
+        if (legacyLabelOff) legacyLabelOff.innerText = 'Focus Ambient Sound (Off)';
+        const legacyBtnOff = document.getElementById('sound-ambient-btn');
+        if (legacyBtnOff) legacyBtnOff.classList.remove('border-amber-500/50', 'text-amber-300');
+    }
+}
+
+function toggleSprintAmbientSynth() {
+    // Wired to #sprint-ambient-btn in the sprint tab (toggleAmbientSound targets
+    // stale IDs from an older layout and is kept only for backwards compat).
+    const btn = document.getElementById('sprint-ambient-btn');
+    const label = btn ? btn.querySelector('[data-i18n]') : null;
+    if (!isAmbientPlaying) {
+        try {
+            if (window.Tone) {
+                Tone.start();
+                if (!synthOscillator) {
+                    synthOscillator = new Tone.PolySynth(Tone.Synth, {
+                        oscillator: { type: "sine" },
+                        envelope: { attack: 2, decay: 3, sustain: 0.8, release: 4 }
+                    }).toDestination();
+                }
+                synthOscillator.volume.value = -18;
+                synthOscillator.triggerAttack(["D3", "A3", "F#4"]);
+            }
+
+            isAmbientPlaying = true;
+            if (label) label.innerText = 'Focus Ambient Sound (Playing)';
+            if (btn) btn.classList.add('border-amber-500/50', 'text-amber-300');
+        } catch(e) {
+            console.log("Audio synth error", e);
+        }
+    } else {
+        if (synthOscillator) {
+            synthOscillator.releaseAll();
+        }
+        isAmbientPlaying = false;
+        if (label) label.innerText = 'Focus Ambient Sound (Off)';
+        if (btn) btn.classList.remove('border-amber-500/50', 'text-amber-300');
     }
 }
 
@@ -1522,10 +1646,16 @@ window.openCustomModal = openCustomModal;
 window.closeCustomModal = closeCustomModal;
 window.handleCustomDreamSubmit = handleCustomDreamSubmit;
 window.toggleAmbientSound = toggleAmbientSound;
+window.toggleSprintAmbientSynth = toggleSprintAmbientSynth;
 window.playSuccessChime = playSuccessChime;
 window.playSprintFinishChime = playSprintFinishChime;
 window.triggerConfetti = triggerConfetti;
 window.showToast = showToast;
+window.refreshIcons = refreshIcons;
+window.celebrate = celebrate;
+window.saveJSON = saveJSON;
+window.loadJSON = loadJSON;
+window.lifeEventEmoji = lifeEventEmoji;
 
 // Global life grid event handlers
 window.openLifeEventModal = openLifeEventModal;
@@ -1553,7 +1683,9 @@ function showToast(title, msg) {
     toast.classList.remove('translate-y-20', 'opacity-0');
     toast.classList.add('translate-y-0', 'opacity-100');
 
-    setTimeout(() => {
+    // UX: restart the hide timer so back-to-back toasts each get full reading time
+    if (toastTimeout) clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
         toast.classList.add('translate-y-20', 'opacity-0');
         toast.classList.remove('translate-y-0', 'opacity-100');
     }, 3500);
@@ -1599,6 +1731,12 @@ function openLifeEventModal(weekIndex, birthDateVal) {
     
     const modal = document.getElementById('modal-life-event');
     if (modal) modal.classList.remove('hidden');
+
+    // UX: move focus into the modal for keyboard users
+    setTimeout(() => {
+        const titleInput = document.getElementById('life-event-title');
+        if (titleInput) titleInput.focus();
+    }, 50);
 }
 
 function closeLifeEventModal() {
@@ -1617,22 +1755,300 @@ function handleLifeEventSubmit(e) {
     if (!title) return;
     
     lifeGridEvents[weekIndex] = { title, category, emoji, note };
-    localStorage.setItem('someday_life_events', JSON.stringify(lifeGridEvents));
+    saveJSON(STORAGE_KEYS.lifeEvents, lifeGridEvents);
     
     closeLifeEventModal();
     updateLifeGrid();
-    showToast('Event Logged!', 'Memory has been added to your visual life timeline.');
-    playSuccessChime();
-    triggerConfetti();
+    celebrate('Event Logged!', 'Memory has been added to your visual life timeline.');
 }
 
 function deleteLifeEvent() {
     const weekIndex = document.getElementById('life-event-week-index').value;
     if (lifeGridEvents[weekIndex]) {
         delete lifeGridEvents[weekIndex];
-        localStorage.setItem('someday_life_events', JSON.stringify(lifeGridEvents));
+        saveJSON(STORAGE_KEYS.lifeEvents, lifeGridEvents);
     }
     closeLifeEventModal();
     updateLifeGrid();
     showToast('Event Deleted', 'Memory removed from your visual life timeline.');
 }
+
+// ---------------------------------------------------------------------------
+// SOMEDAY Sheet DB — offline-first sync via Apps Script proxy (static-safe).
+// localStorage stays the source of truth; Sheet is a backup + cross-device copy.
+// Service-account JSON is NEVER used here (it would leak the private key).
+// Setup: see SHEET_DB_SETUP.md. Config lives in localStorage (per browser).
+// ---------------------------------------------------------------------------
+const SHEET_LS = {
+    url: 'someday_sheet_url',
+    token: 'someday_sheet_token',
+    enabled: 'someday_sheet_enabled',
+    deviceId: 'someday_device_id',
+    lastSync: 'someday_sheet_last_sync'
+};
+let sheetPushTimer = null;
+let sheetSyncing = false;
+let sheetApplyingRemote = false;
+
+function getDeviceId() {
+    let id = null;
+    try { id = localStorage.getItem(SHEET_LS.deviceId); } catch (e) {}
+    if (!id) {
+        id = 'dev-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
+        try { localStorage.setItem(SHEET_LS.deviceId, id); } catch (e) {}
+    }
+    return id;
+}
+
+function getSheetConfig() {
+    let url = '', token = '', enabled = false;
+    try {
+        url = (localStorage.getItem(SHEET_LS.url) || '').trim();
+        token = (localStorage.getItem(SHEET_LS.token) || '').trim();
+        enabled = localStorage.getItem(SHEET_LS.enabled) === '1';
+    } catch (e) {}
+    return { url, token, enabled, deviceId: getDeviceId() };
+}
+
+function setSyncStatus(text, mode) {
+    const el = document.getElementById('sheet-status');
+    if (!el) return;
+    el.innerText = text;
+    el.classList.remove('text-gray-400', 'text-amber-300', 'text-emerald-300', 'text-rose-300');
+    el.classList.add(mode === 'ok' ? 'text-emerald-300' : mode === 'warn' ? 'text-amber-300' : mode === 'err' ? 'text-rose-300' : 'text-gray-400');
+    const dot = document.getElementById('sheet-status-dot');
+    if (dot) {
+        dot.classList.remove('bg-gray-500', 'bg-amber-400', 'bg-emerald-400', 'bg-rose-400');
+        dot.classList.add(mode === 'ok' ? 'bg-emerald-400' : mode === 'warn' ? 'bg-amber-400' : mode === 'err' ? 'bg-rose-400' : 'bg-gray-500');
+    }
+}
+
+function sheetNow() { return new Date().toISOString(); }
+
+function asRow(item, fallbackId) {
+    const id = String((item && item.id) || fallbackId || '');
+    if (!id) return null;
+    return { id, updated_at: (item && item.updated_at) || sheetNow(), payload: item || {} };
+}
+
+// Full local snapshot -> rows per Sheet tab
+function collectSheetSnapshot() {
+    const now = sheetNow();
+    const mapRows = (arr) => (arr || []).map((it, i) => asRow(Object.assign({ updated_at: now }, it), 'row-' + i)).filter(Boolean);
+    const lifeRows = Object.keys(lifeGridEvents || {}).map((wk) => ({
+        id: String(wk),
+        updated_at: ((lifeGridEvents[wk] && lifeGridEvents[wk].updated_at) || now),
+        payload: lifeGridEvents[wk]
+    }));
+    let profile = { updated_at: now };
+    try {
+        profile = {
+            birthdate: localStorage.getItem(STORAGE_KEYS.birthdate) || '',
+            lifespan: localStorage.getItem(STORAGE_KEYS.lifespan) || '',
+            parentAge: localStorage.getItem(STORAGE_KEYS.parentAge) || '',
+            visitsYear: localStorage.getItem(STORAGE_KEYS.visits_year || STORAGE_KEYS.visitsYear) || '',
+            lang: localStorage.getItem(STORAGE_KEYS.lang) || currentLanguage || 'hi',
+            updated_at: now
+        };
+    } catch (e) {}
+    return {
+        profiles: [{ id: 'default', updated_at: now, payload: profile }],
+        blueprints: mapRows(activeBlueprints),
+        contracts: mapRows(savedContracts),
+        weekly_targets: mapRows(weeklyTargets),
+        achievements: mapRows(pastAchievements),
+        life_events: lifeRows
+    };
+}
+
+// Last-write-wins merge of one tab's rows into local array items
+function mergeRows(localArr, rows) {
+    const byId = {};
+    (localArr || []).forEach((it) => { if (it && it.id) byId[String(it.id)] = it; });
+    let changed = false;
+    (rows || []).forEach((r) => {
+        if (!r || !r.id) return;
+        const cur = byId[String(r.id)];
+        const remoteTs = String((r && r.updated_at) || '');
+        const localTs = String((cur && cur.updated_at) || '');
+        if (!cur || remoteTs > localTs) {
+            byId[String(r.id)] = Object.assign({}, r.payload, { id: String(r.id), updated_at: remoteTs });
+            changed = true;
+        }
+    });
+    return { merged: Object.values(byId), changed };
+}
+
+function applySheetSnapshot(data) {
+    if (!data) return false;
+    sheetApplyingRemote = true;
+    try {
+        if (data.blueprints) {
+            const m = mergeRows(activeBlueprints, data.blueprints);
+            if (m.changed) { activeBlueprints = m.merged; saveJSON(STORAGE_KEYS.blueprints, activeBlueprints); }
+        }
+        if (data.contracts) {
+            const m = mergeRows(savedContracts, data.contracts);
+            if (m.changed) { savedContracts = m.merged; saveJSON(STORAGE_KEYS.contracts, savedContracts); }
+        }
+        if (data.weekly_targets) {
+            const m = mergeRows(weeklyTargets, data.weekly_targets);
+            if (m.changed) { weeklyTargets = m.merged; saveJSON(STORAGE_KEYS.weeklyTargets, weeklyTargets); }
+        }
+        if (data.achievements) {
+            const m = mergeRows(pastAchievements, data.achievements);
+            if (m.changed) { pastAchievements = m.merged; saveJSON(STORAGE_KEYS.pastAchievements, pastAchievements); }
+        }
+        if (data.life_events) {
+            let changed = false;
+            (data.life_events || []).forEach((r) => {
+                if (!r || r.id === undefined) return;
+                const cur = lifeGridEvents[String(r.id)];
+                const remoteTs = String(r.updated_at || '');
+                const localTs = String((cur && cur.updated_at) || '');
+                if (!cur || remoteTs > localTs) {
+                    lifeGridEvents[String(r.id)] = Object.assign({}, r.payload, { updated_at: remoteTs });
+                    changed = true;
+                }
+            });
+            if (changed) saveJSON(STORAGE_KEYS.lifeEvents, lifeGridEvents);
+        }
+        if (data.profiles && data.profiles.length) {
+            const p = (data.profiles.find((r) => r.id === 'default') || data.profiles[0]).payload || {};
+            try {
+                if (p.birthdate) localStorage.setItem(STORAGE_KEYS.birthdate, p.birthdate);
+                if (p.lifespan) localStorage.setItem(STORAGE_KEYS.lifespan, p.lifespan);
+                if (p.parentAge) localStorage.setItem(STORAGE_KEYS.parentAge, p.parentAge);
+                if (p.visitsYear) localStorage.setItem(STORAGE_KEYS.visits_year || STORAGE_KEYS.visitsYear, p.visitsYear);
+            } catch (e) {}
+        }
+    } finally {
+        sheetApplyingRemote = false;
+    }
+    // Re-render everything (cheap enough, single pass each)
+    try {
+        updateLifeGrid();
+        renderBlueprints();
+        renderWeeklyTargets();
+        renderPastAchievements();
+        renderContractsList();
+        updateSprintSelect();
+        refreshIcons();
+    } catch (e) {}
+    return true;
+}
+
+function scheduleSheetPush() {
+    if (sheetApplyingRemote || sheetSyncing) return;
+    let cfg = null;
+    try { cfg = getSheetConfig(); } catch (e) { return; }
+    if (!cfg.enabled || !cfg.url || !cfg.token) return;
+    if (sheetPushTimer) clearTimeout(sheetPushTimer);
+    sheetPushTimer = setTimeout(() => { pushSheetNow(true); }, 2000);
+    setSyncStatus('Sync pending…', 'warn');
+}
+
+function pushSheetNow(silent) {
+    const cfg = getSheetConfig();
+    if (!cfg.enabled || !cfg.url || !cfg.token) {
+        if (!silent) showToast('Cloud Sync off', 'Apps Script URL + token set karo, Enable on karo.');
+        return Promise.resolve(false);
+    }
+    if (sheetSyncing) return Promise.resolve(false);
+    sheetSyncing = true;
+    if (!silent) setSyncStatus('Syncing…', 'warn');
+    const body = { token: cfg.token, user_id: cfg.deviceId, type: 'all', data: collectSheetSnapshot() };
+    return fetch(cfg.url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body) })
+        .then((r) => r.json())
+        .then((j) => {
+            sheetSyncing = false;
+            if (j && j.ok) {
+                try { localStorage.setItem(SHEET_LS.lastSync, sheetNow()); } catch (e) {}
+                setSyncStatus('Synced ✓ ' + new Date().toLocaleTimeString(), 'ok');
+                return true;
+            }
+            setSyncStatus('Sync failed: ' + ((j && j.error) || 'unknown'), 'err');
+            if (!silent) showToast('Sync failed', String((j && j.error) || 'unknown'));
+            return false;
+        })
+        .catch((err) => {
+            sheetSyncing = false;
+            setSyncStatus('Sync offline — local saved ✓', 'warn');
+            return false;
+        });
+}
+
+function pullSheetNow() {
+    const cfg = getSheetConfig();
+    if (!cfg.url || !cfg.token) {
+        showToast('Cloud Sync off', 'Apps Script URL + token set karo.');
+        return Promise.resolve(false);
+    }
+    setSyncStatus('Pulling…', 'warn');
+    const u = cfg.url + '?action=pull&user_id=' + encodeURIComponent(cfg.deviceId) + '&token=' + encodeURIComponent(cfg.token);
+    return fetch(u)
+        .then((r) => r.json())
+        .then((j) => {
+            if (j && j.ok) {
+                applySheetSnapshot(j.data);
+                try { localStorage.setItem(SHEET_LS.lastSync, sheetNow()); } catch (e) {}
+                setSyncStatus('Pulled ✓ ' + new Date().toLocaleTimeString(), 'ok');
+                showToast('Cloud pull done', 'Sheet data merge ho gaya.');
+                return true;
+            }
+            setSyncStatus('Pull failed: ' + ((j && j.error) || 'unknown'), 'err');
+            showToast('Pull failed', String((j && j.error) || 'unknown'));
+            return false;
+        })
+        .catch(() => {
+            setSyncStatus('Offline — local data active ✓', 'warn');
+            return false;
+        });
+}
+
+function syncSheetNow() {
+    pullSheetNow().then((ok) => { if (ok) pushSheetNow(true); else pushSheetNow(false); });
+}
+
+function saveSheetConfigFromUI() {
+    const urlEl = document.getElementById('sheet-url');
+    const tokEl = document.getElementById('sheet-token');
+    const enEl = document.getElementById('sheet-enabled');
+    try {
+        localStorage.setItem(SHEET_LS.url, (urlEl && urlEl.value || '').trim());
+        localStorage.setItem(SHEET_LS.token, (tokEl && tokEl.value || '').trim());
+        localStorage.setItem(SHEET_LS.enabled, (enEl && enEl.checked) ? '1' : '0');
+    } catch (e) {}
+    const cfg = getSheetConfig();
+    setSyncStatus(cfg.enabled ? 'Enabled — pull on load ✓' : 'Disabled — local only', cfg.enabled ? 'ok' : '');
+    showToast('Cloud settings saved', cfg.enabled ? 'Device ID: ' + cfg.deviceId : 'Sync disabled, local only.');
+    if (cfg.enabled && cfg.url && cfg.token) pullSheetNow();
+}
+
+function initSheetSyncUI() {
+    const cfg = getSheetConfig();
+    const urlEl = document.getElementById('sheet-url');
+    const tokEl = document.getElementById('sheet-token');
+    const enEl = document.getElementById('sheet-enabled');
+    const devEl = document.getElementById('sheet-device');
+    if (urlEl) urlEl.value = cfg.url;
+    if (enEl) enEl.checked = cfg.enabled;
+    // NOTE: token input left blank on purpose if already saved? No — fill it, it's the user's own browser.
+    if (tokEl && !tokEl.value) tokEl.value = cfg.token;
+    if (devEl) devEl.innerText = cfg.deviceId;
+    if (cfg.enabled && cfg.url && cfg.token) {
+        setSyncStatus('Auto-pull on start…', 'warn');
+        pullSheetNow();
+    } else {
+        setSyncStatus(cfg.url || cfg.token ? 'Disabled — local only' : 'Local only — setup in SHEET_DB_SETUP.md', '');
+    }
+}
+
+window.getDeviceId = getDeviceId;
+window.getSheetConfig = getSheetConfig;
+window.scheduleSheetPush = scheduleSheetPush;
+window.pushSheetNow = pushSheetNow;
+window.pullSheetNow = pullSheetNow;
+window.syncSheetNow = syncSheetNow;
+window.saveSheetConfigFromUI = saveSheetConfigFromUI;
+window.initSheetSyncUI = initSheetSyncUI;

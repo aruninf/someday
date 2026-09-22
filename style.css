@@ -190,17 +190,11 @@ label {
     margin-bottom: 0.375rem; /* clean spacing below label */
 }
 
-/* Uniform spacing for glass panels */
-.glass-panel {
-    padding: 1.5rem !important;
-    border-radius: 1.5rem !important; /* rounded-3xl */
-}
+/* NOTE: Do not force padding on .glass-panel — every usage already carries its own
+   Tailwind padding (p-4 / p-5 / p-6 / p-8 / px-5 py-3.5). A blanket override
+   breaks small components like #toast and #overall-progress-box. */
 
-@media (min-width: 640px) {
-    .glass-panel {
-        padding: 2rem !important;
-    }
-}
+/* Smooth scrolling + nicer text rendering */
 
 /* Custom Header Styling (Flat, sticky, no round border) */
 .top-header {
@@ -217,4 +211,162 @@ input.small-input {
     width: 4.5rem !important;
     padding: 0.375rem 0.5rem !important;
     text-align: center;
+}
+
+/* ============ UI++ visual polish (CSS-only, no JS/ID changes) ============ */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Native date/month pickers: dark icon on dark background */
+input[type="date"],
+input[type="month"] {
+    color-scheme: dark;
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+    outline: 2px solid rgba(6, 182, 212, 0.8) !important;
+    outline-offset: 2px;
+}
+
+/* Buttons: consistent press feedback */
+button:active {
+    transform: scale(0.96);
+}
+button:disabled {
+    cursor: not-allowed;
+}
+
+/* Tab switching: real entrance animation (display:none kills transitions) */
+@keyframes tab-enter {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.tab-content.active {
+    animation: tab-enter 0.28s ease;
+}
+
+/* Desktop nav: glow on active tab */
+.nav-tab.bg-cyan-600 {
+    box-shadow: 0 8px 20px -6px rgba(6, 182, 212, 0.55);
+}
+/* Mobile nav: active pill indicator */
+.mob-tab {
+    position: relative;
+    transition: color 0.2s ease;
+}
+.mob-tab.text-cyan-400::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 3px;
+    border-radius: 999px;
+    background: #22d3ee;
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.9);
+}
+
+/* Vault cards: staggered entrance */
+@keyframes card-enter {
+    from { opacity: 0; transform: translateY(10px) scale(0.99); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+#vault-grid > div {
+    animation: card-enter 0.35s ease backwards;
+}
+#vault-grid > div:nth-child(2) { animation-delay: 0.05s; }
+#vault-grid > div:nth-child(3) { animation-delay: 0.1s; }
+#vault-grid > div:nth-child(4) { animation-delay: 0.15s; }
+#vault-grid > div:nth-child(5) { animation-delay: 0.2s; }
+#vault-grid > div:nth-child(6) { animation-delay: 0.25s; }
+
+/* Stat numbers: tabular figures so they don't jitter on update */
+#stat-weeks-lived,
+#stat-weeks-left,
+#stat-summers-left,
+#stat-parent-visits,
+#total-achievements-count,
+#sprint-timer-display,
+#blueprint-stats {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Sprint timer ring: glow */
+#timer-progress-ring {
+    filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.7));
+}
+
+/* Life grid: smoother hover, visible container scrollbar */
+#life-grid-container {
+    scrollbar-width: thin;
+    scrollbar-color: #1f2937 transparent;
+}
+.week-square {
+    will-change: transform;
+}
+
+/* Tooltip detail bar: keep readable, truncate gracefully */
+#tooltip-detail {
+    overflow-wrap: anywhere;
+}
+
+/* Signature pad: subtle dotted guide so empty state is obvious */
+#signature-pad {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 14px 14px;
+    touch-action: none;
+}
+
+/* Modals: pop-in + safe height on small screens */
+@keyframes modal-pop {
+    from { opacity: 0; transform: translateY(12px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+#modal-life-event > div,
+#modal-custom > div {
+    animation: modal-pop 0.25s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Toast: keep above mobile bottom nav */
+@media (max-width: 767px) {
+    #toast {
+        bottom: 84px;
+        right: 12px;
+        left: 12px;
+        justify-content: flex-start;
+    }
+}
+
+/* Wins list scroll: match global thin scrollbar */
+#past-achievements-list::-webkit-scrollbar {
+    width: 5px;
+}
+#past-achievements-list::-webkit-scrollbar-thumb {
+    background: #1f2937;
+    border-radius: 4px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .tab-content.active,
+    #vault-grid > div,
+    #modal-life-event > div,
+    #modal-custom > div {
+        animation: none;
+    }
+    .current-week-pulse { animation: none; }
+    .glass-panel-interactive:hover { transform: none; }
+    .week-square:hover { transform: none; }
 }

@@ -1,0 +1,20 @@
+# IDE and editors
+.idea/
+.vscode/
+
+# Secrets — never commit Google service-account JSON or tokens
+*service-account*.json
+gen-lang-client-*.json
+*-key-*.json
+*token.json*
+*credentials.json*
+*.pem
+.env
+.env.*
+
+# Logs
+npm-debug.log*
+*.log
+
+# System files
+.DS_Store
