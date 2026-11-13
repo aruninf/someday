@@ -293,92 +293,100 @@ const TRANSLATIONS = {
     // Tab 1: Reality
     hero_tag: { en: "Life Time Visualizer & Precision Calculator", hi: "Life Time Visualizer & Precision Calculator" },
     hero_title: { en: "How Much Time Do You Have Left?", hi: "Aapka Kitna Time Baaki Hai?" },
-    hero_desc: { en: "We all think we have plenty of time, which is why we put off our dearest dreams for 'one day'. When you see your whole life in weeks, you realize how precious every single week is!", hi: "Hum sab sochte hain ki hamare paas bohot time hai, isliye hum apne sweet dreams \"Ek Din Karenge\" par chor dete hain. Jab aap apni full life ko weeks me dekhte hain, tab samajh aata hai ki har ek week kitna important hai!" },
+    hero_note: { en: "Life in weeks", hi: "Life in weeks" },
+    hero_desc: { en: "We all think we have plenty of time, which is why we put off our dearest dreams for ‘one day’. When you see your whole life in weeks, you realize how precious every single week is!", hi: "Hum sab sochte hain ki hamare paas bohot time hai, isliye hum apne sweet dreams “Ek Din Karenge” par chor dete hain. Jab aap apni full life ko weeks me dekhte hain, tab samajh aata hai ki har ek week kitna important hai!" },
     control_title: { en: "Set Your Exact Timeline", hi: "Apni Exact Timeline Set Karo" },
     control_birth: { en: "Birth Year & Month", hi: "Birth Year & Month" },
     control_lifespan: { en: "Target Lifespan (Years)", hi: "Target Lifespan (Years)" },
-    control_parent_age: { en: "Parents Ki Age", hi: "Parents Ki Age" },
-    control_visits: { en: "Year Me Kitni Baar Milte Ho?", hi: "Year Me Kitni Baar Milte Ho?" },
+    control_parent_age: { en: "Parent Age", hi: "Parents Ki Age" },
+    control_visits: { en: "Visits Per Year", hi: "Year Me Kitni Baar Milte Ho?" },
     stat_weeks_lived_lbl: { en: "Weeks Lived", hi: "Weeks Lived" },
     stat_weeks_lived_desc: { en: "of your life complete", hi: "life complete" },
     stat_weeks_left_lbl: { en: "Weeks Left", hi: "Weeks Left" },
     stat_weeks_left_desc: { en: "Your golden opportunity", hi: "Aapki golden opportunity" },
     stat_summers_left_lbl: { en: "Summer Weekends Left", hi: "Summer Weekends Left" },
     stat_summers_left_desc: { en: "Remaining summer weekends", hi: "Remaining summer weekends" },
-    stat_parents_left_lbl: { en: "Parents Se Milne Ke Remaining Days", hi: "Parents Se Milne Ke Remaining Days" },
+    stat_parents_left_lbl: { en: "Days Left To Meet Parents", hi: "Parents Se Milne Ke Remaining Days" },
     stat_parents_left_desc: { en: "Estimate milne ke moments", hi: "Estimate milne ke moments" },
-    grid_title: { en: "Aapki Life Ka Visual Grid Matrix", hi: "Aapki Life Ka Visual Grid Matrix" },
-    grid_subtitle: { en: "Har row = 1 Year (52 Weeks). Har small square = 1 Week.", hi: "Har row = 1 Year (52 Weeks). Har small square = 1 Week." },
-    legend_lived: { en: "Lived", hi: "Lived" },
-    legend_this_week: { en: "This Week", hi: "This Week" },
-    legend_remaining: { en: "Baaki Time", hi: "Baaki Time" },
+    grid_title: { en: "Your Life As A Grid Of Weeks", hi: "Aapki Life Ka Visual Grid Matrix" },
+    grid_subtitle: { en: "One row = 1 year (52 weeks). One small square = 1 week.", hi: "Har row = 1 Year (52 Weeks). Har small square = 1 Week." },
+    legend_lived: { en: "Lived", hi: "Beete hue" },
+    legend_logged: { en: "Logged event", hi: "Logged event" },
+    legend_this_week: { en: "This Week", hi: "Yeh week" },
+    legend_remaining: { en: "Time Left", hi: "Baaki Time" },
+    footer_note: { en: "Remember: “Someday” is not a day of the week.", hi: "Hamesha yaad rakho: “Someday” week ka koi day nahi hota." },
     grid_tooltip_instruction: { en: "Hover or tap any square to view exact age and week status.", hi: "Kisi bhi square par hover ya tap karke exact age aur week status dekhein." },
     motivational_title: { en: "What are you waiting for?", hi: "Kis baat ka wait kar rahe ho, dost?" },
-    motivational_desc: { en: "\"The trouble is, you think you have time.\" — The biggest regret of the elderly is that they did not take risks on their creative dreams.", hi: "\"Sabse badi galatfehmi yeh hai ki humein lagta hai hamare paas bohot time hai.\" — Logon ka sabse bada regret hota hai ki unhone apne creative dreams par risk nahi liya." },
+    motivational_desc: { en: "“The trouble is, you think you have time.” Keep it in view, and take one small risk on a creative dream today.", hi: "“Sabse badi galatfehmi yeh hai ki hamare paas bohot time hai.” Yaad rakho, creative dreams par chhota risk aaj hi lena padta hai." },
     motivational_btn: { en: "Browse Someday Vault", hi: "Someday Vault Dekho" },
     
     // Tab 2: Vault
-    vault_tag: { en: "Dil Ki Wishlist", hi: "Dil Ki Wishlist" },
-    vault_title: { en: "Wo Dreams Jo Hum \"Bas Sochte Hain, Par Karte Nahi\"", hi: "Wo Dreams Jo Hum \"Bas Sochte Hain, Par Karte Nahi\"" },
-    vault_desc: { en: "Curated dreams that people hamesha postpone. Choose one and START NOW!", hi: "Curated dreams jo log hamesha postpone karte hain. Koi ek select karo aur ABHI START KARO!" },
-    vault_btn_custom: { en: "Apna Personal Dream Add Karo", hi: "Apna Personal Dream Add Karo" },
+    vault_tag: { en: "The Wishlist", hi: "Dil Ki Wishlist" },
+    vault_title: { en: "The Dreams We Only Think About, Never Start", hi: "Wo Dreams Jo Hum “Bas Sochte Hain, Par Karte Nahi”" },
+    vault_desc: { en: "Curated dreams most people keep postponing. Pick one and start now.", hi: "Curated dreams jo log hamesha postpone karte hain. Koi ek select karo aur ABHI START KARO!" },
+    vault_btn_custom: { en: "Add A Personal Dream", hi: "Apna Personal Dream Add Karo" },
     vault_filter_all: { en: "All Dreams", hi: "All Dreams" },
     vault_filter_relationships: { en: "Relationships & Family", hi: "Relationships & Family" },
     vault_filter_creativity: { en: "Creativity & Skills", hi: "Creativity & Skills" },
     vault_filter_adventure: { en: "Travel & Adventure", hi: "Travel & Adventure" },
     vault_filter_legacy: { en: "Projects & Legacy", hi: "Projects & Legacy" },
+    cat_labels: {
+        en: { relationships: "Relationships", creativity: "Creativity", adventure: "Adventure", legacy: "Projects", other: "Milestone" },
+        hi: { relationships: "Rishte", creativity: "Creativity", adventure: "Travel", legacy: "Projects", other: "Milestone" }
+    },
     
     // Tab 3: Action Plans
     blueprint_tag: { en: "Action Blueprint Breakdown", hi: "Action Blueprint Breakdown" },
     blueprint_title: { en: "Aapke Active Action Plans", hi: "Aapke Active Action Plans" },
     blueprint_desc: { en: "Big dreams intimidate us. We break down every dream into a 15-minute small first step!", hi: "Big dreams humein darate hain. Hum har dream ko ek 15-minute ke small first step me break karte hain!" },
     blueprint_progress_lbl: { en: "Total Progress", hi: "Total Progress" },
-    blueprint_empty_title: { en: "Abhi Koi Active Plan Plan Nahi Hai", hi: "Abhi Koi Active Plan Plan Nahi Hai" },
+    blueprint_empty_title: { en: "No Active Plan Yet", hi: "Abhi Koi Active Plan Plan Nahi Hai" },
     blueprint_empty_desc: { en: "You haven't chosen any dream from the 'Someday Vault' yet. Visit the Vault to select one or add your own!", hi: "Aapne abhi tak 'Someday Vault' se koi dream choose nahi kiya hai. Vault me jaakar koi ek dream select karo ya apna khud ka add karo!" },
     blueprint_empty_btn: { en: "Go to Someday Vault", hi: "Someday Vault Me Jaao" },
     
     // Tab 4: 15-Min Sprint
     sprint_tag: { en: "Micro-Action Sprint Engine", hi: "Micro-Action Sprint Engine" },
     sprint_title: { en: "15-Minute Quick Action Sprint", hi: "15-Minute Quick Action Sprint" },
-    sprint_desc: { en: "Destroy laziness and overthinking. Don't worry about the whole project — just focus on Step #1 for 15 minutes!", hi: "Laziness aur overthinking ko khatam karo. Poore project ka dimaag mat chalao — bas 15 minutes ke liye Step #1 par focus karo!" },
+    sprint_desc: { en: "Destroy laziness and overthinking. Don't worry about the whole project, just focus on Step 1 for 15 minutes!", hi: "Laziness aur overthinking ko khatam karo. Poore project ka dimaag mat chalao, bas 15 minutes ke liye Step 1 par focus karo!" },
     sprint_target_lbl: { en: "What task are you focusing on right now?", hi: "Abhi kis task par focus kar rahe ho?" },
     sprint_start_btn: { en: "15-Min Sprint Start Karo", hi: "15-Min Sprint Start Karo" },
     sprint_reset_btn: { en: "Reset", hi: "Reset" },
     sprint_ambient_btn: { en: "Focus Ambient Sound (Off)", hi: "Focus Ambient Sound (Off)" },
-    sprint_motivation_quote: { en: "\"Don't wait for motivation; action breeds motivation. 15 minutes of real work beats months of overthinking.\"", hi: "\"Motivation ka wait mat karo, ACTION se motivation aata hai. 15 minutes ka real work mahino ki overthinking ko khatam kar deta hai.\"" },
+    sprint_ambient_on: { en: "Focus Ambient Sound (On)", hi: "Focus Ambient Sound (On)" },
+    sprint_motivation_quote: { en: "“Don't wait for motivation; action breeds motivation. 15 minutes of real work beats months of overthinking.”", hi: "“Motivation ka wait mat karo, ACTION se motivation aata hai. 15 minutes ka real work mahino ki overthinking ko khatam kar deta hai.”" },
     
     // Tab 5: Goals & Wins
-    weekly_tag: { en: "Is Week Ka Goal & Wall of Wins", hi: "Is Week Ka Goal & Wall of Wins" },
-    weekly_title: { en: "Is Week Ka Target & My Past Wins", hi: "Is Week Ka Target & My Past Wins" },
+    weekly_tag: { en: "This Week’s Goal & Wall of Wins", hi: "Is Week Ka Goal & Wall of Wins" },
+    weekly_title: { en: "This Week’s Target & My Past Wins", hi: "Is Week Ka Target & My Past Wins" },
     weekly_desc: { en: "Big dreams are achieved week-on-week. Set your This Week goals, and when achieved, add them to your permanent Wall of Wins!", hi: "Big dreams week-on-week poore hote hain. Apne This Week Events/Goals set karo, aur achieve hone par unhe apni permanent Wall of Wins me add karke celebrate karo!" },
     weekly_total_wins_lbl: { en: "Total Wins Earned", hi: "Total Wins Earned" },
     weekly_total_wins_sub: { en: "Milestones Logged", hi: "Milestones Logged" },
-    weekly_left_title: { en: "Is Week Me Kya Kar Dikhana Hai?", hi: "Is Week Me Kya Kar Dikhana Hai?" },
+    weekly_left_title: { en: "What Will You Show This Week?", hi: "Is Week Me Kya Kar Dikhana Hai?" },
     weekly_left_badge: { en: "Active Target", hi: "Active Target" },
-    weekly_left_form_lbl: { en: "Naya Weekly Event / Target Title", hi: "Naya Weekly Event / Target Title" },
+    weekly_left_form_lbl: { en: "Weekly Event / Target Title", hi: "Naya Weekly Event / Target Title" },
     weekly_left_form_day: { en: "Target Day / Date", hi: "Target Day / Date" },
-    weekly_left_form_cat: { en: "Emoji / Category", hi: "Emoji / Category" },
-    weekly_left_form_btn: { en: "Is Week Ka Target Set Karo", hi: "Is Week Ka Target Set Karo" },
+    weekly_left_form_cat: { en: "Category", hi: "Category" },
+    weekly_left_form_btn: { en: "Set This Week’s Target", hi: "Is Week Ka Target Set Karo" },
     weekly_right_title: { en: "Wall of Fame (My Wins & Past Events)", hi: "Wall of Fame (My Wins & Past Events)" },
-    weekly_right_btn: { en: "Past Win Add Karo", hi: "Past Win Add Karo" },
+    weekly_right_btn: { en: "Add Past Win", hi: "Past Win Add Karo" },
     weekly_right_desc: { en: "See all the big and small wins you have earned in life. Whenever you feel demotivated, browse this gallery!", hi: "Aapne life me jo bhi small-big wins hasil ki hain, unhe yahan dekhein. Jab bhi demotivated feel karein, apni gallery dekhein!" },
     
     // Tab 6: Promise
     contract_tag: { en: "Saccha Commitment", hi: "Saccha Commitment" },
-    contract_title: { en: "Apne Future Self Se Ek Contract (Promise)", hi: "Apne Future Self Se Ek Contract (Promise)" },
-    contract_desc: { en: "Write a letter to your future self today. When we write down our commitments, our chances of achieving them increase by 80%!", hi: "Apne future self ko aaj ek written letter send karo. Jo baatein hum paper par likhte hain, unhe complete karne ke chances 80% increase ho jaate hain!" },
+    contract_title: { en: "A Contract With Your Future Self", hi: "Apne Future Self Se Ek Contract (Promise)" },
+    contract_desc: { en: "Write a letter to your future self today. A promise put in writing is a promise you come back to.", hi: "Apne future self ko aaj ek written letter send karo. Jo baatein hum paper par likhte hain, unhe poora karne ke chances badh jaate hain." },
     contract_date_lbl: { en: "Target Date:", hi: "Target Date:" },
     contract_promise_lbl: { en: "Wo kaunsa 1 dream hai jo main har haal me complete karke rahunga/rahungi?", hi: "Wo kaunsa 1 dream hai jo main har haal me complete karke rahunga/rahungi?" },
     contract_promise_placeholder: { en: "e.g., Record parents' life stories, solo travel, write a book...", hi: "e.g., Parents ki life story record karna, Solo travel, book write karna..." },
-    contract_message_lbl: { en: "Apne Future Self ke liye ek Message / Note:", hi: "Apne Future Self ke liye ek Message / Note:" },
+    contract_message_lbl: { en: "Message / Note For Your Future Self:", hi: "Apne Future Self ke liye ek Message / Note:" },
     contract_message_placeholder: { en: "Dear Future Me, I am making this promise today because life is short and I want to live with no regrets...", hi: "Dear Future Me, Main aaj yeh promise kar raha/rahi hu kyunki life short hai aur mujhe kisi regret ke saath nahi jeena..." },
-    contract_sig_lbl: { en: "Neeche Apna Digital Signature Karo:", hi: "Neeche Apna Digital Signature Karo:" },
+    contract_sig_lbl: { en: "Sign Digitally Below:", hi: "Neeche Apna Digital Signature Karo:" },
     contract_clear_btn: { en: "Clear Signature", hi: "Clear Signature" },
-    contract_save_btn: { en: "Is Promise Ko Seal Karo (Save)", hi: "Is Promise Ko Seal Karo (Save)" },
+    contract_save_btn: { en: "Seal This Promise (Save)", hi: "Is Promise Ko Seal Karo (Save)" },
     contract_list_lbl: { en: "Aapke Sealed Contracts", hi: "Aapke Sealed Contracts" },
     
     // Header Custom modal
-    custom_btn_add: { en: "Naya Dream Add Karo", hi: "Naya Dream Add Karo" }
+    custom_btn_add: { en: "Add New Dream", hi: "Naya Dream Add Karo" }
 };
 
 let currentLanguage = localStorage.getItem('someday_lang') || 'hi';
@@ -406,24 +414,12 @@ function setLanguage(lang) {
     // Update active tab text in page header selector
     document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
         const btnLang = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
-        if (btnLang === lang) {
-            btn.classList.add('bg-cyan-600', 'text-white');
-            btn.classList.remove('bg-gray-900', 'text-gray-400');
-        } else {
-            btn.classList.remove('bg-cyan-600', 'text-white');
-            btn.classList.add('bg-gray-900', 'text-gray-400');
-        }
+        btn.classList.toggle('is-active', btnLang === lang);
     });
 
     document.querySelectorAll('.mob-lang-toggle-btn').forEach(btn => {
         const btnLang = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
-        if (btnLang === lang) {
-            btn.classList.add('bg-cyan-600', 'text-white');
-            btn.classList.remove('bg-gray-900', 'text-gray-400');
-        } else {
-            btn.classList.remove('bg-cyan-600', 'text-white');
-            btn.classList.add('bg-gray-900', 'text-gray-400');
-        }
+        btn.classList.toggle('is-active', btnLang === lang);
     });
 
     // Refresh dynamic widgets
@@ -444,6 +440,56 @@ function getI18nText(key) {
 
 window.setLanguage = setLanguage;
 
+function initTheme() {
+    let savedTheme = localStorage.getItem('someday_theme');
+    if (!savedTheme || savedTheme === 'light') {
+        savedTheme = 'dark';
+    }
+    setTheme(savedTheme);
+}
+
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('someday_theme', theme);
+    
+    const sunIcon = document.getElementById('theme-icon-sun');
+    const moonIcon = document.getElementById('theme-icon-moon');
+    const themeLabel = document.getElementById('theme-text');
+    
+    if (sunIcon && moonIcon) {
+        if (theme === 'dark') {
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+            if (themeLabel) themeLabel.textContent = 'Dark';
+        } else {
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+            if (themeLabel) themeLabel.textContent = 'Light';
+        }
+    }
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) {
+        metaTheme.setAttribute('content', theme === 'dark' ? '#080b12' : '#eef2f7');
+    }
+    
+    if (sigCanvas && sigCtx) {
+        sigCtx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--color-accent').trim() || '#818cf8';
+    }
+    
+    refreshIcons();
+}
+
+function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme') || 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+}
+
+window.initTheme = initTheme;
+window.setTheme = setTheme;
+window.toggleTheme = toggleTheme;
+
 // localStorage keys (single source of truth — must match AGENTS.md)
 const STORAGE_KEYS = {
     blueprints: 'someday_blueprints',
@@ -455,7 +501,8 @@ const STORAGE_KEYS = {
     lifespan: 'someday_lifespan',
     parentAge: 'someday_parent_age',
     visitsYear: 'someday_visits_year',
-    lang: 'someday_lang'
+    lang: 'someday_lang',
+    theme: 'someday_theme'
 };
 
 // Safe JSON persistence: corrupt entries fall back to defaults instead of throwing
@@ -558,7 +605,9 @@ window.addEventListener('DOMContentLoaded', () => {
         if (visitsInput) visitsInput.value = savedVisits;
     }
 
+    initTheme();
     refreshIcons();
+    updateSprintTimerDisplay();
 
     setLanguage(currentLanguage);
     renderContractsList();
@@ -568,6 +617,9 @@ window.addEventListener('DOMContentLoaded', () => {
     // UX: deep-link to tab via #hash (e.g. someday/#sprint)
     const initialTab = (window.location.hash || '').replace('#', '');
     if (VALID_TABS.includes(initialTab)) switchTab(initialTab);
+
+    // the grid lights up once on arrival, never on every keystroke in the lifespan field
+    setTimeout(sweepGrid, 260);
 
     // UX: ESC closes any open modal
     document.addEventListener('keydown', (e) => {
@@ -595,32 +647,28 @@ function switchTab(tabId) {
     if (!VALID_TABS.includes(tabId)) return;
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.nav-tab').forEach(btn => {
-        btn.classList.remove('bg-cyan-600', 'text-white', 'shadow-md');
-        btn.classList.add('text-gray-400');
         btn.setAttribute('aria-selected', 'false');
     });
     document.querySelectorAll('.mob-tab').forEach(btn => {
-        btn.classList.remove('text-cyan-400');
-        btn.classList.add('text-gray-400');
         btn.setAttribute('aria-selected', 'false');
     });
 
     const target = document.getElementById(`tab-${tabId}`);
-    if (target) target.classList.add('active');
+    if (target) {
+        target.classList.add('active');
+        target.classList.remove('is-entering');
+        if (!prefersReducedMotion()) {
+            void target.offsetWidth;
+            target.classList.add('is-entering');
+        }
+    }
+    if (tabId === 'reality') sweepGrid();
 
     const desktopBtn = document.getElementById(`tab-btn-${tabId}`);
-    if (desktopBtn) {
-        desktopBtn.classList.add('bg-cyan-600', 'text-white', 'shadow-md');
-        desktopBtn.classList.remove('text-gray-400');
-        desktopBtn.setAttribute('aria-selected', 'true');
-    }
+    if (desktopBtn) desktopBtn.setAttribute('aria-selected', 'true');
 
     const mobBtn = document.getElementById(`mob-btn-${tabId}`);
-    if (mobBtn) {
-        mobBtn.classList.add('text-cyan-400');
-        mobBtn.classList.remove('text-gray-400');
-        mobBtn.setAttribute('aria-selected', 'true');
-    }
+    if (mobBtn) mobBtn.setAttribute('aria-selected', 'true');
 
     // UX: keep URL hash in sync so tabs are shareable + back-button friendly
     // (replaceState avoids the page jump that setting location.hash would cause)
@@ -636,6 +684,37 @@ function switchTab(tabId) {
     }
 
     refreshIcons();
+}
+
+// Figures tick to their new value; motion is decoration, so reduced motion gets the plain number.
+function setStatNumber(id, value) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (prefersReducedMotion()) { el.innerText = value.toLocaleString(); return; }
+
+    const from = Number(String(el.innerText).replace(/[^0-9.]/g, '')) || 0;
+    if (from === value) { el.innerText = value.toLocaleString(); return; }
+
+    const start = performance.now();
+    const step = (now) => {
+        const t = Math.min(1, (now - start) / 420);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.innerText = Math.round(from + (value - from) * eased).toLocaleString();
+        if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+}
+
+function prefersReducedMotion() {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function sweepGrid() {
+    const scroller = document.querySelector('.grid-scroll');
+    if (!scroller || prefersReducedMotion()) return;
+    scroller.classList.remove('is-sweeping');
+    void scroller.offsetWidth;
+    scroller.classList.add('is-sweeping');
 }
 
 function updateLifeGrid() {
@@ -670,22 +749,27 @@ function updateLifeGrid() {
     const remainingParentVisits = Math.round(parentRemainingYears * visitsPerYear);
     const remainingSummers = Math.max(0, Math.floor((lifespan - (livedWeeks / 52))));
 
-    document.getElementById('stat-weeks-lived').innerText = livedWeeks.toLocaleString();
+    setStatNumber('stat-weeks-lived', livedWeeks);
     document.getElementById('stat-pct-lived').innerText = `${pctLived}% ${getI18nText('stat_weeks_lived_desc')}`;
-    document.getElementById('stat-weeks-left').innerText = remainingWeeks.toLocaleString();
-    document.getElementById('stat-summers-left').innerText = remainingSummers.toLocaleString();
-    document.getElementById('stat-parent-visits').innerText = remainingParentVisits.toLocaleString();
+    const fillEl = document.getElementById('life-progress-fill');
+    if (fillEl) fillEl.style.width = `${pctLived}%`;
+    setStatNumber('stat-weeks-left', remainingWeeks);
+    setStatNumber('stat-summers-left', remainingSummers);
+    setStatNumber('stat-parent-visits', remainingParentVisits);
 
     const gridContainer = document.getElementById('life-grid');
     gridContainer.innerHTML = '';
 
     for (let yr = 0; yr < lifespan; yr++) {
         const yearRow = document.createElement('div');
-        yearRow.className = 'flex items-center gap-1 w-full';
+        const currentYear = Math.floor(livedWeeks / 52);
+        yearRow.className = 'year-row'
+            + (yr % 10 === 0 ? ' is-decade' : '')
+            + (yr === currentYear ? ' is-current' : '');
 
         const yearLabel = document.createElement('span');
-        yearLabel.className = 'text-[9px] font-mono text-gray-500 w-7 text-right pr-1 flex-shrink-0';
-        yearLabel.innerText = yr % 10 === 0 ? `Y${yr}` : '';
+        yearLabel.className = 'year-label';
+        yearLabel.innerText = yr % 10 === 0 ? yr : '';
         yearRow.appendChild(yearLabel);
 
         const weeksRow = document.createElement('div');
@@ -694,36 +778,19 @@ function updateLifeGrid() {
         for (let wk = 0; wk < 52; wk++) {
             const currentWeekIndex = (yr * 52) + wk;
             const sq = document.createElement('div');
-            sq.className = 'week-square cursor-pointer';
+            sq.className = 'week-square';
 
             if (currentWeekIndex < livedWeeks) {
-                sq.classList.add('bg-cyan-600/60', 'border', 'border-cyan-500/20');
+                sq.classList.add('is-lived');
             } else if (currentWeekIndex === livedWeeks) {
-                sq.classList.add('current-week-pulse');
-            } else {
-                sq.classList.add('bg-gray-900', 'border', 'border-gray-800/80');
+                sq.classList.add('is-current');
             }
 
-            // Highlight week if user has logged a milestone/achievement event
+            // A logged milestone is the one thing the grid marks in the accent
             const lifeEvent = lifeGridEvents[currentWeekIndex];
             if (lifeEvent) {
-                sq.classList.remove('bg-cyan-600/60', 'bg-gray-900', 'border-cyan-500/20', 'border-gray-800/80');
-                switch (lifeEvent.category) {
-                    case 'relationships':
-                        sq.classList.add('bg-rose-500', 'shadow-[0_0_8px_rgba(244,63,94,0.7)]');
-                        break;
-                    case 'creativity':
-                        sq.classList.add('bg-amber-500', 'shadow-[0_0_8px_rgba(245,158,11,0.7)]');
-                        break;
-                    case 'adventure':
-                        sq.classList.add('bg-emerald-500', 'shadow-[0_0_8px_rgba(16,185,129,0.7)]');
-                        break;
-                    case 'legacy':
-                        sq.classList.add('bg-sky-500', 'shadow-[0_0_8px_rgba(56,189,248,0.7)]');
-                        break;
-                    default:
-                        sq.classList.add('bg-cyan-500', 'shadow-[0_0_8px_rgba(6,182,212,0.7)]');
-                }
+                sq.classList.add('is-logged');
+                if (lifeEvent.category) sq.classList.add(`cat-${lifeEvent.category}`);
             }
 
             // Calculate exact calendar date range
@@ -731,11 +798,11 @@ function updateLifeGrid() {
             
             let statusText = '';
             if (currentWeekIndex < livedWeeks) {
-                statusText = currentLanguage === 'en' ? 'Past Week' : 'Past Week';
+                statusText = currentLanguage === 'en' ? 'Past week' : 'Past week';
             } else if (currentWeekIndex === livedWeeks) {
-                statusText = currentLanguage === 'en' ? 'CURRENT WEEK' : 'CURRENT WEEK';
+                statusText = currentLanguage === 'en' ? 'Current week' : 'Current week';
             } else {
-                statusText = currentLanguage === 'en' ? 'Future Week' : 'Future Week';
+                statusText = currentLanguage === 'en' ? 'Future week' : 'Future week';
             }
 
             const ageLabelText = currentLanguage === 'en' ? 'Age' : 'Age';
@@ -743,7 +810,7 @@ function updateLifeGrid() {
             const weekLabelText = currentLanguage === 'en' ? 'Week' : 'Week';
 
             // Native Browser Hover Tooltip (shows up right at cursor)
-            let nativeTooltip = `${ageLabelText}: ${yr} ${yearsLabelText} (${weekLabelText} ${wk + 1}/52) [${dateRange}] — ${statusText}`;
+            let nativeTooltip = `${ageLabelText}: ${yr} ${yearsLabelText} (${weekLabelText} ${wk + 1}/52) [${dateRange}], ${statusText}`;
             if (lifeEvent) {
                 const eventLabelPrefix = currentLanguage === 'en' ? 'Event' : 'Event';
                 nativeTooltip += `\n${eventLabelPrefix}: ${lifeEventEmoji(lifeEvent.emoji)} ${lifeEvent.title}`;
@@ -756,7 +823,7 @@ function updateLifeGrid() {
 
             // Also update the bottom panel tooltip detail on mouseenter
             sq.addEventListener('mouseenter', () => {
-                let tooltipText = `${ageLabelText}: ${yr} ${yearsLabelText} (${weekLabelText} ${wk + 1}/52) [${dateRange}] — ${statusText}`;
+                let tooltipText = `${ageLabelText}: ${yr} ${yearsLabelText} (${weekLabelText} ${wk + 1}/52) [${dateRange}], ${statusText}`;
                 if (lifeEvent) {
                     const eventLabelPrefix = currentLanguage === 'en' ? 'Event' : 'Event';
                     tooltipText += ` | ${eventLabelPrefix}: ${lifeEventEmoji(lifeEvent.emoji)} ${lifeEvent.title}`;
@@ -774,7 +841,18 @@ function updateLifeGrid() {
         yearRow.appendChild(weeksRow);
         gridContainer.appendChild(yearRow);
     }
+
+    // resting readout for the grid: the week you are in, even with nothing hovered
+    const nowAge = Math.floor(livedWeeks / 52);
+    const nowWeek = (livedWeeks % 52) + 1;
+    const nowAgeLbl = currentLanguage === 'en' ? 'Age' : 'Age';
+    const nowWeekLbl = currentLanguage === 'en' ? 'week' : 'week';
+    const nowRange = getWeekDateRange(birthDateVal, livedWeeks);
+    document.getElementById('tooltip-detail').innerText =
+        `${nowAgeLbl} ${nowAge} · ${nowWeekLbl} ${nowWeek}/52 · ${nowRange}`;
 }
+
+const VAULT_MARKS = { relationships: 'heart', creativity: 'music', adventure: 'plane', legacy: 'briefcase', other: 'star' };
 
 function renderVaultItems() {
     const container = document.getElementById('vault-grid');
@@ -794,34 +872,30 @@ function renderVaultItems() {
         const isAlreadyAdopted = activeBlueprints.some(b => b.title === title || b.vaultId === item.id);
 
         const card = document.createElement('div');
-        card.className = 'glass-panel-interactive p-5 rounded-3xl flex flex-col justify-between space-y-4';
+        card.className = 'record';
 
         const benefitLabel = currentLanguage === 'en' ? 'Benefit' : 'Fayda';
         const buttonText = isAlreadyAdopted 
-            ? (currentLanguage === 'en' ? 'Plan Already Added' : 'Plan Me Added Hai')
-            : (currentLanguage === 'en' ? 'Start This Plan' : 'Is Plan Ko Shuru Karo');
+            ? (currentLanguage === 'en' ? 'Plan already added' : 'Plan me added hai')
+            : (currentLanguage === 'en' ? 'Start this plan' : 'Is plan ko shuru karo');
 
         card.innerHTML = `
-            <div class="space-y-3">
-                <div class="flex items-center justify-between">
-                    <span class="text-[10px] uppercase font-black tracking-wider px-2.5 py-0.5 rounded-full ${getCategoryBadge(item.category)}">
-                        ${item.category}
-                    </span>
-                    <span class="text-[11px] text-gray-400 font-bold flex items-center gap-1">
-                        <i data-lucide="clock" class="w-3 h-3 text-amber-400"></i> ${timeframe}
-                    </span>
-                </div>
-                <h3 class="text-base font-bold text-white leading-snug">${title}</h3>
-                <p class="text-xs text-gray-300 leading-relaxed">${description}</p>
+            <div>
+                <h3 class="record__title">
+                    <span class="record__mark cat-${item.category}"><i data-lucide="${VAULT_MARKS[item.category] || 'star'}" class="icon"></i></span>
+                    ${title}
+                </h3>
+                <p class="record__meta">
+                    <span class="cat cat-${item.category}">${getCategoryLabel(item.category)}</span>
+                    <span>${timeframe}</span>
+                    <span>${benefitLabel}: ${impact}</span>
+                </p>
+                <p class="record__desc">${description}</p>
             </div>
 
-            <div class="space-y-3 pt-3 border-t border-gray-800/80">
-                <div class="text-[11px] text-emerald-400 flex items-center gap-1.5 font-semibold">
-                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> ${benefitLabel}: ${impact}
-                </div>
-
-                <button onclick="adoptVaultItem('${item.id}')" ${isAlreadyAdopted ? 'disabled' : ''} class="w-full py-2.5 rounded-xl text-xs font-black flex items-center justify-center gap-2 transition-all ${isAlreadyAdopted ? 'bg-gray-800/80 text-gray-500 cursor-not-allowed' : 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black shadow-lg shadow-amber-500/20'}">
-                    <i data-lucide="${isAlreadyAdopted ? 'check' : 'plus'}" class="w-3.5 h-3.5"></i>
+            <div class="record__action">
+                <button type="button" onclick="adoptVaultItem('${item.id}')" ${isAlreadyAdopted ? 'disabled' : ''} class="btn btn--line">
+                    <i data-lucide="${isAlreadyAdopted ? 'check' : 'plus'}" class="icon"></i>
                     ${buttonText}
                 </button>
             </div>
@@ -830,29 +904,22 @@ function renderVaultItems() {
         container.appendChild(card);
     });
 
+    if (filtered.length === 0) {
+        container.innerHTML = `<p class="record record--empty">${currentLanguage === 'en' ? 'No dreams in this category yet. Add your own.' : 'Is category me abhi koi dream nahi hai. Apna khud ka add karo.'}</p>`;
+    }
+
     refreshIcons();
 }
 
-function getCategoryBadge(cat) {
-    switch(cat) {
-        case 'relationships': return 'bg-rose-500/10 text-rose-400 border border-rose-500/30';
-        case 'creativity': return 'bg-amber-500/10 text-amber-400 border border-amber-500/30';
-        case 'adventure': return 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30';
-        case 'legacy': return 'bg-sky-500/10 text-sky-400 border border-sky-500/30';
-        default: return 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/30';
-    }
+function getCategoryLabel(cat) {
+    const labels = TRANSLATIONS.cat_labels;
+    return (labels && labels[currentLanguage] && labels[currentLanguage][cat]) || cat;
 }
 
-function filterVault(cat) {
+function filterVault(cat, evt) {
     currentFilter = cat;
-    document.querySelectorAll('.vault-filter').forEach(btn => {
-        btn.classList.remove('bg-cyan-600', 'text-white', 'shadow-md');
-        btn.classList.add('bg-gray-900', 'text-gray-300');
-    });
-    if (event && event.target) {
-        event.target.classList.remove('bg-gray-900', 'text-gray-300');
-        event.target.classList.add('bg-cyan-600', 'text-white', 'shadow-md');
-    }
+    document.querySelectorAll('.vault-filter').forEach(btn => btn.classList.remove('is-active'));
+    if (evt && evt.currentTarget) evt.currentTarget.classList.add('is-active');
     renderVaultItems();
 }
 
@@ -927,36 +994,29 @@ function renderBlueprints() {
         const pct = Math.round((completedSteps / totalSteps) * 100);
 
         const card = document.createElement('div');
-        card.className = 'glass-panel p-6 rounded-3xl space-y-5 border border-gray-800';
+        card.className = 'plan';
 
-        const createdLabel = currentLanguage === 'en' ? 'Created' : 'Banaya Gaya';
+        const createdLabel = currentLanguage === 'en' ? 'Created' : 'Banaya gaya';
         const completedLabel = currentLanguage === 'en' ? 'completed' : 'poore hue';
-        const completeLabel = currentLanguage === 'en' ? 'Complete' : 'Poora Hua';
-        const actionLabel = currentLanguage === 'en' ? 'Action Steps' : 'Action Steps';
+        const actionLabel = currentLanguage === 'en' ? 'Action steps' : 'Action steps';
         const phaseLabel = currentLanguage === 'en' ? 'Phase' : 'Phase';
 
         let stepsHtml = bp.steps.map((step, idx) => {
             const stepTitle = vaultItem ? (vaultItem.steps[currentLanguage] ? vaultItem.steps[currentLanguage][idx] : step.title) : step.title;
             const stepBadge = step.isFirstStep 
-                ? (currentLanguage === 'en' ? 'Step #1 — 15 Min Jumpstart' : 'Step #1 — 15 Min Jumpstart')
+                ? (currentLanguage === 'en' ? 'Step 1, 15 min jumpstart' : 'Step 1, 15 min jumpstart')
                 : `${phaseLabel} ${idx + 1}`;
 
             return `
-                <div onclick="toggleStep('${bp.id}', ${idx})" class="flex items-start gap-3 p-3.5 rounded-2xl ${step.completed ? 'bg-emerald-950/20 border border-emerald-900/40' : (step.isFirstStep ? 'bg-amber-500/10 border border-amber-500/30' : 'bg-gray-950/60 border border-gray-800')} cursor-pointer hover:border-cyan-500/50 transition-all">
-                    <div class="pt-0.5">
-                        <div class="w-5 h-5 rounded-lg flex items-center justify-center transition-all ${step.completed ? 'bg-emerald-500 text-black' : 'border border-gray-600 text-transparent'}">
-                            <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>
-                        </div>
-                    </div>
-                    <div class="flex-grow">
-                        <div class="flex items-center gap-2">
-                            ${step.isFirstStep ? `<span class="text-[9px] uppercase font-black px-2 py-0.5 rounded-full bg-amber-500 text-black">${stepBadge}</span>` : `<span class="text-[10px] text-gray-400 font-bold">${stepBadge}</span>`}
-                        </div>
-                        <p class="text-xs ${step.completed ? 'line-through text-gray-500 font-normal' : 'text-gray-200 font-bold'} mt-1">${stepTitle}</p>
+                <div role="button" tabindex="0" aria-pressed="${step.completed}" onclick="toggleStep('${bp.id}', ${idx})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleStep('${bp.id}', ${idx})}" class="step${step.completed ? ' is-done' : ''}${step.isFirstStep ? ' is-first' : ''}">
+                    <span class="step__box"><i data-lucide="check" class="icon"></i></span>
+                    <div>
+                        ${step.isFirstStep ? `<span class="step__tag">${stepBadge}</span>` : `<span class="step__num">${stepBadge}</span>`}
+                        <p class="step__label">${stepTitle}</p>
                     </div>
                     ${step.isFirstStep && !step.completed ? `
-                        <button onclick="event.stopPropagation(); launchSprintForStep('${bp.title}', '${step.title}')" class="px-3 py-1 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-[11px] flex items-center gap-1 shadow">
-                            <i data-lucide="zap" class="w-3 h-3"></i> Sprint
+                        <button type="button" onclick="event.stopPropagation(); launchSprintForStep('${bp.title}', '${step.title}')" class="btn btn--line">
+                            <i data-lucide="zap" class="icon"></i>Sprint
                         </button>
                     ` : ''}
                 </div>
@@ -964,33 +1024,27 @@ function renderBlueprints() {
         }).join('');
 
         card.innerHTML = `
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-gray-800">
-                <div class="space-y-1">
-                    <div class="flex items-center gap-2">
-                        <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full ${getCategoryBadge(bp.category)}">
-                            ${bp.category}
-                        </span>
-                        <span class="text-[11px] text-gray-400">${createdLabel}: ${bp.createdAt}</span>
-                    </div>
-                    <h3 class="text-lg font-extrabold text-white">${displayTitle}</h3>
+            <div class="plan__head">
+                <div>
+                    <h3 class="plan__title">${displayTitle}</h3>
+                    <p class="plan__sub">
+                        <span class="cat cat-${bp.category}">${getCategoryLabel(bp.category)}</span>
+                        <span>${createdLabel} ${bp.createdAt}</span>
+                    </p>
                 </div>
 
-                <div class="flex items-center gap-3">
-                    <div class="text-right">
-                        <span class="text-xs font-bold text-amber-400 font-mono">${pct}% ${completeLabel}</span>
-                        <p class="text-[10px] text-gray-400">${completedSteps} of ${totalSteps} ${completedLabel}</p>
-                    </div>
-                    <button onclick="deleteBlueprint('${bp.id}')" class="p-2 rounded-xl bg-gray-950 hover:bg-rose-950/50 text-gray-500 hover:text-rose-400 border border-gray-800 transition-all">
-                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                <div class="plan__figures">
+                    <span class="plan__pct num">${pct}%</span>
+                    <span class="muted num">${completedSteps}/${totalSteps} ${completedLabel}</span>
+                    <button type="button" onclick="deleteBlueprint('${bp.id}')" aria-label="Delete plan" class="btn btn--quiet">
+                        <i data-lucide="trash-2" class="icon"></i>
                     </button>
                 </div>
             </div>
 
-            <div class="space-y-2">
-                <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">${actionLabel}:</span>
-                <div class="grid grid-cols-1 gap-2">
-                    ${stepsHtml}
-                </div>
+            <div class="steps">
+                <span class="plan__sub">${actionLabel}</span>
+                ${stepsHtml}
             </div>
         `;
 
@@ -1045,9 +1099,8 @@ function toggleSprintTimer() {
 
 function startSprintTimer() {
     isSprintRunning = true;
-    document.getElementById('sprint-start-btn').innerHTML = `<i data-lucide="pause" class="w-4 h-4 fill-current"></i> Sprint Pause`;
+    document.getElementById('sprint-start-btn').innerHTML = `<i data-lucide="pause" class="icon"></i> Sprint pause`;
     document.getElementById('sprint-status-label').innerText = 'Focus Lagao! 15 Min Action!';
-    document.getElementById('sprint-status-label').classList.replace('text-gray-400', 'text-amber-400');
 
     sprintInterval = setInterval(() => {
         if (sprintSecondsLeft > 0) {
@@ -1058,7 +1111,7 @@ function startSprintTimer() {
             triggerConfetti();
             playSprintFinishChime();
             showToast('Sprint Poora Hua!', '15 Minutes Ka Asli Kaam Ho Gaya!');
-            document.getElementById('sprint-status-label').innerText = '🎉 Mubarak Ho! Sprint Completed!';
+            document.getElementById('sprint-status-label').innerText = 'Mubarak ho, sprint complete!';
         }
     }, 1000);
 
@@ -1068,9 +1121,8 @@ function startSprintTimer() {
 function pauseSprintTimer() {
     isSprintRunning = false;
     clearInterval(sprintInterval);
-    document.getElementById('sprint-start-btn').innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current"></i> Sprint Resume`;
-    document.getElementById('sprint-status-label').innerText = 'Sprint Ruka Hua Hai';
-    document.getElementById('sprint-status-label').classList.replace('text-amber-400', 'text-gray-400');
+    document.getElementById('sprint-start-btn').innerHTML = `<i data-lucide="play" class="icon"></i> Sprint resume`;
+    document.getElementById('sprint-status-label').innerText = 'Sprint ruka hua hai';
     refreshIcons();
 }
 
@@ -1078,8 +1130,8 @@ function resetSprintTimer() {
     pauseSprintTimer();
     sprintSecondsLeft = 15 * 60;
     updateSprintTimerDisplay();
-    document.getElementById('sprint-start-btn').innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current"></i> 15-Min Sprint Shuru`;
-    document.getElementById('sprint-status-label').innerText = 'Taiyaar Ho? Play Dabao!';
+    document.getElementById('sprint-start-btn').innerHTML = `<i data-lucide="play" class="icon"></i> 15-min sprint shuru`;
+    document.getElementById('sprint-status-label').innerText = 'Taiyaar ho? Play dabao!';
     refreshIcons();
 }
 
@@ -1095,8 +1147,8 @@ function updateSprintTimerDisplay() {
     const ring = document.getElementById('timer-progress-ring');
     if (ring) {
         const totalDash = 263.89; // 2 * PI * 42
-        const offset = totalDash - (sprintSecondsLeft / sprintTotalSeconds) * totalDash;
-        ring.style.strokeDashoffset = offset;
+        // the arc fills as the sprint runs, so 15:00 rests as an empty dial
+        ring.style.strokeDashoffset = (sprintSecondsLeft / sprintTotalSeconds) * totalDash;
     }
 }
 
@@ -1122,7 +1174,7 @@ function updateSprintSelect() {
 
             const opt = document.createElement('option');
             opt.value = `${bp.title}: ${uncompleted.title}`;
-            opt.innerText = `🎯 ${bpTitle} — ${stepTitle}`;
+            opt.innerText = `${bpTitle}, ${stepTitle}`;
             select.appendChild(opt);
         }
     });
@@ -1145,7 +1197,7 @@ function launchSprintForStep(bpTitle, stepTitle) {
     if (!found) {
         const opt = document.createElement('option');
         opt.value = val;
-        opt.innerText = `🎯 ${bpTitle} — ${stepTitle}`;
+        opt.innerText = `${bpTitle}, ${stepTitle}`;
         select.appendChild(opt);
         select.value = val;
     }
@@ -1157,31 +1209,29 @@ function renderWeeklyTargets() {
     container.innerHTML = '';
 
     if (weeklyTargets.length === 0) {
-        container.innerHTML = `<p class="text-xs text-gray-500 italic p-3 text-center">Is hafe ka koi target set nahi hai. Form se add karein!</p>`;
+        container.innerHTML = `<p class="list-empty">Is hafte ka koi target set nahi hai. Form se add karein!</p>`;
         return;
     }
 
     weeklyTargets.forEach(wt => {
         const item = document.createElement('div');
-        item.className = 'flex items-center justify-between p-3.5 rounded-2xl bg-gray-950 border border-gray-800 hover:border-emerald-500/40 transition-all';
+        item.className = 'list-item';
 
         item.innerHTML = `
-            <div class="flex items-center gap-3">
-                <span class="text-emerald-400 flex items-center justify-center bg-emerald-500/10 p-2 rounded-xl border border-emerald-500/20">
-                    <i data-lucide="${wt.emoji || 'target'}" class="w-4 h-4"></i>
-                </span>
+            <div class="list-item__main">
+                <i data-lucide="${wt.emoji || 'target'}" class="icon"></i>
                 <div>
-                    <p class="text-xs font-bold text-white">${wt.title}</p>
-                    <span class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">Target: ${wt.day}</span>
+                    <p class="list-item__title">${wt.title}</p>
+                    <p class="list-item__meta">${wt.day}</p>
                 </div>
             </div>
 
-            <div class="flex items-center gap-2">
-                <button onclick="completeWeeklyTarget('${wt.id}')" class="px-3 py-1 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-[11px] flex items-center gap-1 shadow-md">
-                    <i data-lucide="check-circle" class="w-3.5 h-3.5 stroke-[3]"></i> Win Log
+            <div class="list-item__actions">
+                <button type="button" onclick="completeWeeklyTarget('${wt.id}')" class="btn btn--quiet">
+                    <i data-lucide="check" class="icon"></i>Win log
                 </button>
-                <button onclick="deleteWeeklyTarget('${wt.id}')" class="p-1.5 rounded-lg bg-gray-900 text-gray-500 hover:text-rose-400 transition-all">
-                    <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                <button type="button" onclick="deleteWeeklyTarget('${wt.id}')" aria-label="Delete target" class="btn btn--quiet">
+                    <i data-lucide="x" class="icon"></i>
                 </button>
             </div>
         `;
@@ -1204,7 +1254,7 @@ function handleWeeklyTargetSubmit(e) {
         id: 'wt-' + Date.now(),
         title: titleInput.value.trim(),
         day: dayInput ? dayInput.value : 'Aaj Hi (Today)',
-        emoji: emojiInput ? emojiInput.value : '🎯',
+        emoji: emojiInput ? emojiInput.value : 'target',
         completed: false
     };
 
@@ -1297,35 +1347,33 @@ function renderPastAchievements() {
     container.innerHTML = '';
 
     if (pastAchievements.length === 0) {
-        container.innerHTML = `<p class="text-xs text-gray-500 italic col-span-2 text-center py-6">Abhi tak koi past win log nahi hui. Pehli win add karein!</p>`;
+        container.innerHTML = `<p class="list-empty">Abhi tak koi past win log nahi hui. Pehli win add karein!</p>`;
         return;
     }
 
     pastAchievements.forEach(pa => {
         const card = document.createElement('div');
-        card.className = 'glass-panel p-4 rounded-2xl border border-amber-500/20 bg-gray-950/60 space-y-2 relative group hover:border-amber-500/50 transition-all';
+        card.className = 'list-item';
 
         let iconName = 'award';
-        const badgeText = pa.badge || 'Milestone';
+        const badgeText = (pa.badge || 'Milestone').replace(/^[^\p{L}\p{N}]+/u, '');
         if (badgeText.includes('Milestone')) iconName = 'trophy';
         else if (badgeText.includes('Pride')) iconName = 'star';
         else if (badgeText.includes('Heart')) iconName = 'heart';
         else if (badgeText.includes('Fear')) iconName = 'shield';
 
         card.innerHTML = `
-            <div class="flex items-center justify-between">
-                <span class="inline-flex items-center gap-1 text-[9px] uppercase font-bold text-amber-300 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">
-                    <i data-lucide="${iconName}" class="w-3 h-3 text-amber-400"></i>
-                    ${badgeText}
-                </span>
-                <span class="text-[10px] text-gray-400 font-medium font-mono">${pa.date}</span>
+            <div class="list-item__main">
+                <i data-lucide="${iconName}" class="icon"></i>
+                <div>
+                    <p class="list-item__title">${pa.title}</p>
+                    <p class="list-item__meta">${badgeText}${pa.date ? ', ' + pa.date : ''}</p>
+                    ${pa.note ? `<p class="list-item__meta">${pa.note}</p>` : ''}
+                </div>
             </div>
 
-            <h4 class="text-xs font-bold text-white leading-snug">${pa.title}</h4>
-            ${pa.note ? `<p class="text-[11px] text-gray-300 italic">"${pa.note}"</p>` : ''}
-
-            <button onclick="deletePastAchievement('${pa.id}')" class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 p-1.5 rounded-lg bg-gray-900 text-gray-400 hover:text-rose-400 transition-all">
-                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            <button type="button" onclick="deletePastAchievement('${pa.id}')" aria-label="Delete win" class="btn btn--quiet">
+                <i data-lucide="trash-2" class="icon"></i>
             </button>
         `;
 
@@ -1374,7 +1422,7 @@ function resizeSignatureCanvas(force = false) {
             sigCanvas.height = sigCanvas.offsetHeight;
             
             // Reapply drawing settings because resizing the canvas clears its configuration
-            sigCtx.strokeStyle = '#f59e0b';
+            sigCtx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--color-accent').trim() || 'rgb(207, 238, 75)';
             sigCtx.lineWidth = 2.5;
             sigCtx.lineCap = 'round';
         }
@@ -1440,23 +1488,21 @@ function renderContractsList() {
     container.innerHTML = '';
 
     if (savedContracts.length === 0) {
-        container.innerHTML = `<p class="text-xs text-gray-500 italic">Abhi tak koi contract seal nahi kiya. Upar apna waada likhein.</p>`;
+        container.innerHTML = `<p class="list-empty">Abhi tak koi contract seal nahi kiya. Upar apna waada likhein.</p>`;
         return;
     }
 
     savedContracts.forEach(c => {
         const card = document.createElement('div');
-        card.className = 'glass-panel p-4.5 rounded-2xl space-y-2 border border-cyan-500/20';
+        card.className = 'sealed__item';
 
         card.innerHTML = `
-            <div class="flex items-center justify-between">
-                <span class="text-[10px] uppercase font-bold text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20 font-mono">
-                    Target Date: ${c.targetDate}
-                </span>
-                <span class="text-[10px] text-gray-500 font-mono">Sealed on ${c.sealedAt}</span>
-            </div>
-            <h4 class="text-xs font-bold text-white">${c.promise}</h4>
-            <p class="text-xs text-gray-300 italic">"${c.message}"</p>
+            <p class="sealed__meta">
+                <span>Target ${c.targetDate}</span>
+                <span>Sealed ${c.sealedAt}</span>
+            </p>
+            <p class="sealed__promise">${c.promise}</p>
+            <p class="sealed__message">${c.message}</p>
         `;
 
         container.appendChild(card);
@@ -1550,10 +1596,8 @@ function toggleAmbientSound() {
 }
 
 function toggleSprintAmbientSynth() {
-    // Wired to #sprint-ambient-btn in the sprint tab (toggleAmbientSound targets
-    // stale IDs from an older layout and is kept only for backwards compat).
+    // Wired to #sprint-ambient-btn in the sprint tab
     const btn = document.getElementById('sprint-ambient-btn');
-    const label = btn ? btn.querySelector('[data-i18n]') : null;
     if (!isAmbientPlaying) {
         try {
             if (window.Tone) {
@@ -1569,8 +1613,7 @@ function toggleSprintAmbientSynth() {
             }
 
             isAmbientPlaying = true;
-            if (label) label.innerText = 'Focus Ambient Sound (Playing)';
-            if (btn) btn.classList.add('border-amber-500/50', 'text-amber-300');
+            setAmbientUi();
         } catch(e) {
             console.log("Audio synth error", e);
         }
@@ -1579,9 +1622,21 @@ function toggleSprintAmbientSynth() {
             synthOscillator.releaseAll();
         }
         isAmbientPlaying = false;
-        if (label) label.innerText = 'Focus Ambient Sound (Off)';
-        if (btn) btn.classList.remove('border-amber-500/50', 'text-amber-300');
+        setAmbientUi();
     }
+}
+
+// One place for the sound button's state: aria-pressed, its colour and its label in both languages
+function setAmbientUi() {
+    const btn = document.getElementById('sprint-ambient-btn');
+    if (!btn) return;
+    btn.setAttribute('aria-pressed', String(isAmbientPlaying));
+    btn.classList.toggle('is-on', isAmbientPlaying);
+    const label = btn.querySelector('[data-i18n]');
+    if (!label) return;
+    const key = isAmbientPlaying ? 'sprint_ambient_on' : 'sprint_ambient_btn';
+    label.setAttribute('data-i18n', key);
+    label.innerText = getI18nText(key);
 }
 
 function playSuccessChime() {
@@ -1680,14 +1735,12 @@ function showToast(title, msg) {
     document.getElementById('toast-title').innerText = title;
     document.getElementById('toast-msg').innerText = msg;
 
-    toast.classList.remove('translate-y-20', 'opacity-0');
-    toast.classList.add('translate-y-0', 'opacity-100');
+    toast.classList.add('is-on');
 
     // UX: restart the hide timer so back-to-back toasts each get full reading time
     if (toastTimeout) clearTimeout(toastTimeout);
     toastTimeout = setTimeout(() => {
-        toast.classList.add('translate-y-20', 'opacity-0');
-        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.remove('is-on');
     }, 3500);
 }
 
@@ -1703,7 +1756,7 @@ function getWeekDateRange(birthDateVal, weekIndex) {
     endDate.setDate(endDate.getDate() + 6);
     
     const options = { year: 'numeric', month: 'short', day: 'numeric' };
-    return `${startDate.toLocaleDateString('en-US', options)} - ${endDate.toLocaleDateString('en-US', options)}`;
+    return `${startDate.toLocaleDateString('en-US', options)} to ${endDate.toLocaleDateString('en-US', options)}`;
 }
 
 function openLifeEventModal(weekIndex, birthDateVal) {
@@ -1718,13 +1771,13 @@ function openLifeEventModal(weekIndex, birthDateVal) {
     if (lifeEvent) {
         document.getElementById('life-event-title').value = lifeEvent.title;
         document.getElementById('life-event-category').value = lifeEvent.category;
-        document.getElementById('life-event-emoji').value = lifeEvent.emoji || '🎓';
+        document.getElementById('life-event-emoji').value = lifeEvent.emoji || 'star';
         document.getElementById('life-event-note').value = lifeEvent.note || '';
         if (deleteBtn) deleteBtn.classList.remove('hidden');
     } else {
         document.getElementById('life-event-title').value = '';
         document.getElementById('life-event-category').value = 'relationships';
-        document.getElementById('life-event-emoji').value = '🎓';
+        document.getElementById('life-event-emoji').value = 'star';
         document.getElementById('life-event-note').value = '';
         if (deleteBtn) deleteBtn.classList.add('hidden');
     }
@@ -1814,13 +1867,9 @@ function setSyncStatus(text, mode) {
     const el = document.getElementById('sheet-status');
     if (!el) return;
     el.innerText = text;
-    el.classList.remove('text-gray-400', 'text-amber-300', 'text-emerald-300', 'text-rose-300');
-    el.classList.add(mode === 'ok' ? 'text-emerald-300' : mode === 'warn' ? 'text-amber-300' : mode === 'err' ? 'text-rose-300' : 'text-gray-400');
+    el.dataset.state = mode || 'idle';
     const dot = document.getElementById('sheet-status-dot');
-    if (dot) {
-        dot.classList.remove('bg-gray-500', 'bg-amber-400', 'bg-emerald-400', 'bg-rose-400');
-        dot.classList.add(mode === 'ok' ? 'bg-emerald-400' : mode === 'warn' ? 'bg-amber-400' : mode === 'err' ? 'bg-rose-400' : 'bg-gray-500');
-    }
+    if (dot) dot.classList.toggle('is-live', mode === 'ok');
 }
 
 function sheetNow() { return new Date().toISOString(); }
@@ -1973,7 +2022,7 @@ function pushSheetNow(silent) {
         })
         .catch((err) => {
             sheetSyncing = false;
-            setSyncStatus('Sync offline — local saved ✓', 'warn');
+            setSyncStatus('Sync offline, local saved', 'warn');
             return false;
         });
 }
@@ -2001,7 +2050,7 @@ function pullSheetNow() {
             return false;
         })
         .catch(() => {
-            setSyncStatus('Offline — local data active ✓', 'warn');
+            setSyncStatus('Offline, local data active', 'warn');
             return false;
         });
 }
@@ -2020,7 +2069,7 @@ function saveSheetConfigFromUI() {
         localStorage.setItem(SHEET_LS.enabled, (enEl && enEl.checked) ? '1' : '0');
     } catch (e) {}
     const cfg = getSheetConfig();
-    setSyncStatus(cfg.enabled ? 'Enabled — pull on load ✓' : 'Disabled — local only', cfg.enabled ? 'ok' : '');
+    setSyncStatus(cfg.enabled ? 'Enabled, pull on load' : 'Disabled, local only', cfg.enabled ? 'ok' : '');
     showToast('Cloud settings saved', cfg.enabled ? 'Device ID: ' + cfg.deviceId : 'Sync disabled, local only.');
     if (cfg.enabled && cfg.url && cfg.token) pullSheetNow();
 }
@@ -2040,7 +2089,7 @@ function initSheetSyncUI() {
         setSyncStatus('Auto-pull on start…', 'warn');
         pullSheetNow();
     } else {
-        setSyncStatus(cfg.url || cfg.token ? 'Disabled — local only' : 'Local only — setup in SHEET_DB_SETUP.md', '');
+        setSyncStatus(cfg.url || cfg.token ? 'Disabled, local only' : 'Local only, setup in SHEET_DB_SETUP.md', '');
     }
 }
 

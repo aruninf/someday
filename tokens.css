@@ -1,0 +1,220 @@
+:root {
+  color-scheme: dark;
+
+  /* Spacing Scale */
+  --space-3xs: 2px;
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 36px;
+  --space-2xl: 56px;
+  --space-3xl: 80px;
+  --space-4xl: 120px;
+
+  /* Typography Scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.18rem;
+  --text-xl: 1.4rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 3.25rem;
+
+  --text-display-s: 1.5rem;
+  --text-display: 2.25rem;
+  --text-section: 1.35rem;
+  --text-title: 1.1rem;
+  --text-lead: 1.05rem;
+
+  /* Motion & Easing */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-micro: 120ms;
+  --dur-short: 200ms;
+  --dur-long: 380ms;
+
+  /* Container & Layout */
+  --container: 1360px;
+  --gutter: 48px;
+  --gap-columns: 24px;
+  --control-h: 40px;
+  --banner-h: 68px;
+  --measure: 65ch;
+
+  /* Layering & Z-index */
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-sticky-nav: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+
+  /* Typography Families */
+  --font-display: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Space Grotesk", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --display-weight: 800;
+  --tracking-display: -0.035em;
+  --tracking-tight: -0.015em;
+
+  /* Radius Scale */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-card: 16px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+  --rule-hair: 1px;
+
+  /* ========================================================= */
+  /* Modern Midnight Obsidian Theme (Default)                  */
+  /* ========================================================= */
+  --color-paper: #080b12;
+  --color-paper-2: #0f1523;
+  --color-paper-3: #162033;
+  --color-sunken: #05070c;
+
+  --color-ink: #ffffff;
+  --color-ink-2: #94a3b8;
+  --color-muted: #64748b;
+
+  --color-rule: rgba(255, 255, 255, 0.08);
+  --color-rule-2: rgba(255, 255, 255, 0.14);
+
+  --color-accent: #6366f1;
+  --color-accent-hi: #818cf8;
+  --color-accent-ink: #ffffff;
+  --color-accent-soft: rgba(99, 102, 241, 0.2);
+  --color-focus: #818cf8;
+
+  --color-error: #f87171;
+  --color-success: #10b981;
+
+  --color-scrim: rgba(4, 6, 12, 0.82);
+  --color-mark-lived: #334155;
+  --color-grid-empty: #111827;
+  --color-grid-empty-border: rgba(255, 255, 255, 0.07);
+
+  /* Vibrant Category Jewel Hues */
+  --hue-relationships: #f43f5e;
+  --hue-creativity: #a855f7;
+  --hue-adventure: #f59e0b;
+  --hue-legacy: #0ea5e9;
+  --hue-other: #10b981;
+
+  /* Layered Modern Shadows with Inner Glass Edge */
+  --shadow-card: 0 4px 24px -2px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --shadow-lift: 0 14px 34px -4px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --shadow-pop: 0 24px 56px -12px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  --shadow-accent: 0 6px 20px -2px rgba(99, 102, 241, 0.5);
+
+  /* Atmospheric Aurora Glows */
+  --sheen: rgba(255, 255, 255, 0.12);
+  --glow-cool: rgba(99, 102, 241, 0.2);
+  --glow-warm: rgba(244, 63, 94, 0.15);
+  --glow-lime: rgba(16, 185, 129, 0.1);
+}
+
+/* ========================================================= */
+/* Explicit Dark Theme Selector                              */
+/* ========================================================= */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-paper: #080b12;
+  --color-paper-2: #0f1523;
+  --color-paper-3: #162033;
+  --color-sunken: #05070c;
+
+  --color-ink: #ffffff;
+  --color-ink-2: #94a3b8;
+  --color-muted: #64748b;
+
+  --color-rule: rgba(255, 255, 255, 0.08);
+  --color-rule-2: rgba(255, 255, 255, 0.14);
+
+  --color-accent: #6366f1;
+  --color-accent-hi: #818cf8;
+  --color-accent-ink: #ffffff;
+  --color-accent-soft: rgba(99, 102, 241, 0.2);
+  --color-focus: #818cf8;
+
+  --color-error: #f87171;
+  --color-success: #10b981;
+
+  --color-scrim: rgba(4, 6, 12, 0.82);
+  --color-mark-lived: #334155;
+  --color-grid-empty: #111827;
+  --color-grid-empty-border: rgba(255, 255, 255, 0.07);
+
+  --hue-relationships: #f43f5e;
+  --hue-creativity: #a855f7;
+  --hue-adventure: #f59e0b;
+  --hue-legacy: #0ea5e9;
+  --hue-other: #10b981;
+
+  --shadow-card: 0 4px 24px -2px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --shadow-lift: 0 14px 34px -4px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --shadow-pop: 0 24px 56px -12px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  --shadow-accent: 0 6px 20px -2px rgba(99, 102, 241, 0.5);
+
+  --sheen: rgba(255, 255, 255, 0.12);
+  --glow-cool: rgba(99, 102, 241, 0.2);
+  --glow-warm: rgba(244, 63, 94, 0.15);
+  --glow-lime: rgba(16, 185, 129, 0.1);
+}
+
+/* ========================================================= */
+/* Refined Stone Light Theme (Rich Contrast, Never Washed)   */
+/* ========================================================= */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --color-paper: #eef2f7;
+  --color-paper-2: #ffffff;
+  --color-paper-3: #e2e8f2;
+  --color-sunken: #d5dde9;
+
+  --color-ink: #090e17;
+  --color-ink-2: #475569;
+  --color-muted: #64748b;
+
+  --color-rule: #dbe0ea;
+  --color-rule-2: #cbd5e1;
+
+  --color-accent: #4f46e5;
+  --color-accent-hi: #4338ca;
+  --color-accent-ink: #ffffff;
+  --color-accent-soft: rgba(79, 70, 229, 0.12);
+  --color-focus: #4f46e5;
+
+  --color-error: #ef4444;
+  --color-success: #10b981;
+
+  --color-scrim: rgba(15, 23, 42, 0.45);
+  --color-mark-lived: #94a3b8;
+  --color-grid-empty: #e2e8f2;
+  --color-grid-empty-border: #cbd5e1;
+
+  --hue-relationships: #e11d48;
+  --hue-creativity: #9333ea;
+  --hue-adventure: #d97706;
+  --hue-legacy: #0284c7;
+  --hue-other: #059669;
+
+  --shadow-card: 0 2px 8px -2px rgba(15, 23, 42, 0.08), 0 8px 24px -4px rgba(15, 23, 42, 0.06);
+  --shadow-lift: 0 12px 30px -4px rgba(15, 23, 42, 0.12), 0 4px 8px -2px rgba(15, 23, 42, 0.06);
+  --shadow-pop: 0 24px 50px -10px rgba(15, 23, 42, 0.18), 0 10px 20px -6px rgba(15, 23, 42, 0.08);
+  --shadow-accent: 0 6px 20px -3px rgba(79, 70, 229, 0.4);
+
+  --sheen: rgba(255, 255, 255, 0.85);
+  --glow-cool: rgba(79, 70, 229, 0.07);
+  --glow-warm: rgba(225, 29, 72, 0.06);
+  --glow-lime: rgba(16, 185, 129, 0.05);
+}

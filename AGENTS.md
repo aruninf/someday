@@ -13,11 +13,12 @@ No install / build step. Do not add `package.json`, bundlers, or frameworks.
 ## Architecture
 
 - **Production** — no backend, pure static SPA on GitHub Pages (`main` branch, `/ (root)`)
-- `index.html` — all markup + CDN scripts (Tailwind, Lucide, Tone.js, canvas-confetti). Entry point.
+- `index.html` — all markup + CDN scripts (Lucide, Tone.js, canvas-confetti). Entry point. No CSS framework: semantic classes only.
 - `app.js` — all logic, globals only (~2000 lines, single file). `index.html` calls functions via inline `onclick="..."`.
-- `style.css` — custom CSS (`glass-panel`, `weeks-grid`, `week-square`, tab/timer styles). Inputs/selects overridden with `!important`.
+- `style.css` — the design system: Hallmark stamp + tokens on line 1, then shell, readout, grid, records, plans, sprint, weekly, contract, modal, toast, footer, responsive. Imports `tokens.css` + `base.css` and owns every component class (`readout`, `weeks-grid`, `week-square`, `record`, `timer`, `mob-tab`…).
+- `tokens.css` / `base.css` — Hallmark-generated: theme colours/faces/scale, and the base rules (focus, reduced motion, overflow). Regenerate only by re-running `theme.mjs scaffold`; hand-edits go in `style.css`. `style.css` defines project tokens (`--color-mark-lived`, `--control-h`, `--measure`, `--banner-h`) at the top of `:root`.
 - `google-apps-script.gs` — Google Apps Script for production (token-gated sync proxy + key vault + audit)
-- Tab router is `switchTab(id)` in `app.js` with ids: `reality` (life grid), `vault`, `blueprint`, `sprint`, `weekly`, `contract`. Tab sections are `#tab-<id>` with `.tab-content` / `.active` classes.
+- Tab router is `switchTab(id)` in `app.js` with ids: `reality` (life grid), `vault`, `blueprint`, `sprint`, `weekly`, `contract`. Tab sections are `#tab-<id>` with `.tab-content` / `.active` classes; the desktop tabs and the fixed `.mobilebar` buttons both call it and carry `aria-selected`.
 - `CURATED_VAULT` (8 items) + `TRANSLATIONS` dict are the content source. Vault items are `{en, hi}` objects; default lang is `hi` (`someday_lang`).
 
 ## Google Sheets integration
@@ -74,6 +75,8 @@ No tests / CI by design. Manual checklist (see `CONTRIBUTING.md`):
 
 ## Key conventions
 
+- **Visual system** : Modern luminous light-by-default with obsidian dark mode (`data-theme="light" | "dark"`), Plus Jakarta Sans display/body typography, Space Grotesk tabular numerals, refined card elevation, and vibrant category jewel accents (Rose for relationships, Purple for creativity, Amber for adventure, Sky for legacy, Emerald for other). Colour has two jobs: **indigo/periwinkle** (`--color-accent`) signals primary actions, active tabs, and focus; **five category hues** mark categories on dots, record marks, and logged grid weeks. Theme toggles between Light and Dark via the header button and persists in localStorage. New colours/sizes go in `tokens.css` / `style.css` `:root` as tokens, never inline.
+- **Motion** is decorative and always guarded by `prefers-reduced-motion`: `switchTab()` sets `.is-entering`, `sweepGrid()` runs the grid sweep once on arrival, `setStatNumber()` ticks figures, `.record` rows rise via CSS nth-child delays. Never animate layout properties or the 4160 grid squares individually.
 - **No ES modules.** Keep functions global (`window.setLanguage = setLanguage` pattern); do not refactor to `import/export`.
 - **Keep `updateLifeGrid()` cheap.** Renders `lifespan * 52` divs (default 4160), rebuilds whole grid on input change. Prefer `DocumentFragment`, event delegation, debouncing.
 - **After DOM changes call `lucide.createIcons()`** (or `refreshIcons()`) or icons render blank.

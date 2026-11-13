@@ -18,3 +18,7 @@ npm-debug.log*
 
 # System files
 .DS_Store
+
+# Hallmark and test frames
+.hallmark/
+_frame.html
